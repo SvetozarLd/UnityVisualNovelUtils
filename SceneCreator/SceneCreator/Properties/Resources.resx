@@ -124,17 +124,20 @@
   <data name="report_disk" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\report_disk.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="door_in" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\door_in.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="Backgraund0" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Backgraund0.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="disk" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\disk.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="book_open" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\book_open.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="door_in" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\door_in.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="image_add" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\image_add.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="book_open" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\book_open.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="disk_multiple" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\disk_multiple.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -142,7 +145,7 @@
   <data name="book_add" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\book_add.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="966eb7f0-b161-4c78-a758-515bdce02af1" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\966eb7f0-b161-4c78-a758-515bdce02af1.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="Character0" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Character0.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
 </root>

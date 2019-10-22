@@ -29,28 +29,22 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle9 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle10 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle11 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle12 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle13 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle14 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle15 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle16 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.менюToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.новаяКнигаToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.открытьToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator4 = new System.Windows.Forms.ToolStripSeparator();
-            this.сохранитьToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.сохранитьКакToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator3 = new System.Windows.Forms.ToolStripSeparator();
             this.информацияОКнигеToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator5 = new System.Windows.Forms.ToolStripSeparator();
-            this.выходToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
-            this.toolStripButton3 = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
             this.toolStripComboBox1 = new System.Windows.Forms.ToolStripComboBox();
             this.tabControl1 = new System.Windows.Forms.TabControl();
@@ -90,7 +84,6 @@
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.splitter3 = new System.Windows.Forms.Splitter();
             this.panel_ScenePreview = new System.Windows.Forms.Panel();
-            this.pictureBox4 = new System.Windows.Forms.PictureBox();
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.panel4 = new System.Windows.Forms.Panel();
             this.listView1 = new System.Windows.Forms.ListView();
@@ -98,7 +91,6 @@
             this.imageList_BackSmall = new System.Windows.Forms.ImageList(this.components);
             this.splitter2 = new System.Windows.Forms.Splitter();
             this.panel3 = new System.Windows.Forms.Panel();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.tabPage3 = new System.Windows.Forms.TabPage();
             this.panel2 = new System.Windows.Forms.Panel();
             this.listView2 = new System.Windows.Forms.ListView();
@@ -106,16 +98,24 @@
             this.imageList_LayerSmall = new System.Windows.Forms.ImageList(this.components);
             this.splitter1 = new System.Windows.Forms.Splitter();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.pictureBox2 = new System.Windows.Forms.PictureBox();
             this.tabPage4 = new System.Windows.Forms.TabPage();
             this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
-            this.toolStripMenuItem_Add = new System.Windows.Forms.ToolStripMenuItem();
             this.изменитьToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.удалитьToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.инструментыToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.очиститьВсеСценыToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.удалитьВсеФоныToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.удалитьВсехПерсонажейToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.pictureBox_Backs = new System.Windows.Forms.PictureBox();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.pictureBox2 = new System.Windows.Forms.PictureBox();
+            this.toolStripButton3 = new System.Windows.Forms.ToolStripButton();
+            this.новаяКнигаToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.открытьToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.сохранитьToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.сохранитьКакToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.выходToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripMenuItem_Add = new System.Windows.Forms.ToolStripMenuItem();
+            this.удалитьToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.toolStrip1.SuspendLayout();
             this.tabControl1.SuspendLayout();
@@ -138,16 +138,16 @@
             this.groupBox2.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.panel_ScenePreview.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).BeginInit();
             this.tabPage2.SuspendLayout();
             this.panel4.SuspendLayout();
             this.panel3.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.tabPage3.SuspendLayout();
             this.panel2.SuspendLayout();
             this.panel1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             this.contextMenuStrip1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox_Backs)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             this.SuspendLayout();
             // 
             // menuStrip1
@@ -179,66 +179,27 @@
             this.менюToolStripMenuItem.Size = new System.Drawing.Size(53, 20);
             this.менюToolStripMenuItem.Text = "Меню";
             // 
-            // новаяКнигаToolStripMenuItem
-            // 
-            this.новаяКнигаToolStripMenuItem.Enabled = false;
-            this.новаяКнигаToolStripMenuItem.Image = global::SceneCreator.Properties.Resources.book_add;
-            this.новаяКнигаToolStripMenuItem.Name = "новаяКнигаToolStripMenuItem";
-            this.новаяКнигаToolStripMenuItem.Size = new System.Drawing.Size(197, 28);
-            this.новаяКнигаToolStripMenuItem.Text = "Новая книга";
-            // 
-            // открытьToolStripMenuItem
-            // 
-            this.открытьToolStripMenuItem.Enabled = false;
-            this.открытьToolStripMenuItem.Image = global::SceneCreator.Properties.Resources.book_open;
-            this.открытьToolStripMenuItem.Name = "открытьToolStripMenuItem";
-            this.открытьToolStripMenuItem.Size = new System.Drawing.Size(197, 28);
-            this.открытьToolStripMenuItem.Text = "Открыть";
-            // 
             // toolStripSeparator4
             // 
             this.toolStripSeparator4.Name = "toolStripSeparator4";
-            this.toolStripSeparator4.Size = new System.Drawing.Size(194, 6);
-            // 
-            // сохранитьToolStripMenuItem
-            // 
-            this.сохранитьToolStripMenuItem.Enabled = false;
-            this.сохранитьToolStripMenuItem.Image = global::SceneCreator.Properties.Resources.report_disk;
-            this.сохранитьToolStripMenuItem.Name = "сохранитьToolStripMenuItem";
-            this.сохранитьToolStripMenuItem.Size = new System.Drawing.Size(197, 28);
-            this.сохранитьToolStripMenuItem.Text = "Сохранить";
-            // 
-            // сохранитьКакToolStripMenuItem
-            // 
-            this.сохранитьКакToolStripMenuItem.Enabled = false;
-            this.сохранитьКакToolStripMenuItem.Image = global::SceneCreator.Properties.Resources.disk_multiple;
-            this.сохранитьКакToolStripMenuItem.Name = "сохранитьКакToolStripMenuItem";
-            this.сохранитьКакToolStripMenuItem.Size = new System.Drawing.Size(197, 28);
-            this.сохранитьКакToolStripMenuItem.Text = "Сохранить как";
+            this.toolStripSeparator4.Size = new System.Drawing.Size(189, 6);
             // 
             // toolStripSeparator3
             // 
             this.toolStripSeparator3.Name = "toolStripSeparator3";
-            this.toolStripSeparator3.Size = new System.Drawing.Size(194, 6);
+            this.toolStripSeparator3.Size = new System.Drawing.Size(189, 6);
             // 
             // информацияОКнигеToolStripMenuItem
             // 
             this.информацияОКнигеToolStripMenuItem.Name = "информацияОКнигеToolStripMenuItem";
-            this.информацияОКнигеToolStripMenuItem.Size = new System.Drawing.Size(197, 28);
+            this.информацияОКнигеToolStripMenuItem.Size = new System.Drawing.Size(192, 22);
             this.информацияОКнигеToolStripMenuItem.Text = "Информация о книге";
             this.информацияОКнигеToolStripMenuItem.Click += new System.EventHandler(this.aboutBookToolStripMenuItem_Click);
             // 
             // toolStripSeparator5
             // 
             this.toolStripSeparator5.Name = "toolStripSeparator5";
-            this.toolStripSeparator5.Size = new System.Drawing.Size(194, 6);
-            // 
-            // выходToolStripMenuItem
-            // 
-            this.выходToolStripMenuItem.Image = global::SceneCreator.Properties.Resources.door_in;
-            this.выходToolStripMenuItem.Name = "выходToolStripMenuItem";
-            this.выходToolStripMenuItem.Size = new System.Drawing.Size(197, 28);
-            this.выходToolStripMenuItem.Text = "Выход";
+            this.toolStripSeparator5.Size = new System.Drawing.Size(189, 6);
             // 
             // statusStrip1
             // 
@@ -262,16 +223,6 @@
             this.toolStrip1.Size = new System.Drawing.Size(1110, 28);
             this.toolStrip1.TabIndex = 2;
             this.toolStrip1.Text = "toolStrip1";
-            // 
-            // toolStripButton3
-            // 
-            this.toolStripButton3.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.toolStripButton3.Enabled = false;
-            this.toolStripButton3.Image = global::SceneCreator.Properties.Resources.disk;
-            this.toolStripButton3.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolStripButton3.Name = "toolStripButton3";
-            this.toolStripButton3.Size = new System.Drawing.Size(25, 25);
-            this.toolStripButton3.Text = "toolStripButton3";
             // 
             // toolStripSeparator2
             // 
@@ -327,19 +278,19 @@
             this.dataGridView3.AllowUserToAddRows = false;
             this.dataGridView3.AllowUserToDeleteRows = false;
             this.dataGridView3.AllowUserToResizeRows = false;
-            dataGridViewCellStyle9.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
-            this.dataGridView3.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle9;
+            dataGridViewCellStyle1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+            this.dataGridView3.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
             this.dataGridView3.BackgroundColor = System.Drawing.SystemColors.Window;
             this.dataGridView3.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.dataGridView3.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.None;
-            dataGridViewCellStyle10.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle10.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle10.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle10.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle10.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle10.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle10.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dataGridView3.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle10;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dataGridView3.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
             this.dataGridView3.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView3.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.SceneUid,
@@ -362,8 +313,8 @@
             // SceneUid
             // 
             this.SceneUid.DataPropertyName = "uid";
-            dataGridViewCellStyle11.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            this.SceneUid.DefaultCellStyle = dataGridViewCellStyle11;
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.SceneUid.DefaultCellStyle = dataGridViewCellStyle3;
             this.SceneUid.HeaderText = "№";
             this.SceneUid.MinimumWidth = 60;
             this.SceneUid.Name = "SceneUid";
@@ -476,18 +427,18 @@
             this.dataGridView1.AllowUserToAddRows = false;
             this.dataGridView1.AllowUserToDeleteRows = false;
             this.dataGridView1.AllowUserToResizeRows = false;
-            dataGridViewCellStyle12.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
-            this.dataGridView1.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle12;
+            dataGridViewCellStyle4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+            this.dataGridView1.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle4;
             this.dataGridView1.BackgroundColor = System.Drawing.SystemColors.Window;
             this.dataGridView1.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            dataGridViewCellStyle13.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle13.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle13.Font = new System.Drawing.Font("Microsoft Sans Serif", 6.912F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle13.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle13.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle13.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle13.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dataGridView1.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle13;
+            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle5.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle5.Font = new System.Drawing.Font("Microsoft Sans Serif", 6.912F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle5.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle5.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dataGridView1.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle5;
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.ColumnText,
@@ -507,8 +458,8 @@
             // ColumnText
             // 
             this.ColumnText.DataPropertyName = "Text";
-            dataGridViewCellStyle14.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            this.ColumnText.DefaultCellStyle = dataGridViewCellStyle14;
+            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            this.ColumnText.DefaultCellStyle = dataGridViewCellStyle6;
             this.ColumnText.HeaderText = "Текст";
             this.ColumnText.MinimumWidth = 100;
             this.ColumnText.Name = "ColumnText";
@@ -517,10 +468,10 @@
             // ColumnPrice
             // 
             this.ColumnPrice.DataPropertyName = "Price";
-            dataGridViewCellStyle15.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle15.Format = "N0";
-            dataGridViewCellStyle15.NullValue = "0";
-            this.ColumnPrice.DefaultCellStyle = dataGridViewCellStyle15;
+            dataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle7.Format = "N0";
+            dataGridViewCellStyle7.NullValue = "0";
+            this.ColumnPrice.DefaultCellStyle = dataGridViewCellStyle7;
             this.ColumnPrice.HeaderText = "Цена";
             this.ColumnPrice.MinimumWidth = 80;
             this.ColumnPrice.Name = "ColumnPrice";
@@ -529,10 +480,10 @@
             // ColumnTrans
             // 
             this.ColumnTrans.DataPropertyName = "nextscene";
-            dataGridViewCellStyle16.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle16.Format = "N0";
-            dataGridViewCellStyle16.NullValue = "0";
-            this.ColumnTrans.DefaultCellStyle = dataGridViewCellStyle16;
+            dataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle8.Format = "N0";
+            dataGridViewCellStyle8.NullValue = "0";
+            this.ColumnTrans.DefaultCellStyle = dataGridViewCellStyle8;
             this.ColumnTrans.HeaderText = "№ сцены";
             this.ColumnTrans.Name = "ColumnTrans";
             this.ColumnTrans.ReadOnly = true;
@@ -635,6 +586,7 @@
             this.numericUpDown2.Size = new System.Drawing.Size(177, 20);
             this.numericUpDown2.TabIndex = 3;
             this.numericUpDown2.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.numericUpDown2.ValueChanged += new System.EventHandler(this.numericUpDown2_ValueChanged);
             // 
             // button3
             // 
@@ -736,22 +688,12 @@
             // panel_ScenePreview
             // 
             this.panel_ScenePreview.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.panel_ScenePreview.Controls.Add(this.pictureBox4);
+            this.panel_ScenePreview.Controls.Add(this.pictureBox_Backs);
             this.panel_ScenePreview.Dock = System.Windows.Forms.DockStyle.Left;
             this.panel_ScenePreview.Location = new System.Drawing.Point(3, 16);
             this.panel_ScenePreview.Name = "panel_ScenePreview";
             this.panel_ScenePreview.Size = new System.Drawing.Size(246, 418);
             this.panel_ScenePreview.TabIndex = 4;
-            // 
-            // pictureBox4
-            // 
-            this.pictureBox4.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.pictureBox4.Location = new System.Drawing.Point(0, 0);
-            this.pictureBox4.Name = "pictureBox4";
-            this.pictureBox4.Size = new System.Drawing.Size(242, 414);
-            this.pictureBox4.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.pictureBox4.TabIndex = 0;
-            this.pictureBox4.TabStop = false;
             // 
             // tabPage2
             // 
@@ -823,17 +765,6 @@
             this.panel3.TabIndex = 2;
             this.panel3.SizeChanged += new System.EventHandler(this.panel3_SizeChanged);
             // 
-            // pictureBox1
-            // 
-            this.pictureBox1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.pictureBox1.Location = new System.Drawing.Point(0, 0);
-            this.pictureBox1.Margin = new System.Windows.Forms.Padding(4);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(172, 433);
-            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.pictureBox1.TabIndex = 1;
-            this.pictureBox1.TabStop = false;
-            // 
             // tabPage3
             // 
             this.tabPage3.Controls.Add(this.panel2);
@@ -903,17 +834,6 @@
             this.panel1.TabIndex = 2;
             this.panel1.SizeChanged += new System.EventHandler(this.panel3_SizeChanged);
             // 
-            // pictureBox2
-            // 
-            this.pictureBox2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.pictureBox2.Location = new System.Drawing.Point(0, 0);
-            this.pictureBox2.Margin = new System.Windows.Forms.Padding(4);
-            this.pictureBox2.Name = "pictureBox2";
-            this.pictureBox2.Size = new System.Drawing.Size(185, 433);
-            this.pictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.pictureBox2.TabIndex = 1;
-            this.pictureBox2.TabStop = false;
-            // 
             // tabPage4
             // 
             this.tabPage4.Location = new System.Drawing.Point(4, 22);
@@ -935,28 +855,12 @@
             this.contextMenuStrip1.Name = "contextMenuStrip1";
             this.contextMenuStrip1.Size = new System.Drawing.Size(134, 88);
             // 
-            // toolStripMenuItem_Add
-            // 
-            this.toolStripMenuItem_Add.Image = global::SceneCreator.Properties.Resources.image_add;
-            this.toolStripMenuItem_Add.Name = "toolStripMenuItem_Add";
-            this.toolStripMenuItem_Add.Size = new System.Drawing.Size(133, 28);
-            this.toolStripMenuItem_Add.Text = "Добавить";
-            this.toolStripMenuItem_Add.Click += new System.EventHandler(this.добавитьToolStripMenuItem_Click);
-            // 
             // изменитьToolStripMenuItem
             // 
             this.изменитьToolStripMenuItem.Enabled = false;
             this.изменитьToolStripMenuItem.Name = "изменитьToolStripMenuItem";
             this.изменитьToolStripMenuItem.Size = new System.Drawing.Size(133, 28);
             this.изменитьToolStripMenuItem.Text = "Изменить";
-            // 
-            // удалитьToolStripMenuItem
-            // 
-            this.удалитьToolStripMenuItem.Enabled = false;
-            this.удалитьToolStripMenuItem.Image = global::SceneCreator.Properties.Resources.image_delete;
-            this.удалитьToolStripMenuItem.Name = "удалитьToolStripMenuItem";
-            this.удалитьToolStripMenuItem.Size = new System.Drawing.Size(133, 28);
-            this.удалитьToolStripMenuItem.Text = "Удалить";
             // 
             // инструментыToolStripMenuItem
             // 
@@ -985,6 +889,107 @@
             this.удалитьВсехПерсонажейToolStripMenuItem.Name = "удалитьВсехПерсонажейToolStripMenuItem";
             this.удалитьВсехПерсонажейToolStripMenuItem.Size = new System.Drawing.Size(215, 22);
             this.удалитьВсехПерсонажейToolStripMenuItem.Text = "Удалить всех персонажей";
+            // 
+            // pictureBox_Backs
+            // 
+            this.pictureBox_Backs.BackgroundImage = global::SceneCreator.Properties.Resources.Backgraund0;
+            this.pictureBox_Backs.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.pictureBox_Backs.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.pictureBox_Backs.Image = global::SceneCreator.Properties.Resources.Character0;
+            this.pictureBox_Backs.Location = new System.Drawing.Point(0, 0);
+            this.pictureBox_Backs.Name = "pictureBox_Backs";
+            this.pictureBox_Backs.Size = new System.Drawing.Size(242, 414);
+            this.pictureBox_Backs.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pictureBox_Backs.TabIndex = 0;
+            this.pictureBox_Backs.TabStop = false;
+            // 
+            // pictureBox1
+            // 
+            this.pictureBox1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.pictureBox1.Location = new System.Drawing.Point(0, 0);
+            this.pictureBox1.Margin = new System.Windows.Forms.Padding(4);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(172, 433);
+            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pictureBox1.TabIndex = 1;
+            this.pictureBox1.TabStop = false;
+            // 
+            // pictureBox2
+            // 
+            this.pictureBox2.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.pictureBox2.Location = new System.Drawing.Point(0, 0);
+            this.pictureBox2.Margin = new System.Windows.Forms.Padding(4);
+            this.pictureBox2.Name = "pictureBox2";
+            this.pictureBox2.Size = new System.Drawing.Size(185, 433);
+            this.pictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pictureBox2.TabIndex = 1;
+            this.pictureBox2.TabStop = false;
+            // 
+            // toolStripButton3
+            // 
+            this.toolStripButton3.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.toolStripButton3.Enabled = false;
+            this.toolStripButton3.Image = global::SceneCreator.Properties.Resources.disk;
+            this.toolStripButton3.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripButton3.Name = "toolStripButton3";
+            this.toolStripButton3.Size = new System.Drawing.Size(25, 25);
+            this.toolStripButton3.Text = "toolStripButton3";
+            // 
+            // новаяКнигаToolStripMenuItem
+            // 
+            this.новаяКнигаToolStripMenuItem.Enabled = false;
+            this.новаяКнигаToolStripMenuItem.Image = global::SceneCreator.Properties.Resources.book_add;
+            this.новаяКнигаToolStripMenuItem.Name = "новаяКнигаToolStripMenuItem";
+            this.новаяКнигаToolStripMenuItem.Size = new System.Drawing.Size(192, 22);
+            this.новаяКнигаToolStripMenuItem.Text = "Новая книга";
+            // 
+            // открытьToolStripMenuItem
+            // 
+            this.открытьToolStripMenuItem.Enabled = false;
+            this.открытьToolStripMenuItem.Image = global::SceneCreator.Properties.Resources.book_open;
+            this.открытьToolStripMenuItem.Name = "открытьToolStripMenuItem";
+            this.открытьToolStripMenuItem.Size = new System.Drawing.Size(192, 22);
+            this.открытьToolStripMenuItem.Text = "Открыть";
+            // 
+            // сохранитьToolStripMenuItem
+            // 
+            this.сохранитьToolStripMenuItem.Enabled = false;
+            this.сохранитьToolStripMenuItem.Image = global::SceneCreator.Properties.Resources.report_disk;
+            this.сохранитьToolStripMenuItem.Name = "сохранитьToolStripMenuItem";
+            this.сохранитьToolStripMenuItem.Size = new System.Drawing.Size(192, 22);
+            this.сохранитьToolStripMenuItem.Text = "Сохранить";
+            // 
+            // сохранитьКакToolStripMenuItem
+            // 
+            this.сохранитьКакToolStripMenuItem.Enabled = false;
+            this.сохранитьКакToolStripMenuItem.Image = global::SceneCreator.Properties.Resources.disk_multiple;
+            this.сохранитьКакToolStripMenuItem.Name = "сохранитьКакToolStripMenuItem";
+            this.сохранитьКакToolStripMenuItem.Size = new System.Drawing.Size(192, 22);
+            this.сохранитьКакToolStripMenuItem.Text = "Сохранить как";
+            // 
+            // выходToolStripMenuItem
+            // 
+            this.выходToolStripMenuItem.Image = global::SceneCreator.Properties.Resources.door_in;
+            this.выходToolStripMenuItem.Name = "выходToolStripMenuItem";
+            this.выходToolStripMenuItem.Size = new System.Drawing.Size(192, 22);
+            this.выходToolStripMenuItem.Text = "Выход";
+            this.выходToolStripMenuItem.Click += new System.EventHandler(this.выходToolStripMenuItem_Click);
+            // 
+            // toolStripMenuItem_Add
+            // 
+            this.toolStripMenuItem_Add.Image = global::SceneCreator.Properties.Resources.image_add;
+            this.toolStripMenuItem_Add.Name = "toolStripMenuItem_Add";
+            this.toolStripMenuItem_Add.Size = new System.Drawing.Size(133, 28);
+            this.toolStripMenuItem_Add.Text = "Добавить";
+            this.toolStripMenuItem_Add.Click += new System.EventHandler(this.добавитьToolStripMenuItem_Click);
+            // 
+            // удалитьToolStripMenuItem
+            // 
+            this.удалитьToolStripMenuItem.Enabled = false;
+            this.удалитьToolStripMenuItem.Image = global::SceneCreator.Properties.Resources.image_delete;
+            this.удалитьToolStripMenuItem.Name = "удалитьToolStripMenuItem";
+            this.удалитьToolStripMenuItem.Size = new System.Drawing.Size(133, 28);
+            this.удалитьToolStripMenuItem.Text = "Удалить";
             // 
             // FormMain
             // 
@@ -1028,16 +1033,16 @@
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             this.panel_ScenePreview.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).EndInit();
             this.tabPage2.ResumeLayout(false);
             this.panel4.ResumeLayout(false);
             this.panel3.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.tabPage3.ResumeLayout(false);
             this.panel2.ResumeLayout(false);
             this.panel1.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
             this.contextMenuStrip1.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox_Backs)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -1080,7 +1085,7 @@
         private System.Windows.Forms.Panel panel3;
         private System.Windows.Forms.Panel panel_ScenePreview;
         private System.Windows.Forms.Panel panel6;
-        private System.Windows.Forms.PictureBox pictureBox4;
+        private System.Windows.Forms.PictureBox pictureBox_Backs;
         private System.Windows.Forms.Panel panel7;
         private System.Windows.Forms.DataGridViewTextBoxColumn SceneUid;
         private System.Windows.Forms.DataGridViewTextBoxColumn ScenesText;

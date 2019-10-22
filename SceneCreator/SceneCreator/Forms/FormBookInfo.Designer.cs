@@ -57,7 +57,6 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.pictureBox1.ContextMenuStrip = this.contextMenuStrip1;
-            this.pictureBox1.Image = global::SceneCreator.Properties.Resources._966eb7f0_b161_4c78_a758_515bdce02af1;
             this.pictureBox1.Location = new System.Drawing.Point(12, 32);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(237, 225);

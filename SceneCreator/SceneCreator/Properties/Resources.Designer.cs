@@ -63,9 +63,9 @@ namespace SceneCreator.Properties {
         /// <summary>
         ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap _966eb7f0_b161_4c78_a758_515bdce02af1 {
+        internal static System.Drawing.Bitmap Backgraund0 {
             get {
-                object obj = ResourceManager.GetObject("966eb7f0-b161-4c78-a758-515bdce02af1", resourceCulture);
+                object obj = ResourceManager.GetObject("Backgraund0", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -86,6 +86,16 @@ namespace SceneCreator.Properties {
         internal static System.Drawing.Bitmap book_open {
             get {
                 object obj = ResourceManager.GetObject("book_open", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Character0 {
+            get {
+                object obj = ResourceManager.GetObject("Character0", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

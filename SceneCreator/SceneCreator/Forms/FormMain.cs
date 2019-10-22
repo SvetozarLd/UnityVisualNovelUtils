@@ -39,7 +39,6 @@ namespace SceneCreator.Forms
         private void FormMain_Load(object sender, EventArgs e)
         {
             SetStartVariables();
-            pictureBox4.BackColor = Color.Transparent;
             LoadScenes("");
             dataGridView1.AutoGenerateColumns = false;
             dataGridView3.AutoGenerateColumns = false;
@@ -299,6 +298,13 @@ namespace SceneCreator.Forms
             numericUpDown3.Value = Convert.ToDecimal(protoChapters[uid].AutoJumpTimer);
             if (protoChapters[uid].Background == 0 && protoChapters.ContainsKey(uid - 1)) { protoChapters[uid].Background = protoChapters[uid - 1].Background; }
             if (protoChapters[uid].Layer == 0 && protoChapters.ContainsKey(uid - 1)) { protoChapters[uid].Layer = protoChapters[uid - 1].Layer; }
+            numericUpDown1.Value = protoChapters[uid].Background;
+            numericUpDown2.Value = protoChapters[uid].Layer;
+            if (CPBacks.ContainsKey(protoChapters[uid].Background)) { pictureBox_Backs.BackgroundImage = Utils.FilesWorks.ByteToImage(CPBacks[protoChapters[uid].Background]); } else { pictureBox_Backs.BackgroundImage = Properties.Resources.Backgraund0; }
+            pictureBox_Backs.Image = null;
+
+            if (CPLayers.ContainsKey(protoChapters[uid].Layer)) { pictureBox_Backs.Image = Utils.FilesWorks.ByteToImage(CPLayers[protoChapters[uid].Layer]); } else { pictureBox_Backs.Image = Properties.Resources.Character0; }
+
             showButtonChoice(uid);
             UpdateChapterFieldLocker = true;
         }
@@ -424,8 +430,24 @@ namespace SceneCreator.Forms
             int uid = checkScenesDic();
             if (uid > 0)
             {
-                protoChapters[uid].Message = textBox2.Text;
-                Utils.ChaptersDataTable.UpdateRow(new KeyValuePair<int, Proto.ProtoChapters.protoRow>(uid, protoChapters[uid]));
+                int backuid = (int)numericUpDown1.Value;
+                if (CPBacks.ContainsKey(backuid))
+                {
+                    pictureBox_Backs.BackgroundImage = Utils.FilesWorks.ByteToImage(CPBacks[backuid]);
+                    protoChapters[uid].Background = backuid;
+                }
+                else
+                {
+                    DialogResult result = MessageBox.Show("Фонового изображения с таким номером не существует!" + Environment.NewLine + "Отменить изменение?",
+                                        "Внимание!",
+                                        MessageBoxButtons.YesNo,
+                                        MessageBoxIcon.Question,
+                                        MessageBoxDefaultButton.Button1);
+                    if (result == DialogResult.Yes) { numericUpDown1.Value = protoChapters[uid].Background; } else
+                    {
+                        pictureBox_Backs.BackgroundImage = Properties.Resources.Backgraund0;
+                    }
+                }
             }
         }
 
@@ -437,6 +459,40 @@ namespace SceneCreator.Forms
                 if (protoChapters.ContainsKey(uid)) { return uid; }
             }
             return 0;
+        }
+
+        private void выходToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Application.Exit();
+        }
+
+        private void numericUpDown2_ValueChanged(object sender, EventArgs e)
+        {
+            int uid = checkScenesDic();
+            if (uid > 0)
+            {
+                int backuid = (int)numericUpDown2.Value;
+                if (CPLayers.ContainsKey(backuid))
+                {
+                    pictureBox_Backs.Image = null;
+                    pictureBox_Backs.Image = Utils.FilesWorks.ByteToImage(CPLayers[backuid]);
+                    protoChapters[uid].Layer = backuid;
+                }
+                else
+                {
+                    DialogResult result = MessageBox.Show("Изображения порсонажа с таким номером не существует!" + Environment.NewLine + "Отменить изменение?",
+                    "Внимание!",
+                    MessageBoxButtons.YesNo,
+                    MessageBoxIcon.Question,
+                    MessageBoxDefaultButton.Button1);
+                    if (result == DialogResult.Yes) { numericUpDown2.Value = protoChapters[uid].Layer; }
+                    else
+                    {
+                        pictureBox_Backs.Image = null;
+                        pictureBox_Backs.Image = Properties.Resources.Character0;
+                    }
+                }
+            }
         }
 
 
