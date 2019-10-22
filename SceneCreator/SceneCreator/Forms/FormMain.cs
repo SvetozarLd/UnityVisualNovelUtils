@@ -38,5 +38,18 @@ namespace SceneCreator.Forms
         {
 
         }
+
+        private void listView1_MouseDown(object sender, MouseEventArgs e)
+        {
+            switch (e.Button)
+            {
+                case MouseButtons.Right:
+
+                    break;
+            }
+            
+        }
+
+        
     }
 }
