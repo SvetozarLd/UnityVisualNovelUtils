@@ -63,6 +63,16 @@ namespace SceneCreator.Properties {
         /// <summary>
         ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap _966eb7f0_b161_4c78_a758_515bdce02af1 {
+            get {
+                object obj = ResourceManager.GetObject("966eb7f0-b161-4c78-a758-515bdce02af1", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap book_add {
             get {
                 object obj = ResourceManager.GetObject("book_add", resourceCulture);

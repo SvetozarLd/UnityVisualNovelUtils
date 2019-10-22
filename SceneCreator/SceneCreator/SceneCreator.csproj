@@ -49,19 +49,49 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Forms\FormBookInfo.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\FormBookInfo.Designer.cs">
+      <DependentUpon>FormBookInfo.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\FormButtonChoice.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\FormButtonChoice.Designer.cs">
+      <DependentUpon>FormButtonChoice.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\FormMain.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Forms\FormMain.Designer.cs">
       <DependentUpon>FormMain.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\FormSelectImages.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\FormSelectImages.Designer.cs">
+      <DependentUpon>FormSelectImages.cs</DependentUpon>
+    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Proto\ProtoImages.cs" />
     <Compile Include="Proto\ProtoChapters.cs" />
     <Compile Include="Proto\ProtoBooks.cs" />
+    <Compile Include="Utils\ChaptersDataTable.cs" />
+    <Compile Include="Utils\FilesWorks.cs" />
+    <Compile Include="Utils\ImageUI.cs" />
+    <EmbeddedResource Include="Forms\FormBookInfo.resx">
+      <DependentUpon>FormBookInfo.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\FormButtonChoice.resx">
+      <DependentUpon>FormButtonChoice.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Forms\FormMain.resx">
       <DependentUpon>FormMain.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\FormSelectImages.resx">
+      <DependentUpon>FormSelectImages.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -110,6 +140,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\door_in.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\966eb7f0-b161-4c78-a758-515bdce02af1.jpg" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
