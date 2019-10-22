@@ -95,5 +95,42 @@ namespace SceneCreator.Utils
             }
         }
 
+        public static result UpdateRow(KeyValuePair<int, Proto.ProtoChapters.protoRow> item)
+        {
+            if (dt == null) { Exception ex = Initialization(); if (ex != null) { return new result(null, ex); } }
+            try
+            {
+                string tmp = string.Empty;
+                DataRow row = dt.Select("uid ="+item.Key).SingleOrDefault();
+                row["uid"] = item.Key;
+                if (item.Value.Message.Length > 20)
+                {
+                    tmp = string.Concat(item.Value.Message.Take(20)) + "...";
+                }
+                else { tmp = item.Value.Message; }
+
+                if (!string.IsNullOrEmpty(item.Value.Name) || !string.IsNullOrWhiteSpace(item.Value.Name))
+                {
+                    tmp = item.Value.Name + ": " + tmp;
+                }
+                row["text"] = tmp;
+                tmp = string.Empty;
+                if (item.Value.ButtonChoice != null)
+                {
+                    foreach (Proto.ProtoChapters.protoСhoice trans in item.Value.ButtonChoice)
+                    {
+                        tmp += trans.nextscene + ";";
+                    }
+                }
+                row["trans"] = tmp;
+                dt.Rows.Add(row);
+                return new result(null, null);
+            }
+            catch (Exception ex)
+            {
+                return new result(null, ex);
+            }
+        }
+
     }
 }

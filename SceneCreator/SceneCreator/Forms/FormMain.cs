@@ -16,6 +16,7 @@ namespace SceneCreator.Forms
         public Dictionary<int, byte[]> CPLayers = new Dictionary<int, byte[]>(); // persons
         public Dictionary<int, Proto.ProtoChapters.protoRow> protoChapters = new Dictionary<int, Proto.ProtoChapters.protoRow>(); // chapters
         private DataTable dt;
+        private bool UpdateChapterFieldLocker = false;
         public FormMain()
         {
             InitializeComponent();
@@ -38,9 +39,11 @@ namespace SceneCreator.Forms
         private void FormMain_Load(object sender, EventArgs e)
         {
             SetStartVariables();
+            pictureBox4.BackColor = Color.Transparent;
             LoadScenes("");
             dataGridView1.AutoGenerateColumns = false;
             dataGridView3.AutoGenerateColumns = false;
+
         }
 
 
@@ -242,6 +245,7 @@ namespace SceneCreator.Forms
                         }
                         protoChapters[uid].ButtonChoice.Add(frm.result);
                         showButtonChoice(uid);
+                        Utils.ChaptersDataTable.UpdateRow(new KeyValuePair<int, Proto.ProtoChapters.protoRow>(uid, protoChapters[uid]));
                     }
                 }
                 return;
@@ -286,7 +290,7 @@ namespace SceneCreator.Forms
 
         private void fillTemplateByScene(int uid)
         {
-
+            UpdateChapterFieldLocker = false;
             textBox1.Text = protoChapters[uid].Name;
             textBox2.Text = protoChapters[uid].Message;
             groupBox_SceneMain.Text = "Сцена № " + uid.ToString();
@@ -296,6 +300,7 @@ namespace SceneCreator.Forms
             if (protoChapters[uid].Background == 0 && protoChapters.ContainsKey(uid - 1)) { protoChapters[uid].Background = protoChapters[uid - 1].Background; }
             if (protoChapters[uid].Layer == 0 && protoChapters.ContainsKey(uid - 1)) { protoChapters[uid].Layer = protoChapters[uid - 1].Layer; }
             showButtonChoice(uid);
+            UpdateChapterFieldLocker = true;
         }
 
 
@@ -377,40 +382,64 @@ namespace SceneCreator.Forms
 
         private void checkBox1_CheckedChanged(object sender, EventArgs e)
         {
-            //int uid = (int)groupBox_SceneMain.Tag;
-            //if (protoChapters.ContainsKey(uid))
-            //{
-            //    protoChapters[uid].AutoJump = checkBox1.Checked;
-            //}
+            int uid = checkScenesDic();
+            if (uid > 0)
+            {
+                protoChapters[uid].AutoJump = checkBox1.Checked;
+            }
             numericUpDown3.Enabled = checkBox1.Checked;
         }
 
         private void numericUpDown3_ValueChanged(object sender, EventArgs e)
         {
-            //int uid = (int)groupBox_SceneMain.Tag;
-            //if (protoChapters.ContainsKey(uid))
-            //{
-            //    protoChapters[uid].AutoJumpTimer = (float)numericUpDown3.Value;
-            //}
+            int uid = checkScenesDic();
+            if (uid > 0)
+            {
+                protoChapters[uid].AutoJumpTimer = (float)numericUpDown3.Value;
+            }
         }
 
         private void textBox1_TextChanged(object sender, EventArgs e)
         {
-            //int uid = (int)groupBox_SceneMain.Tag;
-            //if (protoChapters.ContainsKey(uid))
-            //{
-            //    protoChapters[uid].Name = textBox1.Text;                
-            //}
+            int uid = checkScenesDic();
+            if (uid > 0)
+            {
+                protoChapters[uid].Name = textBox1.Text;
+                Utils.ChaptersDataTable.UpdateRow(new KeyValuePair<int, Proto.ProtoChapters.protoRow>(uid, protoChapters[uid]));
+            }
         }
 
         private void textBox2_TextChanged(object sender, EventArgs e)
         {
-            //int uid = (int)groupBox_SceneMain.Tag;
-            //if (protoChapters.ContainsKey(uid))
-            //{
-            //    protoChapters[uid].Message = textBox2.Text;
-            //}
+            int uid = checkScenesDic();
+            if (uid > 0)
+            {
+                protoChapters[uid].Message = textBox2.Text;
+                Utils.ChaptersDataTable.UpdateRow(new KeyValuePair<int, Proto.ProtoChapters.protoRow>(uid, protoChapters[uid]));
+            }
         }
+
+        private void numericUpDown1_ValueChanged(object sender, EventArgs e)
+        {
+            int uid = checkScenesDic();
+            if (uid > 0)
+            {
+                protoChapters[uid].Message = textBox2.Text;
+                Utils.ChaptersDataTable.UpdateRow(new KeyValuePair<int, Proto.ProtoChapters.protoRow>(uid, protoChapters[uid]));
+            }
+        }
+
+        private int checkScenesDic()
+        {
+            if (UpdateChapterFieldLocker)
+            {
+                int uid = (int)groupBox_SceneMain.Tag;
+                if (protoChapters.ContainsKey(uid)) { return uid; }
+            }
+            return 0;
+        }
+
+
 
         //private void button4_Click(object sender, EventArgs e)
         //{
