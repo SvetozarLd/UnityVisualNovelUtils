@@ -256,7 +256,7 @@ namespace SceneCreator.Forms
                     ButtonChoice = new List<Proto.ProtoChapters.protoСhoice>()
                 };
                 Utils.ChaptersDataTable.result result = Utils.ChaptersDataTable.AddNewRow(new KeyValuePair<int, Proto.ProtoChapters.protoRow>(i, tmp));
-                if (result.ex != null) { MessageBox.Show(result.ex.Message); } else { protoChapters.Add(i, tmp); }
+                if (result.ex != null) { MessageBox.Show(result.ex.Message, "Ошибка!", MessageBoxButtons.OK, MessageBoxIcon.Error); } else { protoChapters.Add(i, tmp); }
             }
         }
         #endregion
@@ -291,10 +291,13 @@ namespace SceneCreator.Forms
             textBox2.Text = protoChapters[uid].Message;
             groupBox_SceneMain.Text = "Сцена № " + uid.ToString();
             groupBox_SceneMain.Tag = uid;
+            checkBox1.Checked = protoChapters[uid].AutoJump;
+            numericUpDown3.Value = Convert.ToDecimal(protoChapters[uid].AutoJumpTimer);
             if (protoChapters[uid].Background == 0 && protoChapters.ContainsKey(uid - 1)) { protoChapters[uid].Background = protoChapters[uid - 1].Background; }
             if (protoChapters[uid].Layer == 0 && protoChapters.ContainsKey(uid - 1)) { protoChapters[uid].Layer = protoChapters[uid - 1].Layer; }
             showButtonChoice(uid);
         }
+
 
         private void showButtonChoice(int uid)
         {
@@ -371,5 +374,62 @@ namespace SceneCreator.Forms
                 frm.ShowDialog();
             }
         }
+
+        private void checkBox1_CheckedChanged(object sender, EventArgs e)
+        {
+            //int uid = (int)groupBox_SceneMain.Tag;
+            //if (protoChapters.ContainsKey(uid))
+            //{
+            //    protoChapters[uid].AutoJump = checkBox1.Checked;
+            //}
+            numericUpDown3.Enabled = checkBox1.Checked;
+        }
+
+        private void numericUpDown3_ValueChanged(object sender, EventArgs e)
+        {
+            //int uid = (int)groupBox_SceneMain.Tag;
+            //if (protoChapters.ContainsKey(uid))
+            //{
+            //    protoChapters[uid].AutoJumpTimer = (float)numericUpDown3.Value;
+            //}
+        }
+
+        private void textBox1_TextChanged(object sender, EventArgs e)
+        {
+            //int uid = (int)groupBox_SceneMain.Tag;
+            //if (protoChapters.ContainsKey(uid))
+            //{
+            //    protoChapters[uid].Name = textBox1.Text;                
+            //}
+        }
+
+        private void textBox2_TextChanged(object sender, EventArgs e)
+        {
+            //int uid = (int)groupBox_SceneMain.Tag;
+            //if (protoChapters.ContainsKey(uid))
+            //{
+            //    protoChapters[uid].Message = textBox2.Text;
+            //}
+        }
+
+        //private void button4_Click(object sender, EventArgs e)
+        //{
+        //    int uid = (int)groupBox_SceneMain.Tag;
+        //    if (protoChapters.ContainsKey(uid))
+        //    {
+        //        protoChapters[uid].Name = textBox1.Text;
+        //        //protoChapters[uid].AutoJump = textBox1.Text;
+        //        //protoChapters[uid].AutoJumpTimer = textBox1.Text;
+        //        protoChapters[uid].Background = (int)numericUpDown1.Value;
+        //        //protoChapters[uid].ButtonChoice = textBox1.Text;
+        //        protoChapters[uid].Layer = (int)numericUpDown2.Value;
+        //        protoChapters[uid].Message = textBox2.Text;
+        //        protoChapters[uid].Sound = 0;
+        //    }
+        //    else
+        //    {
+        //        MessageBox.Show("Сцена с номером " + uid.ToString() + " не найдена! О_о", "Ошибка!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+        //    }
+        //}
     }
 }
