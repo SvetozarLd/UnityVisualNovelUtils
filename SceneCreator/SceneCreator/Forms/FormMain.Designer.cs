@@ -182,24 +182,25 @@
             // toolStripSeparator4
             // 
             this.toolStripSeparator4.Name = "toolStripSeparator4";
-            this.toolStripSeparator4.Size = new System.Drawing.Size(189, 6);
+            this.toolStripSeparator4.Size = new System.Drawing.Size(194, 6);
             // 
             // toolStripSeparator3
             // 
             this.toolStripSeparator3.Name = "toolStripSeparator3";
-            this.toolStripSeparator3.Size = new System.Drawing.Size(189, 6);
+            this.toolStripSeparator3.Size = new System.Drawing.Size(194, 6);
             // 
             // информацияОКнигеToolStripMenuItem
             // 
+            this.информацияОКнигеToolStripMenuItem.Image = global::SceneCreator.Properties.Resources.book;
             this.информацияОКнигеToolStripMenuItem.Name = "информацияОКнигеToolStripMenuItem";
-            this.информацияОКнигеToolStripMenuItem.Size = new System.Drawing.Size(192, 22);
+            this.информацияОКнигеToolStripMenuItem.Size = new System.Drawing.Size(197, 28);
             this.информацияОКнигеToolStripMenuItem.Text = "Информация о книге";
             this.информацияОКнигеToolStripMenuItem.Click += new System.EventHandler(this.aboutBookToolStripMenuItem_Click);
             // 
             // toolStripSeparator5
             // 
             this.toolStripSeparator5.Name = "toolStripSeparator5";
-            this.toolStripSeparator5.Size = new System.Drawing.Size(189, 6);
+            this.toolStripSeparator5.Size = new System.Drawing.Size(194, 6);
             // 
             // statusStrip1
             // 
@@ -937,41 +938,37 @@
             // 
             // новаяКнигаToolStripMenuItem
             // 
-            this.новаяКнигаToolStripMenuItem.Enabled = false;
             this.новаяКнигаToolStripMenuItem.Image = global::SceneCreator.Properties.Resources.book_add;
             this.новаяКнигаToolStripMenuItem.Name = "новаяКнигаToolStripMenuItem";
-            this.новаяКнигаToolStripMenuItem.Size = new System.Drawing.Size(192, 22);
+            this.новаяКнигаToolStripMenuItem.Size = new System.Drawing.Size(197, 28);
             this.новаяКнигаToolStripMenuItem.Text = "Новая книга";
             // 
             // открытьToolStripMenuItem
             // 
-            this.открытьToolStripMenuItem.Enabled = false;
             this.открытьToolStripMenuItem.Image = global::SceneCreator.Properties.Resources.book_open;
             this.открытьToolStripMenuItem.Name = "открытьToolStripMenuItem";
-            this.открытьToolStripMenuItem.Size = new System.Drawing.Size(192, 22);
+            this.открытьToolStripMenuItem.Size = new System.Drawing.Size(197, 28);
             this.открытьToolStripMenuItem.Text = "Открыть";
             // 
             // сохранитьToolStripMenuItem
             // 
-            this.сохранитьToolStripMenuItem.Enabled = false;
             this.сохранитьToolStripMenuItem.Image = global::SceneCreator.Properties.Resources.report_disk;
             this.сохранитьToolStripMenuItem.Name = "сохранитьToolStripMenuItem";
-            this.сохранитьToolStripMenuItem.Size = new System.Drawing.Size(192, 22);
+            this.сохранитьToolStripMenuItem.Size = new System.Drawing.Size(197, 28);
             this.сохранитьToolStripMenuItem.Text = "Сохранить";
             // 
             // сохранитьКакToolStripMenuItem
             // 
-            this.сохранитьКакToolStripMenuItem.Enabled = false;
             this.сохранитьКакToolStripMenuItem.Image = global::SceneCreator.Properties.Resources.disk_multiple;
             this.сохранитьКакToolStripMenuItem.Name = "сохранитьКакToolStripMenuItem";
-            this.сохранитьКакToolStripMenuItem.Size = new System.Drawing.Size(192, 22);
+            this.сохранитьКакToolStripMenuItem.Size = new System.Drawing.Size(197, 28);
             this.сохранитьКакToolStripMenuItem.Text = "Сохранить как";
             // 
             // выходToolStripMenuItem
             // 
             this.выходToolStripMenuItem.Image = global::SceneCreator.Properties.Resources.door_in;
             this.выходToolStripMenuItem.Name = "выходToolStripMenuItem";
-            this.выходToolStripMenuItem.Size = new System.Drawing.Size(192, 22);
+            this.выходToolStripMenuItem.Size = new System.Drawing.Size(197, 28);
             this.выходToolStripMenuItem.Text = "Выход";
             this.выходToolStripMenuItem.Click += new System.EventHandler(this.выходToolStripMenuItem_Click);
             // 
