@@ -8,13 +8,13 @@ using System.IO;
 
 namespace SceneCreator.Proto
 {
-    public class ProtoImages
+    public class ProtoBinaryData
     {
         [ProtoContract]
         public class protoRow
         {
             [ProtoMember(1)]
-            public Dictionary<int, byte[]> images { get; set; }
+            public Dictionary<int, byte[]> data { get; set; }
         }
 
         public byte[] protoSerialize(Dictionary<int, byte[]> items)

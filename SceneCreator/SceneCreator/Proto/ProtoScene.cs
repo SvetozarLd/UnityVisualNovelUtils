@@ -8,7 +8,7 @@ using System.IO;
 
 namespace SceneCreator.Proto
 {
-    public class ProtoChapters
+    public class ProtoScene
     {
         [ProtoContract]
         public class protoRow

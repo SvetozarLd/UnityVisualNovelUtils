@@ -5,9 +5,9 @@ namespace SceneCreator.Forms
 {
     public partial class FormButtonChoice : Form
     {
-        public Proto.ProtoChapters.protoСhoice result { get; set; }
+        public Proto.ProtoScene.protoСhoice result { get; set; }
 
-        public FormButtonChoice(Proto.ProtoChapters.protoСhoice item)
+        public FormButtonChoice(Proto.ProtoScene.protoСhoice item)
         {
             InitializeComponent();
             result = item;
@@ -21,7 +21,7 @@ namespace SceneCreator.Forms
 
         private void button1_Click(object sender, EventArgs e)
         {
-            result = new Proto.ProtoChapters.protoСhoice
+            result = new Proto.ProtoScene.protoСhoice
             {
                 nextscene = (int)numericUpDown2.Value,
                 Price = (int)numericUpDown1.Value,

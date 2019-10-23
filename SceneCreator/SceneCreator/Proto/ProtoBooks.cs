@@ -18,6 +18,8 @@ namespace SceneCreator.Proto
             [ProtoMember(2)]
             public string Name { get; set; }
             [ProtoMember(3)]
+            public int CurrentChapter{ get; set; }
+            [ProtoMember(3)]
             public int CurrentPosition { get; set; }
             [ProtoMember(4)]
             public Dictionary<int, byte[]> Chapters { get; set; }

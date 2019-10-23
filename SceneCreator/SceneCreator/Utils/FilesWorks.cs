@@ -1,163 +1,141 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
 using System.IO;
-using System.Drawing;
-using System.Drawing.Drawing2D;
-using System.Drawing.Imaging;
+using SceneCreator.Proto;
 
 namespace SceneCreator.Utils
 {
     public static class FilesWorks
     {
-        private static string initialDirectory=string.Empty;
-
-        public static Utils.ImageUI GetFilesByteArray(string FileExtension,int name)
+        // For load 
+        public enum Type
         {
-            using (OpenFileDialog ofd = new OpenFileDialog())
-            {
-                ofd.Filter = FileExtension; //"Изображения | *.jpg; *.jpeg; *.jpe; *.jfif; *.png; *.gif; *.bmp; *.tif; *.tiff; |Все файлы (*.*)|*.*";
-                ofd.FilterIndex = 0;
-                ofd.Multiselect = true;
-                ofd.InitialDirectory = initialDirectory;
-                if (ofd.ShowDialog() == DialogResult.OK)
-                {
-                    if (System.IO.File.Exists(ofd.FileName))
-                    {
-                        initialDirectory = ofd.InitialDirectory;
-                        using (Image img = Image.FromFile(ofd.FileName))
-                        {
-                            Utils.ImageUI imageUI = new ImageUI();
-                            imageUI.Name = name;
-                            imageUI.Image = ImageToByte(img);
-                            imageUI.PreviewBig = ImageToByte(ResizeImage(img, 255,255));
-                            imageUI.PreviewSmall = ImageToByte(ResizeImage(img, 32, 32));
-                            return imageUI;
-                        }
-                    }
-                }
-            }
-            return null;
+            Binary,
+            Scenes,
+            Chapters
         }
 
-
-        public static Image Resize(Image image, int newWidth, int maxHeight, bool onlyResizeIfWider)
+        //answer 
+        public class result
         {
-            
-
-            if (onlyResizeIfWider && image.Width <= newWidth) newWidth = image.Width;
-
-            var newHeight = image.Height * newWidth / image.Width;
-            if (newHeight > maxHeight)
-            {
-                newWidth = image.Width * maxHeight / image.Height;
-                newHeight = maxHeight;
-            }
-
-            var res = new Bitmap(newWidth, newHeight);
-            using (var graphic = Graphics.FromImage(res))
-            {
-                graphic.InterpolationMode = InterpolationMode.HighQualityBicubic;
-                graphic.SmoothingMode = SmoothingMode.HighQuality;
-                graphic.PixelOffsetMode = PixelOffsetMode.HighQuality;
-                graphic.CompositingQuality = CompositingQuality.HighQuality;
-                graphic.DrawImage(image, 0, 0, newWidth, newHeight);
-            }
-
-            return res;
+            public object Value { get; set; }
+            public Exception Ex { get; set; }
+            public result(object value, Exception exception)
+            { Value = value; Ex = exception; }
         }
 
-        internal static byte[] ImageToByte(Image preview)
+        #region Save metods
+        public static result Save(Dictionary<int, byte[]> items, string path)
         {
             try
             {
-                using (MemoryStream stream = new MemoryStream())
+                Proto.ProtoBinaryData protoBinary = new Proto.ProtoBinaryData();
+                byte[] fileBytes = protoBinary.protoSerialize(items);
+                if (File.Exists(path)) { File.Delete(path); }
+                using (Stream file = File.OpenWrite(path))
                 {
-                    preview.Save(stream, System.Drawing.Imaging.ImageFormat.Png);
-                    return stream.ToArray();
+                    file.Write(fileBytes, 0, fileBytes.Length);
                 }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message, "Ошибка [ImageToByte]!", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                GC.Collect();
                 return null;
             }
+            catch (Exception ex) { return new result(null, ex); }
         }
 
-        internal static Image ByteToImage(byte[] value)
+        public static result Save(Dictionary<int, ProtoChapter.protoRow> items, string path)
         {
-            if (value != null)
+            try
             {
-                using (MemoryStream mStream = new MemoryStream(value))
+                Proto.ProtoChapter prt = new Proto.ProtoChapter();
+                byte[] fileBytes = prt.protoSerialize(items);
+                if (File.Exists(path)) { File.Delete(path); }
+                using (Stream file = File.OpenWrite(path))
                 {
-                    return Image.FromStream(mStream);
+                    file.Write(fileBytes, 0, fileBytes.Length);
                 }
+                return null;
             }
-            else { return null; }
+            catch (Exception ex) { return new result(null, ex); }
         }
-
-        public static byte[] GetBytesFromImage(string imageFile, int name)
+        public static result Save(Dictionary<int, Proto.ProtoScene.protoRow> items, string path)
         {
-
-            using (MemoryStream ms = new MemoryStream())
+            try
             {
-                if (File.Exists(imageFile))
+                Proto.ProtoScene prt = new Proto.ProtoScene();
+                byte[] fileBytes = prt.protoSerialize(items);
+                if (File.Exists(path)) { File.Delete(path); }
+                using (Stream file = File.OpenWrite(path))
                 {
-                    try
-                    {
-                        using (Image img = Image.FromFile(imageFile))
-                        {
-                            img.Save(ms, System.Drawing.Imaging.ImageFormat.Png);
-                            return ms.ToArray();
-                        }
-                    }
-                    catch (Exception ex)
-                    {
-                        MessageBox.Show(ex.Message, "Ошибка изображения!", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                        GC.Collect();
-                        return null;
-                    }
+                    file.Write(fileBytes, 0, fileBytes.Length);
                 }
-                else { return null; }
+                return null;
             }
+            catch (Exception ex) { return new result(null, ex); }
         }
+        #endregion
 
-
-
-
-
-
-
-        public static Image ResizeImage(Image image, int width, int height)
+        #region Load metods
+        public static result Load(string path, Type type)
         {
-            var destRect = new Rectangle(0, 0, width, height);
-            var destImage = new Bitmap(width, height);
-
-            destImage.SetResolution(image.HorizontalResolution, image.VerticalResolution);
-
-            using (var graphics = Graphics.FromImage(destImage))
+            switch (type)
             {
-                graphics.CompositingMode = CompositingMode.SourceCopy;
-                graphics.CompositingQuality = CompositingQuality.HighQuality;
-                graphics.InterpolationMode = InterpolationMode.HighQualityBicubic;
-                graphics.SmoothingMode = SmoothingMode.HighQuality;
-                graphics.PixelOffsetMode = PixelOffsetMode.HighQuality;
-
-                using (var wrapMode = new ImageAttributes())
-                {
-                    wrapMode.SetWrapMode(WrapMode.TileFlipXY);
-                    graphics.DrawImage(image, destRect, 0, 0, image.Width, image.Height, GraphicsUnit.Pixel, wrapMode);
-                }
+                case Type.Binary: return LoadBinaryData(path);
+                case Type.Scenes: return LoadScenes(path);
+                case Type.Chapters: return LoadChapters(path);
             }
-
-            return destImage;
+            return new result(null, new Exception("Неопознанный тип для десериализации"));
         }
 
+        private static result LoadBinaryData(string path)
+        {
+            try
+            {
+                if (File.Exists(path))
+                {
+                    Proto.ProtoBinaryData binaryData = new Proto.ProtoBinaryData();
+                    Dictionary<int, byte[]> items;
+                    byte[] fileBytes = File.ReadAllBytes(path);
+                    items = binaryData.protoDeserialize(fileBytes);
+                    if (items == null) { return new result(null, new Exception("Ошибка сериализации!")); }
+                    return new result(items, null);
+                }
+                else { return new result(null, new Exception($"Файл {path} не найден!")); }
+            }
+            catch (Exception ex) { return new result(null, ex); }
+        }
 
+        private static result LoadScenes(string path)
+        {
+            try
+            {
+                if (File.Exists(path))
+                {
+                    Proto.ProtoScene prt = new Proto.ProtoScene();
+                    byte[] fileBytes = File.ReadAllBytes(path);
+                    Dictionary<int, Proto.ProtoScene.protoRow> items = prt.protoDeserialize(fileBytes);
+                    if (items == null) { return new result(null, new Exception("Ошибка сериализации!")); }
+                    return new result(items, null);
+                }
+                else { return new result(null, new Exception($"Файл {path} не найден!")); }
+            }
+            catch (Exception ex) { return new result(null, ex); }
+        }
 
+        private static result LoadChapters(string path)
+        {
+            try
+            {
+                if (File.Exists(path))
+                {
+                    Proto.ProtoChapter prt = new Proto.ProtoChapter();
+                    byte[] fileBytes = File.ReadAllBytes(path);
+                    Dictionary<int, Proto.ProtoChapter.protoRow> items = prt.protoDeserialize(fileBytes);
+                    if (items == null) { return new result(null, new Exception("Ошибка сериализации!")); }
+                    return new result(items, null);
+                }
+                else { return new result(null, new Exception($"Файл {path} не найден!")); }
+            }
+            catch (Exception ex) { return new result(null, ex); }
+        }
+        #endregion
     }
 }

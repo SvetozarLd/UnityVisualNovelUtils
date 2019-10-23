@@ -38,14 +38,14 @@ namespace SceneCreator.Utils
             }
         }
 
-        public static result ConvertFromProto(Dictionary<int, Proto.ProtoChapters.protoRow> protoChapters)
+        public static result ConvertFromProto(Dictionary<int, Proto.ProtoScene.protoRow> protoChapters)
         {
             if (dt == null) { Exception ex = Initialization(); if (ex != null) { return new result(null, ex); } }
             if (protoChapters == null) { return new result(null, new Exception("Dictionary<int,Proto.ProtoChapters> protoChapters is NULL!")); }
             if (dt.Rows.Count > 0) { dt.Rows.Clear(); }
             try
             {
-                foreach (KeyValuePair<int, Proto.ProtoChapters.protoRow> item in protoChapters)
+                foreach (KeyValuePair<int, Proto.ProtoScene.protoRow> item in protoChapters)
                 {
                     Exception ex = AddNewRow(item).ex;
                     if (ex != null){return new result(null, ex);}
@@ -58,7 +58,7 @@ namespace SceneCreator.Utils
             }
         }
 
-        public static result AddNewRow(KeyValuePair<int, Proto.ProtoChapters.protoRow> item)
+        public static result AddNewRow(KeyValuePair<int, Proto.ProtoScene.protoRow> item)
         {
             if (dt == null) { Exception ex = Initialization(); if (ex != null) { return new result(null, ex); } }
             try
@@ -80,7 +80,7 @@ namespace SceneCreator.Utils
                 tmp = string.Empty;
                 if (item.Value.ButtonChoice != null)
                 {
-                    foreach (Proto.ProtoChapters.protoСhoice trans in item.Value.ButtonChoice)
+                    foreach (Proto.ProtoScene.protoСhoice trans in item.Value.ButtonChoice)
                     {
                         tmp += trans.nextscene + ";";
                     }
@@ -95,7 +95,7 @@ namespace SceneCreator.Utils
             }
         }
 
-        public static result UpdateRow(KeyValuePair<int, Proto.ProtoChapters.protoRow> item)
+        public static result UpdateRow(KeyValuePair<int, Proto.ProtoScene.protoRow> item)
         {
             if (dt == null) { Exception ex = Initialization(); if (ex != null) { return new result(null, ex); } }
             try
@@ -117,7 +117,7 @@ namespace SceneCreator.Utils
                 tmp = string.Empty;
                 if (item.Value.ButtonChoice != null)
                 {
-                    foreach (Proto.ProtoChapters.protoСhoice trans in item.Value.ButtonChoice)
+                    foreach (Proto.ProtoScene.protoСhoice trans in item.Value.ButtonChoice)
                     {
                         tmp += trans.nextscene + ";";
                     }
