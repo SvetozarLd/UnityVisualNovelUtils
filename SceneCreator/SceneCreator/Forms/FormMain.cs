@@ -289,12 +289,25 @@ namespace SceneCreator.Forms
 
 
 
-        private void dataGridView1_MouseDown(object sender, MouseEventArgs e)
+        private void dataGridView_MouseDown(object sender, MouseEventArgs e)
         {
             if (e.Button == MouseButtons.Right)
             {
                 DataGridView dataGridView = (DataGridView)sender;
                 contextMenuStrip1.Tag = dataGridView.Name;
+                dataGridView.ClearSelection();
+                int i = dataGridView.HitTest(e.X, e.Y).RowIndex;
+                if (i > -1)
+                {
+                    dataGridView.Rows[i].Selected = true;
+                    toolStripMenuItem_Edit.Enabled = true;
+                    toolStripMenuItem_Delete.Enabled = true;
+                }
+                else
+                {
+                    toolStripMenuItem_Edit.Enabled = false;
+                    toolStripMenuItem_Delete.Enabled = false;
+                }
                 contextMenuStrip1.Show(dataGridView.PointToScreen(e.Location));
                 contextMenuStrip1.Show();
             }
@@ -670,6 +683,7 @@ namespace SceneCreator.Forms
                 if (CPMusics != null) { CPMusics.Clear(); } else { CPMusics = new Dictionary<int, byte[]>(); }
                 SaveMaterials(MaterialsType.Music, directorydata.FullName);
                 RecentBooks(path);
+                Text = directory.FullName;
             }
         }
         #endregion
@@ -716,6 +730,7 @@ namespace SceneCreator.Forms
                 }
                 fillingComboBox_Chapters();
                 RecentBooks(directory.FullName);
+                Text = path;
                 return true;
             }
             catch (Exception ex) { ShowExeption(ex); return false; }
@@ -806,6 +821,7 @@ namespace SceneCreator.Forms
             SaveMaterials(MaterialsType.Characters, path + @"\data");
             SaveMaterials(MaterialsType.Music, path + @"\data");
             RecentBooks(path);
+            Text = path;
         }
 
         private void SaveChapters(string path)
@@ -954,8 +970,182 @@ namespace SceneCreator.Forms
                 CheckRecent();
             }
         }
+
         #endregion
 
+        private void toolStripMenuItem_ScenesExport_Click(object sender, EventArgs e)
+        {
+            FolderBrowserDialog browserDialog = new FolderBrowserDialog
+            {
+                Description = "Выберите папку проекта",
+                SelectedPath = Properties.Settings.Default.path
+            };
+            string path = SelectFolder(browserDialog);
+            if (path == null) { return; }
+            Utils.FilesWorks.result result = Utils.FilesWorks.Save(CPChapters[toolStripComboBox_Chapters.Text].Scenes, path + @"\" + toolStripComboBox_Chapters.SelectedIndex.ToString("0000") + "_scenes.bytes");
+            if (result != null && result.Ex != null) { ShowExeption(result.Ex); }
 
+            //Dictionary<int, Proto.ProtoScene.protoRow> dicsave = new Dictionary<int, Proto.ProtoScene.protoRow>();
+
+
+
+            //for (int i = 0; i < listBox_Chapters.Items.Count; i++)
+            //{
+            //    if (CPChapters[(string)listBox_Chapters.Items[i]].Scenes == null)
+            //    {
+            //        CPChapters[(string)listBox_Chapters.Items[i]].Scenes = new Dictionary<int, Proto.ProtoScene.protoRow>();
+            //    }
+            //    dicsave.Add(i, CPChapters[(string)listBox_Chapters.Items[i]]);
+            //}
+            //Utils.FilesWorks.result result = Utils.FilesWorks.Save(dicsave, path + @"\book.dat");
+            //if (result != null && result.Ex != null) { ShowExeption(result.Ex); }
+        }
+
+        private void toolStripMenuItem_Delete_Click(object sender, EventArgs e)
+        {
+
+            int i = 0;
+            if (contextMenuStrip1.Tag.ToString().Equals(listView1.Name))
+            {
+                //if (CPBacks.Count > 0) { i = CPBacks.Keys.Max() + 1; } else { i = 1; }
+                //Utils.ImageUI result = Utils.ImagesWorks.GetFilesByteArray("Изображения PNG24| *.png", i);
+                //if (result != null && result.Image != null && result.PreviewSmall != null)
+                //{
+                //    CPBacks.Add(i, result.Image);
+                //    string resultname = i.ToString();
+                //    imageList_BackBig.Images.Add(resultname, Utils.ImagesWorks.ByteToImage(result.PreviewBig));
+                //    imageList_BackSmall.Images.Add(resultname, Utils.ImagesWorks.ByteToImage(result.PreviewSmall));
+                //    ListViewItem item = new ListViewItem
+                //    {
+                //        ImageKey = resultname,
+                //        Text = resultname,
+                //        Tag = i
+                //    };
+                //    listView1.Items.Add(item);
+                //}
+                return;
+            }
+            if (contextMenuStrip1.Tag.ToString().Equals(listView2.Name))
+            {
+                //if (CPLayers.Count > 0) { i = CPLayers.Keys.Max() + 1; } else { i = 1; }
+                //Utils.ImageUI result = Utils.ImagesWorks.GetFilesByteArray("Изображения PNG24| *.png", i);
+                //if (result != null && result.Image != null && result.PreviewSmall != null)
+                //{
+                //    CPLayers.Add(i, result.Image);
+                //    string resultname = i.ToString();
+                //    imageList_LayerBig.Images.Add(resultname, Utils.ImagesWorks.ByteToImage(result.PreviewBig));
+                //    imageList_LayerSmall.Images.Add(resultname, Utils.ImagesWorks.ByteToImage(result.PreviewSmall));
+                //    ListViewItem item = new ListViewItem
+                //    {
+                //        ImageKey = resultname,
+                //        Text = resultname,
+                //        Tag = i
+                //    };
+                //    listView2.Items.Add(item);
+                //}
+                return;
+            }
+
+            if (contextMenuStrip1.Tag.ToString().Equals(dataGridView1.Name))
+            {
+                int uid = (int)groupBox_SceneMain.Tag;
+                MessageBox.Show(contextMenuStrip1.Text);
+                //if (CPChapters[toolStripComboBox_Chapters.Text].Scenes[uid].ButtonChoice == null) { CPChapters[toolStripComboBox_Chapters.Text].Scenes[uid].ButtonChoice = new List<Proto.ProtoScene.protoСhoice>(); }
+                ////using (FormButtonChoice frm = new FormButtonChoice(null))
+                ////{
+                ////    frm.ShowInTaskbar = false;
+                ////    frm.StartPosition = FormStartPosition.Manual;
+                ////    frm.Location = contextMenuStrip1.PointToScreen(Point.Empty);
+                ////    frm.ShowDialog();
+                ////    if (frm.result != null)
+                ////    {
+                ////        CPChapters[toolStripComboBox_Chapters.Text].Scenes[uid].ButtonChoice.Add(frm.result);
+                ////        showButtonChoice(uid);
+                ////        Utils.ChaptersDataTable.UpdateRow(new KeyValuePair<int, Proto.ProtoScene.protoRow>(uid, CPChapters[toolStripComboBox_Chapters.Text].Scenes[uid]));
+                ////    }
+                ////}
+                return;
+            }
+            if (contextMenuStrip1.Tag.ToString().Equals(dataGridView3.Name))
+            {
+                //if (CPChapters[toolStripComboBox_Chapters.Text].Scenes == null) { CPChapters[toolStripComboBox_Chapters.Text].Scenes = new Dictionary<int, Proto.ProtoScene.protoRow>(); }
+                //if (CPChapters[toolStripComboBox_Chapters.Text].Scenes.Count > 0) { i = CPChapters[toolStripComboBox_Chapters.Text].Scenes.Keys.Max() + 1; } else { i = 1; }
+                //Proto.ProtoScene.protoRow tmp = new Proto.ProtoScene.protoRow
+                //{
+                //    Message = string.Empty,
+                //    Name = string.Empty,
+                //    ButtonChoice = new List<Proto.ProtoScene.protoСhoice>()
+                //};
+                //CPChapters[toolStripComboBox_Chapters.Text].Scenes.Add(i, tmp);
+                //Utils.ChaptersDataTable.result result = Utils.ChaptersDataTable.AddNewRow(new KeyValuePair<int, Proto.ProtoScene.protoRow>(i, tmp));
+                //if (result.ex != null) { ShowExeption(result.ex); }
+            }
+        }
+
+        private void toolStripMenuItem_Edit_Click(object sender, EventArgs e)
+        {
+            int i = 0;
+            if (contextMenuStrip1.Tag.ToString().Equals(listView1.Name))
+            {
+                //if (CPBacks.Count > 0) { i = CPBacks.Keys.Max() + 1; } else { i = 1; }
+                //Utils.ImageUI result = Utils.ImagesWorks.GetFilesByteArray("Изображения PNG24| *.png", i);
+                //if (result != null && result.Image != null && result.PreviewSmall != null)
+                //{
+                //    CPBacks.Add(i, result.Image);
+                //    string resultname = i.ToString();
+                //    imageList_BackBig.Images.Add(resultname, Utils.ImagesWorks.ByteToImage(result.PreviewBig));
+                //    imageList_BackSmall.Images.Add(resultname, Utils.ImagesWorks.ByteToImage(result.PreviewSmall));
+                //    ListViewItem item = new ListViewItem
+                //    {
+                //        ImageKey = resultname,
+                //        Text = resultname,
+                //        Tag = i
+                //    };
+                //    listView1.Items.Add(item);
+                //}
+                return;
+            }
+            if (contextMenuStrip1.Tag.ToString().Equals(listView2.Name))
+            {
+                //if (CPLayers.Count > 0) { i = CPLayers.Keys.Max() + 1; } else { i = 1; }
+                //Utils.ImageUI result = Utils.ImagesWorks.GetFilesByteArray("Изображения PNG24| *.png", i);
+                //if (result != null && result.Image != null && result.PreviewSmall != null)
+                //{
+                //    CPLayers.Add(i, result.Image);
+                //    string resultname = i.ToString();
+                //    imageList_LayerBig.Images.Add(resultname, Utils.ImagesWorks.ByteToImage(result.PreviewBig));
+                //    imageList_LayerSmall.Images.Add(resultname, Utils.ImagesWorks.ByteToImage(result.PreviewSmall));
+                //    ListViewItem item = new ListViewItem
+                //    {
+                //        ImageKey = resultname,
+                //        Text = resultname,
+                //        Tag = i
+                //    };
+                //    listView2.Items.Add(item);
+                //}
+                return;
+            }
+
+            if (contextMenuStrip1.Tag.ToString().Equals(dataGridView1.Name))
+            {
+                int uid = (int)groupBox_SceneMain.Tag;
+                //CPChapters[toolStripComboBox_Chapters.Text].Scenes[uid]
+                return;
+            }
+            if (contextMenuStrip1.Tag.ToString().Equals(dataGridView3.Name))
+            {
+                //if (CPChapters[toolStripComboBox_Chapters.Text].Scenes == null) { CPChapters[toolStripComboBox_Chapters.Text].Scenes = new Dictionary<int, Proto.ProtoScene.protoRow>(); }
+                //if (CPChapters[toolStripComboBox_Chapters.Text].Scenes.Count > 0) { i = CPChapters[toolStripComboBox_Chapters.Text].Scenes.Keys.Max() + 1; } else { i = 1; }
+                //Proto.ProtoScene.protoRow tmp = new Proto.ProtoScene.protoRow
+                //{
+                //    Message = string.Empty,
+                //    Name = string.Empty,
+                //    ButtonChoice = new List<Proto.ProtoScene.protoСhoice>()
+                //};
+                //CPChapters[toolStripComboBox_Chapters.Text].Scenes.Add(i, tmp);
+                //Utils.ChaptersDataTable.result result = Utils.ChaptersDataTable.AddNewRow(new KeyValuePair<int, Proto.ProtoScene.protoRow>(i, tmp));
+                //if (result.ex != null) { ShowExeption(result.ex); }
+            }
+        }
     }
 }
