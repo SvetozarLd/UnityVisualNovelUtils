@@ -82,7 +82,7 @@ namespace SceneCreator.Utils
                 {
                     foreach (Proto.ProtoScene.protoСhoice trans in item.Value.ButtonChoice)
                     {
-                        tmp += trans.nextscene + ";";
+                        tmp += trans.NextScene + ";";
                     }
                 }
                 row["trans"] = tmp;
@@ -119,11 +119,11 @@ namespace SceneCreator.Utils
                 {
                     foreach (Proto.ProtoScene.protoСhoice trans in item.Value.ButtonChoice)
                     {
-                        tmp += trans.nextscene + ";";
+                        tmp += trans.NextScene + ";";
                     }
                 }
                 row["trans"] = tmp;
-                dt.Rows.Add(row);
+                //dt.Rows.Add(row);
                 return new result(null, null);
             }
             catch (Exception ex)

@@ -34,9 +34,9 @@ namespace SceneCreator.Proto
         public class protoСhoice
         {
             [ProtoMember(1)]
-            public string Text { get; set; } // текст кнопки (действует, если в ButtonChoice больше 1 пункта)
+            public string ButtonText { get; set; } // текст кнопки (действует, если в ButtonChoice больше 1 пункта)
             [ProtoMember(2)]
-            public int nextscene { get; set; } // номер(адрес) следующей сцены
+            public int NextScene { get; set; } // номер(адрес) следующей сцены
             [ProtoMember(3)]
             public int Price { get; set; } // стоимость  перехода на следующую сцену - при стоимость 0, не показывается на кнопке.
         }

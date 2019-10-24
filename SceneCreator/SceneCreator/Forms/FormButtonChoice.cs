@@ -23,9 +23,9 @@ namespace SceneCreator.Forms
         {
             result = new Proto.ProtoScene.protoСhoice
             {
-                nextscene = (int)numericUpDown2.Value,
+                NextScene = (int)numericUpDown2.Value,
                 Price = (int)numericUpDown1.Value,
-                Text = textBox1.Text
+                ButtonText = textBox1.Text
             };
             Close();
         }

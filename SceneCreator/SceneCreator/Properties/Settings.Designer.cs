@@ -34,5 +34,53 @@ namespace SceneCreator.Properties {
                 this["path"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string path0 {
+            get {
+                return ((string)(this["path0"]));
+            }
+            set {
+                this["path0"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string path1 {
+            get {
+                return ((string)(this["path1"]));
+            }
+            set {
+                this["path1"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string path2 {
+            get {
+                return ((string)(this["path2"]));
+            }
+            set {
+                this["path2"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string path3 {
+            get {
+                return ((string)(this["path3"]));
+            }
+            set {
+                this["path3"] = value;
+            }
+        }
     }
 }

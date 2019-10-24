@@ -143,6 +143,16 @@ namespace SceneCreator.Properties {
         /// <summary>
         ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap icons_unity {
+            get {
+                object obj = ResourceManager.GetObject("icons_unity", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap image_add {
             get {
                 object obj = ResourceManager.GetObject("image_add", resourceCulture);

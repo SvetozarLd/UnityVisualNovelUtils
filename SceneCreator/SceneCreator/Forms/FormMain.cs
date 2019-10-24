@@ -5,6 +5,7 @@ using System.Drawing;
 using System.IO;
 using System.Linq;
 using System.Windows.Forms;
+
 namespace SceneCreator.Forms
 {
     public partial class FormMain : Form
@@ -16,19 +17,22 @@ namespace SceneCreator.Forms
             Music
         }
 
+
         public Dictionary<int, byte[]> CPBacks = new Dictionary<int, byte[]>(); // backgrounds
         public Dictionary<int, byte[]> CPLayers = new Dictionary<int, byte[]>(); // persons
-        public Dictionary<int, byte[]> CPBMusics = new Dictionary<int, byte[]>(); // musics
-        public Dictionary<string, Proto.ProtoChapter.protoRow> CPChapters = new Dictionary<string, Proto.ProtoChapter.protoRow>();
+        public Dictionary<int, byte[]> CPMusics = new Dictionary<int, byte[]>(); // musics
+        public Dictionary<string, Proto.ProtoChapter.protoRow> CPChapters = new Dictionary<string, Proto.ProtoChapter.protoRow>(); // book
 
-        private DataTable dt;
-        private bool UpdateChapterFieldLocker = false;
-        private TabPage tab;
+        private DataTable dt; // link of ChaptersDataTable datatable - for scenes datagridview
+        private bool UpdateChapterFieldLocker = false; // flag for denied update scenes info
+        private TabPage tab; // hidding tab with scenes 
+        private string CurrentPath = string.Empty; //corrent book path
+
+        #region Constructor + Necessaries for start
         public FormMain()
         {
             InitializeComponent();
         }
-
 
         private void SetStartVariables()
         {
@@ -43,86 +47,26 @@ namespace SceneCreator.Forms
         private void FormMain_Load(object sender, EventArgs e)
         {
             tab = tabControl1.TabPages[1];
+            Properties.Settings.Default.Reload();
+            CheckRecent();
             tabControl1.TabPages.Remove(tab);
             Utils.ChaptersDataTable.Initialization();
             SetStartVariables();
             dataGridView1.AutoGenerateColumns = false;
             dataGridView3.AutoGenerateColumns = false;
-            LoadBook(Properties.Settings.Default.path);
             dataGridViewScenes_BindingSource();
         }
+        #endregion
 
-
-
-
-
-        private void LoadBook(string path)
+        #region HotKeys handlers
+        protected override bool ProcessCmdKey(ref Message msg, Keys keyData)
         {
-            if (!string.IsNullOrEmpty(path) || !string.IsNullOrWhiteSpace(path))
-            {
-                if (CPBacks != null)
-                {
-                    CPBacks.Clear();
-                    Utils.FilesWorks.result result = Utils.FilesWorks.Load(Properties.Settings.Default.path + @"\data\background.dat", Utils.FilesWorks.Type.Binary);
-                    if (result != null && result.Ex != null) { showExeption(result.Ex); }
-                    else
-                    {
-                        CPBacks = (Dictionary<int, byte[]>)result.Value;
-                        foreach (KeyValuePair<int, byte[]> i in CPBacks)
-                        {
-                            string resultname = i.Key.ToString();
-                            imageList_BackBig.Images.Add(resultname, Utils.ImagesWorks.ResizeImage(Utils.ImagesWorks.ByteToImage(i.Value), 255, 255));
-                            imageList_BackSmall.Images.Add(resultname, Utils.ImagesWorks.ResizeImage(Utils.ImagesWorks.ByteToImage(i.Value), 32, 32));
-                            ListViewItem item = new ListViewItem
-                            {
-                                ImageKey = resultname,
-                                Text = resultname,
-                                Tag = i.Key
-                            };
-                            listView1.Items.Add(item);
-                        }
-                    }
-                }
-                if (CPLayers != null)
-                {
-                    CPLayers.Clear();
-                    Utils.FilesWorks.result result = Utils.FilesWorks.Load(Properties.Settings.Default.path + @"\data\characters.dat", Utils.FilesWorks.Type.Binary);
-                    if (result != null && result.Ex != null) { showExeption(result.Ex); }
-                    else
-                    {
-                        CPLayers = (Dictionary<int, byte[]>)result.Value;
-                        foreach (KeyValuePair<int, byte[]> i in CPLayers)
-                        {
-                            string resultname = i.Key.ToString();
-                            imageList_LayerBig.Images.Add(resultname, Utils.ImagesWorks.ResizeImage(Utils.ImagesWorks.ByteToImage(i.Value), 255, 255));
-                            imageList_LayerSmall.Images.Add(resultname, Utils.ImagesWorks.ResizeImage(Utils.ImagesWorks.ByteToImage(i.Value), 32, 32));
-                            ListViewItem item = new ListViewItem
-                            {
-                                ImageKey = resultname,
-                                Text = resultname,
-                                Tag = i.Key
-                            };
-                            listView2.Items.Add(item);
-                        }
-                    }
-                }
-                DirectoryInfo directory = new DirectoryInfo(path);
-                Utils.FilesWorks.result res = null;
-                if (CPChapters != null) { CPChapters.Clear(); } else { CPChapters = new Dictionary<string, Proto.ProtoChapter.protoRow>(); }
-                res = Utils.FilesWorks.Load(directory.FullName + @"\book.dat", Utils.FilesWorks.Type.Chapters);
-                if (res.Ex != null) { showExeption(res.Ex); return; }
-
-                Dictionary<int, Proto.ProtoChapter.protoRow> dic = (Dictionary<int, Proto.ProtoChapter.protoRow>)res.Value;
-                listBox_Chapters.Items.Clear();
-                for (int i = 0; i < dic.Count; i++)
-                {
-                    CPChapters.Add(dic[i].Name, dic[i]);
-                    listBox_Chapters.Items.Add(dic[i].Name);
-                }
-                fillingComboBox_Chapters();
-            }
+            if (keyData == (Keys.Control | Keys.S)) { SaveBook(CurrentPath); return true; }
+            return base.ProcessCmdKey(ref msg, keyData);
         }
+        #endregion
 
+        #region Всё дерьмо, незабыть позже передалать и дописать
         private void listView1_MouseDown(object sender, MouseEventArgs e)
         {
             ListView lst = (ListView)sender;
@@ -156,44 +100,12 @@ namespace SceneCreator.Forms
 
         private void listView1_SelectedIndexChanged(object sender, EventArgs e)
         {
-            //var ww = listView1.SelectedItems
+
         }
 
 
         private void toolStripComboBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
-            #region __________________________
-            //ListView lst = null;
-            //switch (tabControl1.SelectedIndex)
-            //{
-            //    case 1: lst = listView1; break;
-            //    case 2: lst = listView2; break;
-            //}
-            //if (lst != null)
-            //{
-            //    switch (toolStripComboBox1.SelectedIndex)
-            //    {
-            //        case 0:
-            //            lst.View = View.LargeIcon;
-            //            break;
-            //        case 1:
-            //            lst.View = View.SmallIcon;
-            //            break;
-            //        case 2:
-            //            lst.View = View.List;
-            //            break;
-            //        case 3:
-            //            lst.View = View.Tile;
-            //            break;
-            //    }
-            //}
-            //ListView lst = null;
-            //switch (tabControl1.SelectedIndex)
-            //{
-            //    case 1: lst = listView1; break;
-            //    case 2: lst = listView2; break;
-            //}
-            #endregion
             switch (toolStripComboBox_ListView.SelectedIndex)
             {
                 case 0:
@@ -214,24 +126,15 @@ namespace SceneCreator.Forms
                     break;
             }
         }
-
-        #region Gui: Image Panels uniform width
-        private void panel3_SizeChanged(object sender, EventArgs e)
-        {
-            if (((Control)sender).Name.Equals(panel3.Name)) { panel1.Width = panel3.Width; } else { panel3.Width = panel1.Width; }
-        }
         #endregion
 
-
-
-
-
-
-
-
         #region Add BinaryFile (Image/Sound)
-        private void добавитьToolStripMenuItem_Click(object sender, EventArgs e)
+        /// <summary>
+        /// опять быстрый костыль, handler of toolStripMenuItem_Add 
+        /// </summary>
+        private void ContextMenuAddMaterial_Click(object sender, EventArgs e)
         {
+
             int i = 0;
             if (contextMenuStrip1.Tag.ToString().Equals(listView1.Name))
             {
@@ -276,6 +179,8 @@ namespace SceneCreator.Forms
 
             if (contextMenuStrip1.Tag.ToString().Equals(dataGridView1.Name))
             {
+                int uid = (int)groupBox_SceneMain.Tag;
+                if (CPChapters[toolStripComboBox_Chapters.Text].Scenes[uid].ButtonChoice == null) { CPChapters[toolStripComboBox_Chapters.Text].Scenes[uid].ButtonChoice = new List<Proto.ProtoScene.protoСhoice>(); }
                 using (FormButtonChoice frm = new FormButtonChoice(null))
                 {
                     frm.ShowInTaskbar = false;
@@ -284,12 +189,6 @@ namespace SceneCreator.Forms
                     frm.ShowDialog();
                     if (frm.result != null)
                     {
-                        int uid = (int)groupBox_SceneMain.Tag;
-                        if (CPChapters[toolStripComboBox_Chapters.Text].Scenes[uid].ButtonChoice == null)
-                        {
-                            CPChapters[toolStripComboBox_Chapters.Text].Scenes[uid].ButtonChoice = new List<Proto.ProtoScene.protoСhoice>();
-
-                        }
                         CPChapters[toolStripComboBox_Chapters.Text].Scenes[uid].ButtonChoice.Add(frm.result);
                         showButtonChoice(uid);
                         Utils.ChaptersDataTable.UpdateRow(new KeyValuePair<int, Proto.ProtoScene.protoRow>(uid, CPChapters[toolStripComboBox_Chapters.Text].Scenes[uid]));
@@ -299,6 +198,7 @@ namespace SceneCreator.Forms
             }
             if (contextMenuStrip1.Tag.ToString().Equals(dataGridView3.Name))
             {
+                if (CPChapters[toolStripComboBox_Chapters.Text].Scenes == null) { CPChapters[toolStripComboBox_Chapters.Text].Scenes = new Dictionary<int, Proto.ProtoScene.protoRow>(); }
                 if (CPChapters[toolStripComboBox_Chapters.Text].Scenes.Count > 0) { i = CPChapters[toolStripComboBox_Chapters.Text].Scenes.Keys.Max() + 1; } else { i = 1; }
                 Proto.ProtoScene.protoRow tmp = new Proto.ProtoScene.protoRow
                 {
@@ -308,11 +208,12 @@ namespace SceneCreator.Forms
                 };
                 CPChapters[toolStripComboBox_Chapters.Text].Scenes.Add(i, tmp);
                 Utils.ChaptersDataTable.result result = Utils.ChaptersDataTable.AddNewRow(new KeyValuePair<int, Proto.ProtoScene.protoRow>(i, tmp));
-                if (result.ex != null) { MessageBox.Show(result.ex.Message, "Ошибка!", MessageBoxButtons.OK, MessageBoxIcon.Error); }
+                if (result.ex != null) { ShowExeption(result.ex); }
             }
         }
         #endregion
 
+        #region Тут море всякого пиздеца - разобрать и привести в порядок по мере реализации
         private void dataGridViewScenes_BindingSource()
         {
 
@@ -379,11 +280,10 @@ namespace SceneCreator.Forms
 
         private void showButtonChoice(int uid)
         {
+            if (CPChapters[toolStripComboBox_Chapters.Text].Scenes[uid].ButtonChoice == null)
+            { CPChapters[toolStripComboBox_Chapters.Text].Scenes[uid].ButtonChoice = new List<Proto.ProtoScene.protoСhoice>(); }
             dataGridView1.DataSource = null;
-            if (CPChapters[toolStripComboBox_Chapters.Text].Scenes[uid].ButtonChoice != null)
-            {
-                dataGridView1.DataSource = CPChapters[toolStripComboBox_Chapters.Text].Scenes[uid].ButtonChoice;
-            }
+            dataGridView1.DataSource = CPChapters[toolStripComboBox_Chapters.Text].Scenes[uid].ButtonChoice.ToList();
             dataGridView1.Refresh();
         }
 
@@ -498,24 +398,28 @@ namespace SceneCreator.Forms
             if (uid > 0)
             {
                 int backuid = (int)numericUpDown_Background.Value;
-                if (CPBacks.ContainsKey(backuid))
+                if (backuid > 0)
                 {
-                    pictureBox_Backs.BackgroundImage = Utils.ImagesWorks.ByteToImage(CPBacks[backuid]);
-                    CPChapters[toolStripComboBox_Chapters.Text].Scenes[uid].Background = backuid;
-                }
-                else
-                {
-                    DialogResult result = MessageBox.Show("Фонового изображения с таким номером не существует!" + Environment.NewLine + "Отменить изменение?",
-                                        "Внимание!",
-                                        MessageBoxButtons.YesNo,
-                                        MessageBoxIcon.Question,
-                                        MessageBoxDefaultButton.Button1);
-                    if (result == DialogResult.Yes) { numericUpDown_Background.Value = CPChapters[toolStripComboBox_Chapters.Text].Scenes[uid].Background; }
+                    if (CPBacks.ContainsKey(backuid))
+                    {
+                        pictureBox_Backs.BackgroundImage = Utils.ImagesWorks.ByteToImage(CPBacks[backuid]);
+                        CPChapters[toolStripComboBox_Chapters.Text].Scenes[uid].Background = backuid;
+                    }
                     else
                     {
-                        pictureBox_Backs.BackgroundImage = Properties.Resources.Backgraund0;
+                        DialogResult result = MessageBox.Show("Фонового изображения с таким номером не существует!" + Environment.NewLine + "Отменить изменение?",
+                                            "Внимание!",
+                                            MessageBoxButtons.YesNo,
+                                            MessageBoxIcon.Question,
+                                            MessageBoxDefaultButton.Button1);
+                        if (result == DialogResult.Yes) { numericUpDown_Background.Value = CPChapters[toolStripComboBox_Chapters.Text].Scenes[uid].Background; }
+                        else
+                        {
+                            pictureBox_Backs.BackgroundImage = Properties.Resources.Backgraund0;
+                        }
                     }
                 }
+                else { pictureBox_Backs.BackgroundImage = Properties.Resources.Backgraund0; }
             }
         }
 
@@ -529,10 +433,7 @@ namespace SceneCreator.Forms
             return 0;
         }
 
-        private void exit_Click(object sender, EventArgs e)
-        {
-            Application.Exit();
-        }
+
 
         private void numericUpDown2_ValueChanged(object sender, EventArgs e)
         {
@@ -540,88 +441,39 @@ namespace SceneCreator.Forms
             if (uid > 0)
             {
                 int backuid = (int)numericUpDown_Layer.Value;
-                if (CPLayers.ContainsKey(backuid))
+                if (backuid > 0)
                 {
-                    pictureBox_Backs.Image = null;
-                    pictureBox_Backs.Image = Utils.ImagesWorks.ByteToImage(CPLayers[backuid]);
-                    CPChapters[toolStripComboBox_Chapters.Text].Scenes[uid].Layer = backuid;
+                    if (CPLayers.ContainsKey(backuid))
+                    {
+                        pictureBox_Backs.Image = null;
+                        pictureBox_Backs.Image = Utils.ImagesWorks.ByteToImage(CPLayers[backuid]);
+                        CPChapters[toolStripComboBox_Chapters.Text].Scenes[uid].Layer = backuid;
+                    }
+                    else
+                    {
+                        DialogResult result = MessageBox.Show("Изображения порсонажа с таким номером не существует!" + Environment.NewLine + "Отменить изменение?",
+                        "Внимание!",
+                        MessageBoxButtons.YesNo,
+                        MessageBoxIcon.Question,
+                        MessageBoxDefaultButton.Button1);
+                        if (result == DialogResult.Yes)
+                        { numericUpDown_Layer.Value = CPChapters[toolStripComboBox_Chapters.Text].Scenes[uid].Layer; }
+                        else
+                        {
+                            pictureBox_Backs.Image = null;
+                            pictureBox_Backs.Image = Properties.Resources.Character0;
+                        }
+                    }
                 }
                 else
                 {
-                    DialogResult result = MessageBox.Show("Изображения порсонажа с таким номером не существует!" + Environment.NewLine + "Отменить изменение?",
-                    "Внимание!",
-                    MessageBoxButtons.YesNo,
-                    MessageBoxIcon.Question,
-                    MessageBoxDefaultButton.Button1);
-                    if (result == DialogResult.Yes) { numericUpDown_Layer.Value = CPChapters[toolStripComboBox_Chapters.Text].Scenes[uid].Layer; }
-                    else
-                    {
-                        pictureBox_Backs.Image = null;
-                        pictureBox_Backs.Image = Properties.Resources.Character0;
-                    }
+                    pictureBox_Backs.Image = null;
+                    pictureBox_Backs.Image = Properties.Resources.Character0;
                 }
             }
         }
 
-        private void NewBook_Click(object sender, EventArgs e)
-        {
-            FolderBrowserDialog browserDialog = new FolderBrowserDialog
-            {
-                Description = "Укажите пустую папку (или создайте новую) для нового тома",
-                SelectedPath = Properties.Settings.Default.path
-            };
-            DialogResult result = browserDialog.ShowDialog();
-            if (result == DialogResult.OK)
-            {
-                DirectoryInfo directory = new DirectoryInfo(browserDialog.SelectedPath);
-                if (!directory.Exists)
-                {
-                    try { Directory.CreateDirectory(directory.FullName); }
-                    catch (Exception ex) { showExeption(ex); return; }
-                }
 
-                try
-                {
-
-                    if (Directory.Exists(directory.FullName + @"\chapters")) { Directory.Delete(directory.FullName + @"\chapters", true); }
-                    Directory.CreateDirectory(directory.FullName + @"\chapters");
-
-                    if (!Directory.Exists(directory.FullName + @"\data")) { Directory.Delete(directory.FullName + @"\data", true); }
-                    Directory.CreateDirectory(directory.FullName + @"\data");
-                }
-                catch (Exception ex) { showExeption(ex); return; }
-
-                Properties.Settings.Default.path = directory.FullName;
-                Properties.Settings.Default.Save();
-                if (CPBacks != null) { CPBacks.Clear(); } else { CPBacks = new Dictionary<int, byte[]>(); }
-                SaveMaterials(MaterialsType.Backgrounds);
-                if (CPLayers != null) { CPLayers.Clear(); } else { CPLayers = new Dictionary<int, byte[]>(); }
-                SaveMaterials(MaterialsType.Characters);
-                if (CPBMusics != null) { CPBMusics.Clear(); } else { CPBMusics = new Dictionary<int, byte[]>(); }
-                SaveMaterials(MaterialsType.Music);
-            }
-        }
-
-        private void OpenBook_Click(object sender, EventArgs e)
-        {
-            FolderBrowserDialog browserDialog = new FolderBrowserDialog
-            {
-                Description = "Укажите папку с данными тома",
-                SelectedPath = Properties.Settings.Default.path
-            };
-            DialogResult result = browserDialog.ShowDialog();
-            if (result == DialogResult.OK)
-            {
-                DirectoryInfo directory = new DirectoryInfo(browserDialog.SelectedPath);
-                if (!directory.Exists)
-                {
-                    showExeption(new Exception("Папка не найдена!")); return;
-                }
-                LoadBook(directory.FullName);
-                Properties.Settings.Default.path = directory.FullName;
-                Properties.Settings.Default.Save();
-            }
-        }
 
         private void tabControl1_SelectedIndexChanged(object sender, EventArgs e)
         {
@@ -639,50 +491,17 @@ namespace SceneCreator.Forms
             ToolStripMenuItem control = (ToolStripMenuItem)sender;
             if (control != null)
             {
-                if (control.Name.Equals(toolStripMenuItem_SaveBacks.Name)) { SaveMaterials(MaterialsType.Backgrounds); return; }
-                if (control.Name.Equals(toolStripMenuItem_SaveLayers.Name)) { SaveMaterials(MaterialsType.Characters); return; }
-                if (control.Name.Equals(toolStripMenuItem_SaveSounds.Name)) { SaveMaterials(MaterialsType.Music); }
+                if (control.Name.Equals(toolStripMenuItem_SaveBacks.Name)) { SaveMaterials(MaterialsType.Backgrounds, Properties.Settings.Default.path + @"\data"); return; }
+                if (control.Name.Equals(toolStripMenuItem_SaveLayers.Name)) { SaveMaterials(MaterialsType.Characters, Properties.Settings.Default.path + @"\data"); return; }
+                if (control.Name.Equals(toolStripMenuItem_SaveSounds.Name)) { SaveMaterials(MaterialsType.Music, Properties.Settings.Default.path + @"\data"); }
             }
-        }
-
-
-        private void SaveMaterials(MaterialsType type)
-        {
-            Utils.FilesWorks.result result = null;
-            switch (type)
-            {
-                case MaterialsType.Backgrounds:
-                    if (CPBacks != null)
-                    {
-                        result = Utils.FilesWorks.Save(CPBacks, Properties.Settings.Default.path + @"\data\background.dat");
-                        if (result != null && result.Ex != null) { showExeption(result.Ex); } else { return; }
-                    }
-                    break;
-                case MaterialsType.Characters:
-                    if (CPLayers != null)
-                    {
-                        result = Utils.FilesWorks.Save(CPLayers, Properties.Settings.Default.path + @"\data\characters.dat");
-                        if (result != null && result.Ex != null) { showExeption(result.Ex); } else { return; }
-                    }
-                    break;
-                case MaterialsType.Music:
-                    if (CPBMusics != null)
-                    {
-                        result = Utils.FilesWorks.Save(CPBMusics, Properties.Settings.Default.path + @"\data\music.dat");
-                        if (result != null && result.Ex != null) { showExeption(result.Ex); } else { return; }
-                    }
-                    break;
-            }
-
-        }
-
-
-        #region Show error
-        private void showExeption(Exception ex)
-        {
-            MessageBox.Show(ex.Message, "Ошибка!", MessageBoxButtons.OK, MessageBoxIcon.Error);
         }
         #endregion
+
+
+
+
+
 
         #region Reordering, get chapters info  in/from chapters Listbox
         private void listBox_Chapters_MouseDown(object sender, MouseEventArgs e)
@@ -740,7 +559,7 @@ namespace SceneCreator.Forms
             if (listBox_Chapters.SelectedItem != null)
             {
                 textBox_ChapterName.Text = (string)listBox_Chapters.SelectedItem;
-
+                textBox_ChapterName.Tag = (string)listBox_Chapters.SelectedItem;
             }
         }
 
@@ -784,8 +603,19 @@ namespace SceneCreator.Forms
                 MessageBox.Show("Уже есть глава с таким именем!" + Environment.NewLine + "Имена глав должны быть уникальны, назовите главу по другому.", "Внимание!", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
-            toolStripComboBox_Chapters.Items[toolStripComboBox_Chapters.Items.IndexOf(listBox_Chapters.SelectedItem)] = textBox_ChapterName.Text;
-            listBox_Chapters.Items[listBox_Chapters.SelectedIndex] = textBox_ChapterName.Text;
+
+            Proto.ProtoChapter.protoRow row = new Proto.ProtoChapter.protoRow();
+            if (CPChapters.TryGetValue((string)textBox_ChapterName.Tag, out row))
+            {
+                row.Name = textBox_ChapterName.Text;
+                CPChapters.Add(textBox_ChapterName.Text, row);
+                CPChapters.Remove((string)textBox_ChapterName.Tag);
+                toolStripComboBox_Chapters.Items[toolStripComboBox_Chapters.Items.IndexOf((string)textBox_ChapterName.Tag)] = textBox_ChapterName.Text;
+                listBox_Chapters.Items[listBox_Chapters.Items.IndexOf((string)textBox_ChapterName.Tag)] = textBox_ChapterName.Text;
+            }
+
+
+
         }
 
         private void fillingComboBox_Chapters()
@@ -796,11 +626,6 @@ namespace SceneCreator.Forms
         }
 
         #endregion
-
-        private void LoadScenes(string chapter)
-        {
-
-        }
 
         private void toolStripComboBox_Chapters_SelectedIndexChanged(object sender, EventArgs e)
         {
@@ -815,19 +640,322 @@ namespace SceneCreator.Forms
             }
         }
 
-        private void SaveBook_Click(object sender, EventArgs e)
-        {
 
+
+        #region Create New book
+        private void CreateNewBook()
+        {
+            FolderBrowserDialog browserDialog = new FolderBrowserDialog
+            {
+                Description = "Укажите пустую папку (или создайте новую) для нового тома",
+                SelectedPath = Properties.Settings.Default.path
+            };
+            string path = SelectFolder(browserDialog);
+            if (path != null)
+            {
+                DirectoryInfo directory = new DirectoryInfo(path);
+                DirectoryInfo directorydata = new DirectoryInfo(directory.FullName + @"\data\");
+                if (!directory.Exists) { try { Directory.CreateDirectory(directory.FullName); } catch (Exception ex) { ShowExeption(ex); return; } }
+
+                try { if (Directory.Exists(directorydata.FullName)) { Directory.Delete(directorydata.FullName, true); } Directory.CreateDirectory(directorydata.FullName); }
+                catch (Exception ex) { ShowExeption(ex); return; }
+
+                if (CPChapters != null) { CPChapters.Clear(); } else { CPChapters = new Dictionary<string, Proto.ProtoChapter.protoRow>(); }
+                SaveChapters(path);
+
+                if (CPBacks != null) { CPBacks.Clear(); } else { CPBacks = new Dictionary<int, byte[]>(); }
+                SaveMaterials(MaterialsType.Backgrounds, directorydata.FullName);
+                if (CPLayers != null) { CPLayers.Clear(); } else { CPLayers = new Dictionary<int, byte[]>(); }
+                SaveMaterials(MaterialsType.Characters, directorydata.FullName);
+                if (CPMusics != null) { CPMusics.Clear(); } else { CPMusics = new Dictionary<int, byte[]>(); }
+                SaveMaterials(MaterialsType.Music, directorydata.FullName);
+                RecentBooks(path);
+            }
+        }
+        #endregion
+
+        #region Open Book
+        private void OpenBook()
+        {
+            FolderBrowserDialog browserDialog = new FolderBrowserDialog
+            {
+                Description = "Укажите папку с данными тома",
+                SelectedPath = Properties.Settings.Default.path
+            };
+            string tmp = SelectFolder(browserDialog);
+            if (tmp != null)
+            {
+                DirectoryInfo directory = new DirectoryInfo(tmp);
+                if (!directory.Exists)
+                {
+                    ShowExeption(new Exception("Папка не найдена!")); return;
+                }
+                LoadBook(directory.FullName);
+            }
+        }
+        private bool LoadBook(string path)
+        {
+            try
+            {
+                if (string.IsNullOrEmpty(path) || string.IsNullOrWhiteSpace(path)) { return false; }
+                DirectoryInfo directory = new DirectoryInfo(path);
+                LoadBackground(directory.FullName + @"\data");
+                LoadLayers(directory.FullName + @"\data");
+                LoadMusic(directory.FullName + @"\data");
+                Utils.FilesWorks.result res = null;
+                if (CPChapters != null) { CPChapters.Clear(); } else { CPChapters = new Dictionary<string, Proto.ProtoChapter.protoRow>(); }
+                res = Utils.FilesWorks.Load(directory.FullName + @"\book.dat", Utils.FilesWorks.Type.Chapters);
+                if (res.Ex != null) { ShowExeption(res.Ex); return false; }
+
+                Dictionary<int, Proto.ProtoChapter.protoRow> dic = (Dictionary<int, Proto.ProtoChapter.protoRow>)res.Value;
+                listBox_Chapters.Items.Clear();
+                for (int i = 0; i < dic.Count; i++)
+                {
+                    CPChapters.Add(dic[i].Name, dic[i]);
+                    listBox_Chapters.Items.Add(dic[i].Name);
+                }
+                fillingComboBox_Chapters();
+                RecentBooks(directory.FullName);
+                return true;
+            }
+            catch (Exception ex) { ShowExeption(ex); return false; }
+        }
+
+        private void LoadBackground(string path)
+        {
+            if (!string.IsNullOrEmpty(path) || !string.IsNullOrWhiteSpace(path))
+            {
+
+                if (CPBacks != null) { CPBacks.Clear(); } else { CPBacks = new Dictionary<int, byte[]>(); }
+                listView1.Items.Clear(); pictureBox1.Image = null;
+                Utils.FilesWorks.result result = Utils.FilesWorks.Load(path + @"\background.dat", Utils.FilesWorks.Type.Binary);
+                if (result != null && result.Ex != null) { ShowExeption(result.Ex); }
+                else
+                {
+                    CPBacks = (Dictionary<int, byte[]>)result.Value;
+                    foreach (KeyValuePair<int, byte[]> i in CPBacks)
+                    {
+                        string resultname = i.Key.ToString();
+                        imageList_BackBig.Images.Add(resultname, Utils.ImagesWorks.ResizeImage(Utils.ImagesWorks.ByteToImage(i.Value), 255, 255));
+                        imageList_BackSmall.Images.Add(resultname, Utils.ImagesWorks.ResizeImage(Utils.ImagesWorks.ByteToImage(i.Value), 32, 32));
+                        ListViewItem item = new ListViewItem
+                        {
+                            ImageKey = resultname,
+                            Text = resultname,
+                            Tag = i.Key
+                        };
+                        listView1.Items.Add(item);
+                    }
+                }
+            }
+        }
+
+        private void LoadLayers(string path)
+        {
+            if (CPLayers != null) { CPLayers.Clear(); } else { CPLayers = new Dictionary<int, byte[]>(); }
+            listView2.Items.Clear(); pictureBox2.Image = null;
+            Utils.FilesWorks.result result = Utils.FilesWorks.Load(path + @"\characters.dat", Utils.FilesWorks.Type.Binary);
+            if (result != null && result.Ex != null) { ShowExeption(result.Ex); }
+            else
+            {
+                CPLayers = (Dictionary<int, byte[]>)result.Value;
+                foreach (KeyValuePair<int, byte[]> i in CPLayers)
+                {
+                    string resultname = i.Key.ToString();
+                    imageList_LayerBig.Images.Add(resultname, Utils.ImagesWorks.ResizeImage(Utils.ImagesWorks.ByteToImage(i.Value), 255, 255));
+                    imageList_LayerSmall.Images.Add(resultname, Utils.ImagesWorks.ResizeImage(Utils.ImagesWorks.ByteToImage(i.Value), 32, 32));
+                    ListViewItem item = new ListViewItem
+                    {
+                        ImageKey = resultname,
+                        Text = resultname,
+                        Tag = i.Key
+                    };
+                    listView2.Items.Add(item);
+                }
+            }
+
+        }
+
+        private void LoadMusic(string path)
+        {
+            if (CPMusics != null) { CPMusics.Clear(); } else { CPMusics = new Dictionary<int, byte[]>(); }
+            Utils.FilesWorks.result result = Utils.FilesWorks.Load(path + @"\music.dat", Utils.FilesWorks.Type.Binary);
+            if (result != null && result.Ex != null) { ShowExeption(result.Ex); }
+            else
+            {
+                CPMusics = (Dictionary<int, byte[]>)result.Value;
+            }
+        }
+        #endregion
+
+        #region Saving
+        private void SaveBook(string path)
+        {
+            if (string.IsNullOrEmpty(path) || string.IsNullOrWhiteSpace(path))
+            {
+                FolderBrowserDialog browserDialog = new FolderBrowserDialog
+                {
+                    Description = "Выберите папку проекта",
+                    SelectedPath = Properties.Settings.Default.path
+                };
+                path = SelectFolder(browserDialog);
+                if (path == null) { return; }
+            }
+            SaveChapters(path);
+            SaveMaterials(MaterialsType.Backgrounds, path + @"\data");
+            SaveMaterials(MaterialsType.Characters, path + @"\data");
+            SaveMaterials(MaterialsType.Music, path + @"\data");
+            RecentBooks(path);
+        }
+
+        private void SaveChapters(string path)
+        {
             Dictionary<int, Proto.ProtoChapter.protoRow> dicsave = new Dictionary<int, Proto.ProtoChapter.protoRow>();
             for (int i = 0; i < listBox_Chapters.Items.Count; i++)
             {
+                if (CPChapters[(string)listBox_Chapters.Items[i]].Scenes == null)
+                {
+                    CPChapters[(string)listBox_Chapters.Items[i]].Scenes = new Dictionary<int, Proto.ProtoScene.protoRow>();
+                }
                 dicsave.Add(i, CPChapters[(string)listBox_Chapters.Items[i]]);
             }
-            Utils.FilesWorks.result result = Utils.FilesWorks.Save(dicsave, Properties.Settings.Default.path + @"\book.dat");
-            if (result != null && result.Ex != null) { showExeption(result.Ex); }
-            SaveMaterials(MaterialsType.Backgrounds);
-            SaveMaterials(MaterialsType.Characters);
-            SaveMaterials(MaterialsType.Music);
+            Utils.FilesWorks.result result = Utils.FilesWorks.Save(dicsave, path + @"\book.dat");
+            if (result != null && result.Ex != null) { ShowExeption(result.Ex); }
         }
+
+        private void SaveMaterials(MaterialsType type, string path)
+        {
+            Utils.FilesWorks.result result = null;
+            DirectoryInfo directory = new DirectoryInfo(path);
+            if (!directory.Exists) { directory.Create(); }
+            switch (type)
+            {
+                case MaterialsType.Backgrounds:
+                    if (CPBacks != null)
+                    {
+
+                        result = Utils.FilesWorks.Save(CPBacks, path + @"\background.dat");
+                        if (result != null && result.Ex != null) { ShowExeption(result.Ex); } else { return; }
+                    }
+                    break;
+                case MaterialsType.Characters:
+                    if (CPLayers != null)
+                    {
+                        result = Utils.FilesWorks.Save(CPLayers, path + @"\characters.dat");
+                        if (result != null && result.Ex != null) { ShowExeption(result.Ex); } else { return; }
+                    }
+                    break;
+                case MaterialsType.Music:
+                    if (CPMusics != null)
+                    {
+                        result = Utils.FilesWorks.Save(CPMusics, path + @"\music.dat");
+                        if (result != null && result.Ex != null) { ShowExeption(result.Ex); } else { return; }
+                    }
+                    break;
+            }
+
+        }
+        #endregion
+
+        #region utils&others
+        private string SelectFolder(FolderBrowserDialog browserDialog)
+        {
+            DialogResult result = browserDialog.ShowDialog();
+            if (result == DialogResult.OK)
+            {
+                DirectoryInfo directory = new DirectoryInfo(browserDialog.SelectedPath);
+                if (!directory.Exists)
+                {
+                    ShowExeption(new Exception("Папка не найдена!")); return null;
+                }
+                return directory.FullName;
+            }
+            return null;
+        }
+
+        private void RecentBooks(string path)
+        {
+            CurrentPath = path;
+            if (!path.Equals(Properties.Settings.Default.path))
+            {
+                Properties.Settings.Default.path3 = Properties.Settings.Default.path2;
+                Properties.Settings.Default.path2 = Properties.Settings.Default.path1;
+                Properties.Settings.Default.path1 = Properties.Settings.Default.path;
+                Properties.Settings.Default.path = path;
+                Properties.Settings.Default.Save();
+            }
+            CheckRecent();
+        }
+
+        private void ShowExeption(Exception ex)
+        {
+            MessageBox.Show(ex.Message, "Ошибка!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+        }
+
+        /// <summary>
+        /// быстрый костыль последних открытых - видимость в меню, потом сделать нормально
+        /// </summary>
+        private void CheckRecent()
+        {
+            bool[] flg = new bool[5] { true, true, true, true, true };
+            if (string.IsNullOrEmpty(Properties.Settings.Default.path) || string.IsNullOrWhiteSpace(Properties.Settings.Default.path))
+            { toolStripMenuItem_Recent0.Text = string.Empty; toolStripMenuItem_Recent0.Visible = false; flg[0] = false; }
+            else { toolStripMenuItem_Recent0.Text = Properties.Settings.Default.path; toolStripMenuItem_Recent0.Visible = true; }
+
+            if (string.IsNullOrEmpty(Properties.Settings.Default.path0) || string.IsNullOrWhiteSpace(Properties.Settings.Default.path0))
+            { toolStripMenuItem_Recent1.Text = string.Empty; toolStripMenuItem_Recent1.Visible = false; flg[1] = false; }
+            else { toolStripMenuItem_Recent1.Text = Properties.Settings.Default.path0; toolStripMenuItem_Recent1.Visible = true; }
+
+            if (string.IsNullOrEmpty(Properties.Settings.Default.path1) || string.IsNullOrWhiteSpace(Properties.Settings.Default.path1))
+            { toolStripMenuItem_Recent2.Text = string.Empty; toolStripMenuItem_Recent2.Visible = false; flg[2] = false; }
+            else { toolStripMenuItem_Recent2.Text = Properties.Settings.Default.path1; toolStripMenuItem_Recent2.Visible = true; }
+
+            if (string.IsNullOrEmpty(Properties.Settings.Default.path2) || string.IsNullOrWhiteSpace(Properties.Settings.Default.path2))
+            { toolStripMenuItem_Recent3.Text = string.Empty; toolStripMenuItem_Recent3.Visible = false; flg[3] = false; }
+            else { toolStripMenuItem_Recent3.Text = Properties.Settings.Default.path2; toolStripMenuItem_Recent3.Visible = true; }
+
+            if (string.IsNullOrEmpty(Properties.Settings.Default.path3) || string.IsNullOrWhiteSpace(Properties.Settings.Default.path3))
+            { toolStripMenuItem_Recent4.Text = string.Empty; toolStripMenuItem_Recent4.Visible = false; flg[4] = false; }
+            else { toolStripMenuItem_Recent4.Text = Properties.Settings.Default.path3; toolStripMenuItem_Recent4.Visible = true; }
+
+            if (flg.All(x => x == false))
+            { toolStripMenuItem_Recent.Visible = false; toolStripSeparator9.Visible = false; }
+            else { toolStripMenuItem_Recent.Visible = true; toolStripSeparator9.Visible = true; }
+        }
+
+        #region Gui: Image Panels uniform width
+        private void panel3_SizeChanged(object sender, EventArgs e)
+        {
+            if (((Control)sender).Name.Equals(panel3.Name)) { panel1.Width = panel3.Width; } else { panel3.Width = panel1.Width; }
+        }
+        #endregion
+
+        #endregion
+
+        #region Main menu buttons handlers
+        private void NewBook_Click(object sender, EventArgs e) { CreateNewBook(); }
+        private void OpenBook_Click(object sender, EventArgs e) { OpenBook(); }
+        private void SaveBook_Click(object sender, EventArgs e) { SaveBook(CurrentPath); }
+        private void SaveBookCopy_Click(object sender, EventArgs e) { SaveBook(string.Empty); }
+        private void Exit_Click(object sender, EventArgs e) { Application.Exit(); }
+        /// <summary>
+        /// быстрый костыль последних открытых, потом сделать нормально
+        /// </summary>
+        private void RecentN_Click(object sender, EventArgs e)
+        {
+            ToolStripMenuItem item = (ToolStripMenuItem)sender;
+            if (!LoadBook(item.Text))
+            {
+                if (item.Name.Equals(toolStripMenuItem_Recent0.Name)) { Properties.Settings.Default.path = string.Empty; }
+                if (item.Name.Equals(toolStripMenuItem_Recent1.Name)) { Properties.Settings.Default.path0 = string.Empty; }
+                if (item.Name.Equals(toolStripMenuItem_Recent2.Name)) { Properties.Settings.Default.path1 = string.Empty; }
+                if (item.Name.Equals(toolStripMenuItem_Recent3.Name)) { Properties.Settings.Default.path2 = string.Empty; }
+                if (item.Name.Equals(toolStripMenuItem_Recent4.Name)) { Properties.Settings.Default.path3 = string.Empty; }
+                CheckRecent();
+            }
+        }
+        #endregion
+
+
     }
 }

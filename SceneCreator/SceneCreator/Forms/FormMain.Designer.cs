@@ -29,14 +29,14 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle9 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle10 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle11 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle12 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle13 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle14 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle15 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle16 = new System.Windows.Forms.DataGridViewCellStyle();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.менюToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem_NewBook = new System.Windows.Forms.ToolStripMenuItem();
@@ -44,13 +44,20 @@
             this.toolStripSeparator4 = new System.Windows.Forms.ToolStripSeparator();
             this.toolStripMenuItem_SaveBook = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem_SaveBookCopy = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripMenuItem_ExportBook = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator3 = new System.Windows.Forms.ToolStripSeparator();
             this.информацияОКнигеToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator5 = new System.Windows.Forms.ToolStripSeparator();
+            this.toolStripMenuItem_Recent = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripMenuItem_Recent0 = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripMenuItem_Recent1 = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripMenuItem_Recent2 = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripMenuItem_Recent3 = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripMenuItem_Recent4 = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator9 = new System.Windows.Forms.ToolStripSeparator();
             this.toolStripMenuItem_Exit = new System.Windows.Forms.ToolStripMenuItem();
             this.томToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem_NewChapter = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripMenuItemSaveChapter = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.toolStripMenuItem_SaveBacks = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem_SaveLayers = new System.Windows.Forms.ToolStripMenuItem();
@@ -69,6 +76,7 @@
             this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
             this.toolStripLabel1 = new System.Windows.Forms.ToolStripLabel();
             this.toolStripComboBox_Chapters = new System.Windows.Forms.ToolStripComboBox();
+            this.toolStripSeparator10 = new System.Windows.Forms.ToolStripSeparator();
             this.toolStripComboBox_ListView = new System.Windows.Forms.ToolStripComboBox();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage5 = new System.Windows.Forms.TabPage();
@@ -121,10 +129,6 @@
             this.panel_SceneTrans = new System.Windows.Forms.Panel();
             this.groupBox4 = new System.Windows.Forms.GroupBox();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
-            this.ColumnText = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ColumnPrice = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ColumnTrans = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.panel_SceneParameters = new System.Windows.Forms.Panel();
             this.label1 = new System.Windows.Forms.Label();
             this.numericUpDown_Sound = new System.Windows.Forms.NumericUpDown();
@@ -174,7 +178,10 @@
             this.context_ChapterEnd = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator8 = new System.Windows.Forms.ToolStripSeparator();
             this.context_ChapterDelete = new System.Windows.Forms.ToolStripMenuItem();
-            this.экспортДляUnityToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.ColumnText = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ColumnPrice = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ColumnTrans = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.menuStrip1.SuspendLayout();
             this.toolStrip1.SuspendLayout();
             this.tabControl1.SuspendLayout();
@@ -239,7 +246,7 @@
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.Padding = new System.Windows.Forms.Padding(7, 2, 0, 2);
-            this.menuStrip1.Size = new System.Drawing.Size(1110, 24);
+            this.menuStrip1.Size = new System.Drawing.Size(1110, 29);
             this.menuStrip1.TabIndex = 0;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -251,20 +258,22 @@
             this.toolStripSeparator4,
             this.toolStripMenuItem_SaveBook,
             this.toolStripMenuItem_SaveBookCopy,
-            this.экспортДляUnityToolStripMenuItem,
+            this.toolStripMenuItem_ExportBook,
             this.toolStripSeparator3,
             this.информацияОКнигеToolStripMenuItem,
             this.toolStripSeparator5,
+            this.toolStripMenuItem_Recent,
+            this.toolStripSeparator9,
             this.toolStripMenuItem_Exit});
             this.менюToolStripMenuItem.Name = "менюToolStripMenuItem";
-            this.менюToolStripMenuItem.Size = new System.Drawing.Size(53, 20);
+            this.менюToolStripMenuItem.Size = new System.Drawing.Size(66, 25);
             this.менюToolStripMenuItem.Text = "Меню";
             // 
             // toolStripMenuItem_NewBook
             // 
             this.toolStripMenuItem_NewBook.Image = global::SceneCreator.Properties.Resources.book_add;
             this.toolStripMenuItem_NewBook.Name = "toolStripMenuItem_NewBook";
-            this.toolStripMenuItem_NewBook.Size = new System.Drawing.Size(207, 28);
+            this.toolStripMenuItem_NewBook.Size = new System.Drawing.Size(312, 28);
             this.toolStripMenuItem_NewBook.Text = "Новый том";
             this.toolStripMenuItem_NewBook.Click += new System.EventHandler(this.NewBook_Click);
             // 
@@ -272,20 +281,20 @@
             // 
             this.toolStripMenuItem_OpenBook.Image = global::SceneCreator.Properties.Resources.book_open;
             this.toolStripMenuItem_OpenBook.Name = "toolStripMenuItem_OpenBook";
-            this.toolStripMenuItem_OpenBook.Size = new System.Drawing.Size(207, 28);
+            this.toolStripMenuItem_OpenBook.Size = new System.Drawing.Size(312, 28);
             this.toolStripMenuItem_OpenBook.Text = "Открыть том";
             this.toolStripMenuItem_OpenBook.Click += new System.EventHandler(this.OpenBook_Click);
             // 
             // toolStripSeparator4
             // 
             this.toolStripSeparator4.Name = "toolStripSeparator4";
-            this.toolStripSeparator4.Size = new System.Drawing.Size(204, 6);
+            this.toolStripSeparator4.Size = new System.Drawing.Size(309, 6);
             // 
             // toolStripMenuItem_SaveBook
             // 
             this.toolStripMenuItem_SaveBook.Image = global::SceneCreator.Properties.Resources.report_disk;
             this.toolStripMenuItem_SaveBook.Name = "toolStripMenuItem_SaveBook";
-            this.toolStripMenuItem_SaveBook.Size = new System.Drawing.Size(207, 28);
+            this.toolStripMenuItem_SaveBook.Size = new System.Drawing.Size(312, 28);
             this.toolStripMenuItem_SaveBook.Text = "Сохранить том";
             this.toolStripMenuItem_SaveBook.Click += new System.EventHandler(this.SaveBook_Click);
             // 
@@ -293,83 +302,137 @@
             // 
             this.toolStripMenuItem_SaveBookCopy.Image = global::SceneCreator.Properties.Resources.disk_multiple;
             this.toolStripMenuItem_SaveBookCopy.Name = "toolStripMenuItem_SaveBookCopy";
-            this.toolStripMenuItem_SaveBookCopy.Size = new System.Drawing.Size(207, 28);
-            this.toolStripMenuItem_SaveBookCopy.Text = "Сохранить копию тома";
+            this.toolStripMenuItem_SaveBookCopy.Size = new System.Drawing.Size(312, 28);
+            this.toolStripMenuItem_SaveBookCopy.Text = "Сохранить как (создать копию)";
+            this.toolStripMenuItem_SaveBookCopy.Click += new System.EventHandler(this.SaveBookCopy_Click);
+            // 
+            // toolStripMenuItem_ExportBook
+            // 
+            this.toolStripMenuItem_ExportBook.Enabled = false;
+            this.toolStripMenuItem_ExportBook.Image = global::SceneCreator.Properties.Resources.icons_unity;
+            this.toolStripMenuItem_ExportBook.Name = "toolStripMenuItem_ExportBook";
+            this.toolStripMenuItem_ExportBook.Size = new System.Drawing.Size(312, 28);
+            this.toolStripMenuItem_ExportBook.Text = "Экспорт для Unity";
             // 
             // toolStripSeparator3
             // 
             this.toolStripSeparator3.Name = "toolStripSeparator3";
-            this.toolStripSeparator3.Size = new System.Drawing.Size(204, 6);
+            this.toolStripSeparator3.Size = new System.Drawing.Size(309, 6);
             // 
             // информацияОКнигеToolStripMenuItem
             // 
             this.информацияОКнигеToolStripMenuItem.Image = global::SceneCreator.Properties.Resources.book;
             this.информацияОКнигеToolStripMenuItem.Name = "информацияОКнигеToolStripMenuItem";
-            this.информацияОКнигеToolStripMenuItem.Size = new System.Drawing.Size(207, 28);
+            this.информацияОКнигеToolStripMenuItem.Size = new System.Drawing.Size(312, 28);
             this.информацияОКнигеToolStripMenuItem.Text = "Информация о томе";
             this.информацияОКнигеToolStripMenuItem.Click += new System.EventHandler(this.aboutBookToolStripMenuItem_Click);
             // 
             // toolStripSeparator5
             // 
             this.toolStripSeparator5.Name = "toolStripSeparator5";
-            this.toolStripSeparator5.Size = new System.Drawing.Size(204, 6);
+            this.toolStripSeparator5.Size = new System.Drawing.Size(309, 6);
+            // 
+            // toolStripMenuItem_Recent
+            // 
+            this.toolStripMenuItem_Recent.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.toolStripMenuItem_Recent0,
+            this.toolStripMenuItem_Recent1,
+            this.toolStripMenuItem_Recent2,
+            this.toolStripMenuItem_Recent3,
+            this.toolStripMenuItem_Recent4});
+            this.toolStripMenuItem_Recent.Name = "toolStripMenuItem_Recent";
+            this.toolStripMenuItem_Recent.Size = new System.Drawing.Size(312, 28);
+            this.toolStripMenuItem_Recent.Text = "Последние открытые";
+            // 
+            // toolStripMenuItem_Recent0
+            // 
+            this.toolStripMenuItem_Recent0.Name = "toolStripMenuItem_Recent0";
+            this.toolStripMenuItem_Recent0.Size = new System.Drawing.Size(96, 28);
+            this.toolStripMenuItem_Recent0.Text = "0";
+            this.toolStripMenuItem_Recent0.Click += new System.EventHandler(this.RecentN_Click);
+            // 
+            // toolStripMenuItem_Recent1
+            // 
+            this.toolStripMenuItem_Recent1.Name = "toolStripMenuItem_Recent1";
+            this.toolStripMenuItem_Recent1.Size = new System.Drawing.Size(96, 28);
+            this.toolStripMenuItem_Recent1.Text = "1";
+            this.toolStripMenuItem_Recent1.Click += new System.EventHandler(this.RecentN_Click);
+            // 
+            // toolStripMenuItem_Recent2
+            // 
+            this.toolStripMenuItem_Recent2.Name = "toolStripMenuItem_Recent2";
+            this.toolStripMenuItem_Recent2.Size = new System.Drawing.Size(96, 28);
+            this.toolStripMenuItem_Recent2.Text = "2";
+            this.toolStripMenuItem_Recent2.Click += new System.EventHandler(this.RecentN_Click);
+            // 
+            // toolStripMenuItem_Recent3
+            // 
+            this.toolStripMenuItem_Recent3.Name = "toolStripMenuItem_Recent3";
+            this.toolStripMenuItem_Recent3.Size = new System.Drawing.Size(96, 28);
+            this.toolStripMenuItem_Recent3.Text = "3";
+            this.toolStripMenuItem_Recent3.Click += new System.EventHandler(this.RecentN_Click);
+            // 
+            // toolStripMenuItem_Recent4
+            // 
+            this.toolStripMenuItem_Recent4.Name = "toolStripMenuItem_Recent4";
+            this.toolStripMenuItem_Recent4.Size = new System.Drawing.Size(96, 28);
+            this.toolStripMenuItem_Recent4.Text = "4";
+            this.toolStripMenuItem_Recent4.Click += new System.EventHandler(this.RecentN_Click);
+            // 
+            // toolStripSeparator9
+            // 
+            this.toolStripSeparator9.Name = "toolStripSeparator9";
+            this.toolStripSeparator9.Size = new System.Drawing.Size(309, 6);
             // 
             // toolStripMenuItem_Exit
             // 
             this.toolStripMenuItem_Exit.Image = global::SceneCreator.Properties.Resources.door_in;
             this.toolStripMenuItem_Exit.Name = "toolStripMenuItem_Exit";
-            this.toolStripMenuItem_Exit.Size = new System.Drawing.Size(207, 28);
+            this.toolStripMenuItem_Exit.Size = new System.Drawing.Size(312, 28);
             this.toolStripMenuItem_Exit.Text = "Выход";
-            this.toolStripMenuItem_Exit.Click += new System.EventHandler(this.exit_Click);
+            this.toolStripMenuItem_Exit.Click += new System.EventHandler(this.Exit_Click);
             // 
             // томToolStripMenuItem
             // 
             this.томToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.toolStripMenuItem_NewChapter,
-            this.toolStripMenuItemSaveChapter,
             this.toolStripSeparator1,
             this.toolStripMenuItem_SaveBacks,
             this.toolStripMenuItem_SaveLayers,
             this.toolStripMenuItem_SaveSounds});
             this.томToolStripMenuItem.Name = "томToolStripMenuItem";
-            this.томToolStripMenuItem.Size = new System.Drawing.Size(42, 20);
+            this.томToolStripMenuItem.Size = new System.Drawing.Size(50, 25);
             this.томToolStripMenuItem.Text = "Том";
             // 
             // toolStripMenuItem_NewChapter
             // 
             this.toolStripMenuItem_NewChapter.Name = "toolStripMenuItem_NewChapter";
-            this.toolStripMenuItem_NewChapter.Size = new System.Drawing.Size(219, 22);
+            this.toolStripMenuItem_NewChapter.Size = new System.Drawing.Size(274, 28);
             this.toolStripMenuItem_NewChapter.Text = "Новая глава";
-            // 
-            // toolStripMenuItemSaveChapter
-            // 
-            this.toolStripMenuItemSaveChapter.Name = "toolStripMenuItemSaveChapter";
-            this.toolStripMenuItemSaveChapter.Size = new System.Drawing.Size(219, 22);
-            this.toolStripMenuItemSaveChapter.Text = "Сохранить главу";
             // 
             // toolStripSeparator1
             // 
             this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(216, 6);
+            this.toolStripSeparator1.Size = new System.Drawing.Size(271, 6);
             // 
             // toolStripMenuItem_SaveBacks
             // 
             this.toolStripMenuItem_SaveBacks.Name = "toolStripMenuItem_SaveBacks";
-            this.toolStripMenuItem_SaveBacks.Size = new System.Drawing.Size(219, 22);
+            this.toolStripMenuItem_SaveBacks.Size = new System.Drawing.Size(274, 28);
             this.toolStripMenuItem_SaveBacks.Text = "Сохранить фоны";
             this.toolStripMenuItem_SaveBacks.Click += new System.EventHandler(this.SaveMaterial_Click);
             // 
             // toolStripMenuItem_SaveLayers
             // 
             this.toolStripMenuItem_SaveLayers.Name = "toolStripMenuItem_SaveLayers";
-            this.toolStripMenuItem_SaveLayers.Size = new System.Drawing.Size(219, 22);
+            this.toolStripMenuItem_SaveLayers.Size = new System.Drawing.Size(274, 28);
             this.toolStripMenuItem_SaveLayers.Text = "Сохранить персонажей";
             this.toolStripMenuItem_SaveLayers.Click += new System.EventHandler(this.SaveMaterial_Click);
             // 
             // toolStripMenuItem_SaveSounds
             // 
             this.toolStripMenuItem_SaveSounds.Name = "toolStripMenuItem_SaveSounds";
-            this.toolStripMenuItem_SaveSounds.Size = new System.Drawing.Size(219, 22);
+            this.toolStripMenuItem_SaveSounds.Size = new System.Drawing.Size(274, 28);
             this.toolStripMenuItem_SaveSounds.Text = "Сохранить список музыки";
             this.toolStripMenuItem_SaveSounds.CheckStateChanged += new System.EventHandler(this.SaveMaterial_Click);
             // 
@@ -383,49 +446,50 @@
             this.удалитьВсеФоныToolStripMenuItem,
             this.удалитьВсехПерсонажейToolStripMenuItem,
             this.удалитьВсюМузыкуToolStripMenuItem});
+            this.инструментыToolStripMenuItem.Enabled = false;
             this.инструментыToolStripMenuItem.Name = "инструментыToolStripMenuItem";
-            this.инструментыToolStripMenuItem.Size = new System.Drawing.Size(129, 20);
+            this.инструментыToolStripMenuItem.Size = new System.Drawing.Size(166, 25);
             this.инструментыToolStripMenuItem.Text = "Очистка и удаление";
             // 
             // очиститьВсеСценыToolStripMenuItem
             // 
             this.очиститьВсеСценыToolStripMenuItem.Name = "очиститьВсеСценыToolStripMenuItem";
-            this.очиститьВсеСценыToolStripMenuItem.Size = new System.Drawing.Size(271, 22);
+            this.очиститьВсеСценыToolStripMenuItem.Size = new System.Drawing.Size(341, 28);
             this.очиститьВсеСценыToolStripMenuItem.Text = "Очистить все сцены текущей главы";
             // 
             // удалитьТекущуюГлавуToolStripMenuItem
             // 
             this.удалитьТекущуюГлавуToolStripMenuItem.Name = "удалитьТекущуюГлавуToolStripMenuItem";
-            this.удалитьТекущуюГлавуToolStripMenuItem.Size = new System.Drawing.Size(271, 22);
+            this.удалитьТекущуюГлавуToolStripMenuItem.Size = new System.Drawing.Size(341, 28);
             this.удалитьТекущуюГлавуToolStripMenuItem.Text = "Удалить текущую главу";
             // 
             // toolStripSeparator6
             // 
             this.toolStripSeparator6.Name = "toolStripSeparator6";
-            this.toolStripSeparator6.Size = new System.Drawing.Size(268, 6);
+            this.toolStripSeparator6.Size = new System.Drawing.Size(338, 6);
             // 
             // удалитьВсеГлавыToolStripMenuItem
             // 
             this.удалитьВсеГлавыToolStripMenuItem.Name = "удалитьВсеГлавыToolStripMenuItem";
-            this.удалитьВсеГлавыToolStripMenuItem.Size = new System.Drawing.Size(271, 22);
+            this.удалитьВсеГлавыToolStripMenuItem.Size = new System.Drawing.Size(341, 28);
             this.удалитьВсеГлавыToolStripMenuItem.Text = "Удалить все главы";
             // 
             // удалитьВсеФоныToolStripMenuItem
             // 
             this.удалитьВсеФоныToolStripMenuItem.Name = "удалитьВсеФоныToolStripMenuItem";
-            this.удалитьВсеФоныToolStripMenuItem.Size = new System.Drawing.Size(271, 22);
+            this.удалитьВсеФоныToolStripMenuItem.Size = new System.Drawing.Size(341, 28);
             this.удалитьВсеФоныToolStripMenuItem.Text = "Удалить все фоны тома";
             // 
             // удалитьВсехПерсонажейToolStripMenuItem
             // 
             this.удалитьВсехПерсонажейToolStripMenuItem.Name = "удалитьВсехПерсонажейToolStripMenuItem";
-            this.удалитьВсехПерсонажейToolStripMenuItem.Size = new System.Drawing.Size(271, 22);
+            this.удалитьВсехПерсонажейToolStripMenuItem.Size = new System.Drawing.Size(341, 28);
             this.удалитьВсехПерсонажейToolStripMenuItem.Text = "Удалить всех персонажей тома";
             // 
             // удалитьВсюМузыкуToolStripMenuItem
             // 
             this.удалитьВсюМузыкуToolStripMenuItem.Name = "удалитьВсюМузыкуToolStripMenuItem";
-            this.удалитьВсюМузыкуToolStripMenuItem.Size = new System.Drawing.Size(271, 22);
+            this.удалитьВсюМузыкуToolStripMenuItem.Size = new System.Drawing.Size(341, 28);
             this.удалитьВсюМузыкуToolStripMenuItem.Text = "Удалить всю музыку";
             // 
             // statusStrip1
@@ -446,32 +510,33 @@
             this.toolStripSeparator2,
             this.toolStripLabel1,
             this.toolStripComboBox_Chapters,
+            this.toolStripSeparator10,
             this.toolStripComboBox_ListView});
-            this.toolStrip1.Location = new System.Drawing.Point(0, 24);
+            this.toolStrip1.Location = new System.Drawing.Point(0, 29);
             this.toolStrip1.Name = "toolStrip1";
-            this.toolStrip1.Size = new System.Drawing.Size(1110, 28);
+            this.toolStrip1.Size = new System.Drawing.Size(1110, 29);
             this.toolStrip1.TabIndex = 2;
             this.toolStrip1.Text = "toolStrip1";
             // 
             // toolStripButton3
             // 
             this.toolStripButton3.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.toolStripButton3.Enabled = false;
             this.toolStripButton3.Image = global::SceneCreator.Properties.Resources.disk;
             this.toolStripButton3.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolStripButton3.Name = "toolStripButton3";
-            this.toolStripButton3.Size = new System.Drawing.Size(25, 25);
-            this.toolStripButton3.Text = "toolStripButton3";
+            this.toolStripButton3.Size = new System.Drawing.Size(25, 26);
+            this.toolStripButton3.Text = "Сохранить";
+            this.toolStripButton3.Click += new System.EventHandler(this.SaveBook_Click);
             // 
             // toolStripSeparator2
             // 
             this.toolStripSeparator2.Name = "toolStripSeparator2";
-            this.toolStripSeparator2.Size = new System.Drawing.Size(6, 28);
+            this.toolStripSeparator2.Size = new System.Drawing.Size(6, 29);
             // 
             // toolStripLabel1
             // 
             this.toolStripLabel1.Name = "toolStripLabel1";
-            this.toolStripLabel1.Size = new System.Drawing.Size(89, 25);
+            this.toolStripLabel1.Size = new System.Drawing.Size(117, 26);
             this.toolStripLabel1.Text = "Выбрать сцену";
             // 
             // toolStripComboBox_Chapters
@@ -480,13 +545,18 @@
             this.toolStripComboBox_Chapters.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this.toolStripComboBox_Chapters.MaxDropDownItems = 10;
             this.toolStripComboBox_Chapters.Name = "toolStripComboBox_Chapters";
-            this.toolStripComboBox_Chapters.Size = new System.Drawing.Size(300, 28);
+            this.toolStripComboBox_Chapters.Size = new System.Drawing.Size(300, 29);
             this.toolStripComboBox_Chapters.SelectedIndexChanged += new System.EventHandler(this.toolStripComboBox_Chapters_SelectedIndexChanged);
+            // 
+            // toolStripSeparator10
+            // 
+            this.toolStripSeparator10.Name = "toolStripSeparator10";
+            this.toolStripSeparator10.Size = new System.Drawing.Size(6, 29);
             // 
             // toolStripComboBox_ListView
             // 
             this.toolStripComboBox_ListView.Name = "toolStripComboBox_ListView";
-            this.toolStripComboBox_ListView.Size = new System.Drawing.Size(106, 28);
+            this.toolStripComboBox_ListView.Size = new System.Drawing.Size(106, 29);
             this.toolStripComboBox_ListView.SelectedIndexChanged += new System.EventHandler(this.toolStripComboBox1_SelectedIndexChanged);
             // 
             // tabControl1
@@ -497,11 +567,11 @@
             this.tabControl1.Controls.Add(this.tabPage3);
             this.tabControl1.Controls.Add(this.tabPage4);
             this.tabControl1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tabControl1.Location = new System.Drawing.Point(0, 52);
+            this.tabControl1.Location = new System.Drawing.Point(0, 58);
             this.tabControl1.Margin = new System.Windows.Forms.Padding(4);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(1110, 471);
+            this.tabControl1.Size = new System.Drawing.Size(1110, 465);
             this.tabControl1.TabIndex = 3;
             this.tabControl1.SelectedIndexChanged += new System.EventHandler(this.tabControl1_SelectedIndexChanged);
             // 
@@ -512,10 +582,10 @@
             this.tabPage5.Controls.Add(this.panel_bookCenter);
             this.tabPage5.Controls.Add(this.splitter7);
             this.tabPage5.Controls.Add(this.panel_BookLeft);
-            this.tabPage5.Location = new System.Drawing.Point(4, 22);
+            this.tabPage5.Location = new System.Drawing.Point(4, 26);
             this.tabPage5.Name = "tabPage5";
             this.tabPage5.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage5.Size = new System.Drawing.Size(1102, 445);
+            this.tabPage5.Size = new System.Drawing.Size(1102, 435);
             this.tabPage5.TabIndex = 4;
             this.tabPage5.Text = "Том";
             this.tabPage5.UseVisualStyleBackColor = true;
@@ -527,7 +597,7 @@
             this.panel12.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel12.Location = new System.Drawing.Point(605, 3);
             this.panel12.Name = "panel12";
-            this.panel12.Size = new System.Drawing.Size(494, 439);
+            this.panel12.Size = new System.Drawing.Size(494, 429);
             this.panel12.TabIndex = 5;
             // 
             // listBox_Chapters
@@ -536,9 +606,10 @@
             this.listBox_Chapters.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.listBox_Chapters.Dock = System.Windows.Forms.DockStyle.Fill;
             this.listBox_Chapters.FormattingEnabled = true;
+            this.listBox_Chapters.ItemHeight = 17;
             this.listBox_Chapters.Location = new System.Drawing.Point(0, 0);
             this.listBox_Chapters.Name = "listBox_Chapters";
-            this.listBox_Chapters.Size = new System.Drawing.Size(490, 435);
+            this.listBox_Chapters.Size = new System.Drawing.Size(490, 425);
             this.listBox_Chapters.TabIndex = 0;
             this.listBox_Chapters.SelectedIndexChanged += new System.EventHandler(this.listBox_Chapters_SelectedIndexChanged);
             this.listBox_Chapters.DragDrop += new System.Windows.Forms.DragEventHandler(this.listBox_Chapters_DragDrop);
@@ -549,7 +620,7 @@
             // 
             this.splitter8.Location = new System.Drawing.Point(601, 3);
             this.splitter8.Name = "splitter8";
-            this.splitter8.Size = new System.Drawing.Size(4, 439);
+            this.splitter8.Size = new System.Drawing.Size(4, 429);
             this.splitter8.TabIndex = 7;
             this.splitter8.TabStop = false;
             // 
@@ -562,7 +633,7 @@
             this.panel_bookCenter.Dock = System.Windows.Forms.DockStyle.Left;
             this.panel_bookCenter.Location = new System.Drawing.Point(246, 3);
             this.panel_bookCenter.Name = "panel_bookCenter";
-            this.panel_bookCenter.Size = new System.Drawing.Size(355, 439);
+            this.panel_bookCenter.Size = new System.Drawing.Size(355, 429);
             this.panel_bookCenter.TabIndex = 6;
             // 
             // groupBox11
@@ -573,7 +644,7 @@
             this.groupBox11.Dock = System.Windows.Forms.DockStyle.Fill;
             this.groupBox11.Location = new System.Drawing.Point(0, 151);
             this.groupBox11.Name = "groupBox11";
-            this.groupBox11.Size = new System.Drawing.Size(351, 284);
+            this.groupBox11.Size = new System.Drawing.Size(351, 274);
             this.groupBox11.TabIndex = 8;
             this.groupBox11.TabStop = false;
             this.groupBox11.Text = "Глава :";
@@ -582,9 +653,9 @@
             // 
             this.groupBox6.Controls.Add(this.pictureBox3);
             this.groupBox6.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.groupBox6.Location = new System.Drawing.Point(3, 102);
+            this.groupBox6.Location = new System.Drawing.Point(3, 106);
             this.groupBox6.Name = "groupBox6";
-            this.groupBox6.Size = new System.Drawing.Size(345, 179);
+            this.groupBox6.Size = new System.Drawing.Size(345, 165);
             this.groupBox6.TabIndex = 3;
             this.groupBox6.TabStop = false;
             this.groupBox6.Text = "Изображение главы (фон кнопки)";
@@ -593,9 +664,9 @@
             // 
             this.pictureBox3.BackColor = System.Drawing.Color.Transparent;
             this.pictureBox3.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.pictureBox3.Location = new System.Drawing.Point(3, 16);
+            this.pictureBox3.Location = new System.Drawing.Point(3, 20);
             this.pictureBox3.Name = "pictureBox3";
-            this.pictureBox3.Size = new System.Drawing.Size(339, 160);
+            this.pictureBox3.Size = new System.Drawing.Size(339, 142);
             this.pictureBox3.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pictureBox3.TabIndex = 0;
             this.pictureBox3.TabStop = false;
@@ -605,7 +676,7 @@
             this.groupBox3.Controls.Add(this.button5);
             this.groupBox3.Controls.Add(this.textBox_ChapterName);
             this.groupBox3.Dock = System.Windows.Forms.DockStyle.Top;
-            this.groupBox3.Location = new System.Drawing.Point(3, 59);
+            this.groupBox3.Location = new System.Drawing.Point(3, 63);
             this.groupBox3.Name = "groupBox3";
             this.groupBox3.Size = new System.Drawing.Size(345, 43);
             this.groupBox3.TabIndex = 0;
@@ -630,7 +701,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.textBox_ChapterName.Location = new System.Drawing.Point(3, 16);
             this.textBox_ChapterName.Name = "textBox_ChapterName";
-            this.textBox_ChapterName.Size = new System.Drawing.Size(263, 20);
+            this.textBox_ChapterName.Size = new System.Drawing.Size(263, 24);
             this.textBox_ChapterName.TabIndex = 1;
             // 
             // groupBox5
@@ -638,7 +709,7 @@
             this.groupBox5.Controls.Add(this.button1);
             this.groupBox5.Controls.Add(this.textBox_ScenesPath);
             this.groupBox5.Dock = System.Windows.Forms.DockStyle.Top;
-            this.groupBox5.Location = new System.Drawing.Point(3, 16);
+            this.groupBox5.Location = new System.Drawing.Point(3, 20);
             this.groupBox5.Name = "groupBox5";
             this.groupBox5.Size = new System.Drawing.Size(345, 43);
             this.groupBox5.TabIndex = 2;
@@ -663,7 +734,7 @@
             this.textBox_ScenesPath.Location = new System.Drawing.Point(3, 16);
             this.textBox_ScenesPath.Name = "textBox_ScenesPath";
             this.textBox_ScenesPath.ReadOnly = true;
-            this.textBox_ScenesPath.Size = new System.Drawing.Size(263, 20);
+            this.textBox_ScenesPath.Size = new System.Drawing.Size(263, 24);
             this.textBox_ScenesPath.TabIndex = 1;
             // 
             // groupBox10
@@ -684,7 +755,7 @@
             this.groupBox7.Controls.Add(this.button2);
             this.groupBox7.Controls.Add(this.textBox_BacksPath);
             this.groupBox7.Dock = System.Windows.Forms.DockStyle.Top;
-            this.groupBox7.Location = new System.Drawing.Point(3, 102);
+            this.groupBox7.Location = new System.Drawing.Point(3, 106);
             this.groupBox7.Name = "groupBox7";
             this.groupBox7.Size = new System.Drawing.Size(345, 43);
             this.groupBox7.TabIndex = 4;
@@ -709,7 +780,7 @@
             this.textBox_BacksPath.Location = new System.Drawing.Point(3, 16);
             this.textBox_BacksPath.Name = "textBox_BacksPath";
             this.textBox_BacksPath.ReadOnly = true;
-            this.textBox_BacksPath.Size = new System.Drawing.Size(263, 20);
+            this.textBox_BacksPath.Size = new System.Drawing.Size(263, 24);
             this.textBox_BacksPath.TabIndex = 1;
             // 
             // groupBox9
@@ -717,7 +788,7 @@
             this.groupBox9.Controls.Add(this.button4);
             this.groupBox9.Controls.Add(this.textBox_MusicPath);
             this.groupBox9.Dock = System.Windows.Forms.DockStyle.Top;
-            this.groupBox9.Location = new System.Drawing.Point(3, 59);
+            this.groupBox9.Location = new System.Drawing.Point(3, 63);
             this.groupBox9.Name = "groupBox9";
             this.groupBox9.Size = new System.Drawing.Size(345, 43);
             this.groupBox9.TabIndex = 6;
@@ -742,7 +813,7 @@
             this.textBox_MusicPath.Location = new System.Drawing.Point(3, 16);
             this.textBox_MusicPath.Name = "textBox_MusicPath";
             this.textBox_MusicPath.ReadOnly = true;
-            this.textBox_MusicPath.Size = new System.Drawing.Size(263, 20);
+            this.textBox_MusicPath.Size = new System.Drawing.Size(263, 24);
             this.textBox_MusicPath.TabIndex = 1;
             // 
             // groupBox8
@@ -750,7 +821,7 @@
             this.groupBox8.Controls.Add(this.button3);
             this.groupBox8.Controls.Add(this.textBox_LayersPath);
             this.groupBox8.Dock = System.Windows.Forms.DockStyle.Top;
-            this.groupBox8.Location = new System.Drawing.Point(3, 16);
+            this.groupBox8.Location = new System.Drawing.Point(3, 20);
             this.groupBox8.Name = "groupBox8";
             this.groupBox8.Size = new System.Drawing.Size(345, 43);
             this.groupBox8.TabIndex = 5;
@@ -775,14 +846,14 @@
             this.textBox_LayersPath.Location = new System.Drawing.Point(3, 16);
             this.textBox_LayersPath.Name = "textBox_LayersPath";
             this.textBox_LayersPath.ReadOnly = true;
-            this.textBox_LayersPath.Size = new System.Drawing.Size(263, 20);
+            this.textBox_LayersPath.Size = new System.Drawing.Size(263, 24);
             this.textBox_LayersPath.TabIndex = 1;
             // 
             // splitter7
             // 
             this.splitter7.Location = new System.Drawing.Point(242, 3);
             this.splitter7.Name = "splitter7";
-            this.splitter7.Size = new System.Drawing.Size(4, 439);
+            this.splitter7.Size = new System.Drawing.Size(4, 429);
             this.splitter7.TabIndex = 4;
             this.splitter7.TabStop = false;
             // 
@@ -795,7 +866,7 @@
             this.panel_BookLeft.Dock = System.Windows.Forms.DockStyle.Left;
             this.panel_BookLeft.Location = new System.Drawing.Point(3, 3);
             this.panel_BookLeft.Name = "panel_BookLeft";
-            this.panel_BookLeft.Size = new System.Drawing.Size(239, 439);
+            this.panel_BookLeft.Size = new System.Drawing.Size(239, 429);
             this.panel_BookLeft.TabIndex = 3;
             this.panel_BookLeft.SizeChanged += new System.EventHandler(this.panel3_SizeChanged);
             // 
@@ -806,7 +877,7 @@
             this.panel11.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel11.Location = new System.Drawing.Point(0, 199);
             this.panel11.Name = "panel11";
-            this.panel11.Size = new System.Drawing.Size(239, 240);
+            this.panel11.Size = new System.Drawing.Size(239, 230);
             this.panel11.TabIndex = 2;
             // 
             // groupBox_TomeImage
@@ -815,7 +886,7 @@
             this.groupBox_TomeImage.Dock = System.Windows.Forms.DockStyle.Fill;
             this.groupBox_TomeImage.Location = new System.Drawing.Point(0, 0);
             this.groupBox_TomeImage.Name = "groupBox_TomeImage";
-            this.groupBox_TomeImage.Size = new System.Drawing.Size(235, 236);
+            this.groupBox_TomeImage.Size = new System.Drawing.Size(235, 226);
             this.groupBox_TomeImage.TabIndex = 0;
             this.groupBox_TomeImage.TabStop = false;
             this.groupBox_TomeImage.Text = "Изображение тома";
@@ -823,9 +894,9 @@
             // pictureBox_TomeImage
             // 
             this.pictureBox_TomeImage.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.pictureBox_TomeImage.Location = new System.Drawing.Point(3, 16);
+            this.pictureBox_TomeImage.Location = new System.Drawing.Point(3, 20);
             this.pictureBox_TomeImage.Name = "pictureBox_TomeImage";
-            this.pictureBox_TomeImage.Size = new System.Drawing.Size(229, 217);
+            this.pictureBox_TomeImage.Size = new System.Drawing.Size(229, 203);
             this.pictureBox_TomeImage.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pictureBox_TomeImage.TabIndex = 0;
             this.pictureBox_TomeImage.TabStop = false;
@@ -864,10 +935,10 @@
             // textBox_TomeAbout
             // 
             this.textBox_TomeAbout.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.textBox_TomeAbout.Location = new System.Drawing.Point(3, 16);
+            this.textBox_TomeAbout.Location = new System.Drawing.Point(3, 20);
             this.textBox_TomeAbout.Multiline = true;
             this.textBox_TomeAbout.Name = "textBox_TomeAbout";
-            this.textBox_TomeAbout.Size = new System.Drawing.Size(229, 130);
+            this.textBox_TomeAbout.Size = new System.Drawing.Size(229, 126);
             this.textBox_TomeAbout.TabIndex = 0;
             // 
             // groupBox_TomeName
@@ -884,9 +955,9 @@
             // textBox_TomeName
             // 
             this.textBox_TomeName.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.textBox_TomeName.Location = new System.Drawing.Point(3, 16);
+            this.textBox_TomeName.Location = new System.Drawing.Point(3, 20);
             this.textBox_TomeName.Name = "textBox_TomeName";
-            this.textBox_TomeName.Size = new System.Drawing.Size(229, 20);
+            this.textBox_TomeName.Size = new System.Drawing.Size(229, 24);
             this.textBox_TomeName.TabIndex = 0;
             // 
             // tabPage1
@@ -894,11 +965,11 @@
             this.tabPage1.Controls.Add(this.panel6);
             this.tabPage1.Controls.Add(this.splitter5);
             this.tabPage1.Controls.Add(this.panel_Scene);
-            this.tabPage1.Location = new System.Drawing.Point(4, 22);
+            this.tabPage1.Location = new System.Drawing.Point(4, 26);
             this.tabPage1.Margin = new System.Windows.Forms.Padding(4);
             this.tabPage1.Name = "tabPage1";
             this.tabPage1.Padding = new System.Windows.Forms.Padding(4);
-            this.tabPage1.Size = new System.Drawing.Size(1102, 439);
+            this.tabPage1.Size = new System.Drawing.Size(1102, 435);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "Сцены";
             this.tabPage1.UseVisualStyleBackColor = true;
@@ -910,7 +981,7 @@
             this.panel6.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel6.Location = new System.Drawing.Point(586, 4);
             this.panel6.Name = "panel6";
-            this.panel6.Size = new System.Drawing.Size(512, 431);
+            this.panel6.Size = new System.Drawing.Size(512, 427);
             this.panel6.TabIndex = 6;
             // 
             // dataGridView3
@@ -918,19 +989,19 @@
             this.dataGridView3.AllowUserToAddRows = false;
             this.dataGridView3.AllowUserToDeleteRows = false;
             this.dataGridView3.AllowUserToResizeRows = false;
-            dataGridViewCellStyle1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
-            this.dataGridView3.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle9.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+            this.dataGridView3.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle9;
             this.dataGridView3.BackgroundColor = System.Drawing.SystemColors.Window;
             this.dataGridView3.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.dataGridView3.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.None;
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dataGridView3.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle10.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle10.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle10.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle10.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle10.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle10.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle10.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dataGridView3.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle10;
             this.dataGridView3.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView3.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.SceneUid,
@@ -945,7 +1016,7 @@
             this.dataGridView3.RowHeadersVisible = false;
             this.dataGridView3.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing;
             this.dataGridView3.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dataGridView3.Size = new System.Drawing.Size(508, 427);
+            this.dataGridView3.Size = new System.Drawing.Size(508, 423);
             this.dataGridView3.TabIndex = 1;
             this.dataGridView3.SelectionChanged += new System.EventHandler(this.dataGridView3_SelectionChanged);
             this.dataGridView3.MouseDown += new System.Windows.Forms.MouseEventHandler(this.dataGridView1_MouseDown);
@@ -953,8 +1024,8 @@
             // SceneUid
             // 
             this.SceneUid.DataPropertyName = "uid";
-            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            this.SceneUid.DefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle11.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.SceneUid.DefaultCellStyle = dataGridViewCellStyle11;
             this.SceneUid.HeaderText = "№";
             this.SceneUid.MinimumWidth = 60;
             this.SceneUid.Name = "SceneUid";
@@ -990,7 +1061,7 @@
             // 
             this.splitter5.Location = new System.Drawing.Point(582, 4);
             this.splitter5.Name = "splitter5";
-            this.splitter5.Size = new System.Drawing.Size(4, 431);
+            this.splitter5.Size = new System.Drawing.Size(4, 427);
             this.splitter5.TabIndex = 10;
             this.splitter5.TabStop = false;
             // 
@@ -1000,7 +1071,7 @@
             this.panel_Scene.Dock = System.Windows.Forms.DockStyle.Left;
             this.panel_Scene.Location = new System.Drawing.Point(4, 4);
             this.panel_Scene.Name = "panel_Scene";
-            this.panel_Scene.Size = new System.Drawing.Size(578, 431);
+            this.panel_Scene.Size = new System.Drawing.Size(578, 427);
             this.panel_Scene.TabIndex = 9;
             // 
             // groupBox_SceneMain
@@ -1011,7 +1082,7 @@
             this.groupBox_SceneMain.Dock = System.Windows.Forms.DockStyle.Fill;
             this.groupBox_SceneMain.Location = new System.Drawing.Point(0, 0);
             this.groupBox_SceneMain.Name = "groupBox_SceneMain";
-            this.groupBox_SceneMain.Size = new System.Drawing.Size(578, 431);
+            this.groupBox_SceneMain.Size = new System.Drawing.Size(578, 427);
             this.groupBox_SceneMain.TabIndex = 5;
             this.groupBox_SceneMain.TabStop = false;
             this.groupBox_SceneMain.Tag = 0;
@@ -1024,9 +1095,9 @@
             this.panel7.Controls.Add(this.splitter4);
             this.panel7.Controls.Add(this.panel_SceneNameMessage);
             this.panel7.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel7.Location = new System.Drawing.Point(253, 16);
+            this.panel7.Location = new System.Drawing.Point(253, 20);
             this.panel7.Name = "panel7";
-            this.panel7.Size = new System.Drawing.Size(322, 412);
+            this.panel7.Size = new System.Drawing.Size(322, 404);
             this.panel7.TabIndex = 8;
             // 
             // panel8
@@ -1037,7 +1108,7 @@
             this.panel8.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel8.Location = new System.Drawing.Point(0, 177);
             this.panel8.Name = "panel8";
-            this.panel8.Size = new System.Drawing.Size(322, 235);
+            this.panel8.Size = new System.Drawing.Size(322, 227);
             this.panel8.TabIndex = 2;
             // 
             // panel_SceneTrans
@@ -1046,7 +1117,7 @@
             this.panel_SceneTrans.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel_SceneTrans.Location = new System.Drawing.Point(0, 112);
             this.panel_SceneTrans.Name = "panel_SceneTrans";
-            this.panel_SceneTrans.Size = new System.Drawing.Size(318, 119);
+            this.panel_SceneTrans.Size = new System.Drawing.Size(318, 111);
             this.panel_SceneTrans.TabIndex = 6;
             // 
             // groupBox4
@@ -1056,7 +1127,7 @@
             this.groupBox4.Font = new System.Drawing.Font("Microsoft Sans Serif", 6.912F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.groupBox4.Location = new System.Drawing.Point(0, 0);
             this.groupBox4.Name = "groupBox4";
-            this.groupBox4.Size = new System.Drawing.Size(318, 119);
+            this.groupBox4.Size = new System.Drawing.Size(318, 111);
             this.groupBox4.TabIndex = 6;
             this.groupBox4.TabStop = false;
             this.groupBox4.Text = "Переходы на следующие сцены";
@@ -1066,18 +1137,19 @@
             this.dataGridView1.AllowUserToAddRows = false;
             this.dataGridView1.AllowUserToDeleteRows = false;
             this.dataGridView1.AllowUserToResizeRows = false;
-            dataGridViewCellStyle4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
-            this.dataGridView1.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle4;
+            dataGridViewCellStyle12.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+            this.dataGridView1.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle12;
             this.dataGridView1.BackgroundColor = System.Drawing.SystemColors.Window;
             this.dataGridView1.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle5.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle5.Font = new System.Drawing.Font("Microsoft Sans Serif", 6.912F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle5.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle5.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dataGridView1.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle5;
+            this.dataGridView1.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.None;
+            dataGridViewCellStyle13.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle13.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle13.Font = new System.Drawing.Font("Microsoft Sans Serif", 6.912F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle13.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle13.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle13.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle13.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dataGridView1.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle13;
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.ColumnText,
@@ -1085,55 +1157,15 @@
             this.ColumnTrans,
             this.Column1});
             this.dataGridView1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.dataGridView1.Location = new System.Drawing.Point(3, 14);
+            this.dataGridView1.Location = new System.Drawing.Point(3, 17);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.ReadOnly = true;
             this.dataGridView1.RowHeadersVisible = false;
             this.dataGridView1.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing;
-            this.dataGridView1.Size = new System.Drawing.Size(312, 102);
+            this.dataGridView1.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.dataGridView1.Size = new System.Drawing.Size(312, 91);
             this.dataGridView1.TabIndex = 0;
             this.dataGridView1.MouseDown += new System.Windows.Forms.MouseEventHandler(this.dataGridView1_MouseDown);
-            // 
-            // ColumnText
-            // 
-            this.ColumnText.DataPropertyName = "Text";
-            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            this.ColumnText.DefaultCellStyle = dataGridViewCellStyle6;
-            this.ColumnText.HeaderText = "Текст";
-            this.ColumnText.MinimumWidth = 100;
-            this.ColumnText.Name = "ColumnText";
-            this.ColumnText.ReadOnly = true;
-            // 
-            // ColumnPrice
-            // 
-            this.ColumnPrice.DataPropertyName = "Price";
-            dataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle7.Format = "N0";
-            dataGridViewCellStyle7.NullValue = "0";
-            this.ColumnPrice.DefaultCellStyle = dataGridViewCellStyle7;
-            this.ColumnPrice.HeaderText = "Цена";
-            this.ColumnPrice.MinimumWidth = 80;
-            this.ColumnPrice.Name = "ColumnPrice";
-            this.ColumnPrice.ReadOnly = true;
-            // 
-            // ColumnTrans
-            // 
-            this.ColumnTrans.DataPropertyName = "nextscene";
-            dataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle8.Format = "N0";
-            dataGridViewCellStyle8.NullValue = "0";
-            this.ColumnTrans.DefaultCellStyle = dataGridViewCellStyle8;
-            this.ColumnTrans.HeaderText = "№ сцены";
-            this.ColumnTrans.Name = "ColumnTrans";
-            this.ColumnTrans.ReadOnly = true;
-            this.ColumnTrans.Width = 80;
-            // 
-            // Column1
-            // 
-            this.Column1.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.Column1.HeaderText = "";
-            this.Column1.Name = "Column1";
-            this.Column1.ReadOnly = true;
             // 
             // panel_SceneParameters
             // 
@@ -1157,7 +1189,7 @@
             this.label1.AutoSize = true;
             this.label1.Location = new System.Drawing.Point(119, 89);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(81, 13);
+            this.label1.Size = new System.Drawing.Size(111, 18);
             this.label1.TabIndex = 5;
             this.label1.Text = "Задержка (мс)";
             // 
@@ -1172,7 +1204,7 @@
             0,
             0});
             this.numericUpDown_Sound.Name = "numericUpDown_Sound";
-            this.numericUpDown_Sound.Size = new System.Drawing.Size(177, 20);
+            this.numericUpDown_Sound.Size = new System.Drawing.Size(177, 24);
             this.numericUpDown_Sound.TabIndex = 5;
             this.numericUpDown_Sound.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
@@ -1189,7 +1221,7 @@
             0,
             0});
             this.numericUpDown_AutoTransTiming.Name = "numericUpDown_AutoTransTiming";
-            this.numericUpDown_AutoTransTiming.Size = new System.Drawing.Size(109, 20);
+            this.numericUpDown_AutoTransTiming.Size = new System.Drawing.Size(109, 24);
             this.numericUpDown_AutoTransTiming.TabIndex = 4;
             this.numericUpDown_AutoTransTiming.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.numericUpDown_AutoTransTiming.ValueChanged += new System.EventHandler(this.numericUpDown3_ValueChanged);
@@ -1211,7 +1243,7 @@
             this.checkBox_Autotrans.Location = new System.Drawing.Point(4, 88);
             this.checkBox_Autotrans.Name = "checkBox_Autotrans";
             this.checkBox_Autotrans.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.checkBox_Autotrans.Size = new System.Drawing.Size(91, 17);
+            this.checkBox_Autotrans.Size = new System.Drawing.Size(120, 22);
             this.checkBox_Autotrans.TabIndex = 0;
             this.checkBox_Autotrans.Text = "Автопереход";
             this.checkBox_Autotrans.UseVisualStyleBackColor = true;
@@ -1240,7 +1272,7 @@
             0,
             0});
             this.numericUpDown_Layer.Name = "numericUpDown_Layer";
-            this.numericUpDown_Layer.Size = new System.Drawing.Size(177, 20);
+            this.numericUpDown_Layer.Size = new System.Drawing.Size(177, 24);
             this.numericUpDown_Layer.TabIndex = 3;
             this.numericUpDown_Layer.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.numericUpDown_Layer.ValueChanged += new System.EventHandler(this.numericUpDown2_ValueChanged);
@@ -1268,7 +1300,7 @@
             0,
             0});
             this.numericUpDown_Background.Name = "numericUpDown_Background";
-            this.numericUpDown_Background.Size = new System.Drawing.Size(177, 20);
+            this.numericUpDown_Background.Size = new System.Drawing.Size(177, 24);
             this.numericUpDown_Background.TabIndex = 2;
             this.numericUpDown_Background.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.numericUpDown_Background.ValueChanged += new System.EventHandler(this.numericUpDown1_ValueChanged);
@@ -1307,10 +1339,10 @@
             // textBox2
             // 
             this.textBox2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.textBox2.Location = new System.Drawing.Point(3, 16);
+            this.textBox2.Location = new System.Drawing.Point(3, 20);
             this.textBox2.Multiline = true;
             this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(312, 103);
+            this.textBox2.Size = new System.Drawing.Size(312, 99);
             this.textBox2.TabIndex = 0;
             this.textBox2.TextChanged += new System.EventHandler(this.textBox2_TextChanged);
             // 
@@ -1328,17 +1360,17 @@
             // textBox1
             // 
             this.textBox1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.textBox1.Location = new System.Drawing.Point(3, 16);
+            this.textBox1.Location = new System.Drawing.Point(3, 20);
             this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(312, 20);
+            this.textBox1.Size = new System.Drawing.Size(312, 24);
             this.textBox1.TabIndex = 0;
             this.textBox1.TextChanged += new System.EventHandler(this.textBox1_TextChanged);
             // 
             // splitter3
             // 
-            this.splitter3.Location = new System.Drawing.Point(249, 16);
+            this.splitter3.Location = new System.Drawing.Point(249, 20);
             this.splitter3.Name = "splitter3";
-            this.splitter3.Size = new System.Drawing.Size(4, 412);
+            this.splitter3.Size = new System.Drawing.Size(4, 404);
             this.splitter3.TabIndex = 9;
             this.splitter3.TabStop = false;
             // 
@@ -1347,9 +1379,9 @@
             this.panel_ScenePreview.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.panel_ScenePreview.Controls.Add(this.pictureBox_Backs);
             this.panel_ScenePreview.Dock = System.Windows.Forms.DockStyle.Left;
-            this.panel_ScenePreview.Location = new System.Drawing.Point(3, 16);
+            this.panel_ScenePreview.Location = new System.Drawing.Point(3, 20);
             this.panel_ScenePreview.Name = "panel_ScenePreview";
-            this.panel_ScenePreview.Size = new System.Drawing.Size(246, 412);
+            this.panel_ScenePreview.Size = new System.Drawing.Size(246, 404);
             this.panel_ScenePreview.TabIndex = 4;
             // 
             // pictureBox_Backs
@@ -1360,7 +1392,7 @@
             this.pictureBox_Backs.Image = global::SceneCreator.Properties.Resources.Character0;
             this.pictureBox_Backs.Location = new System.Drawing.Point(0, 0);
             this.pictureBox_Backs.Name = "pictureBox_Backs";
-            this.pictureBox_Backs.Size = new System.Drawing.Size(242, 408);
+            this.pictureBox_Backs.Size = new System.Drawing.Size(242, 400);
             this.pictureBox_Backs.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pictureBox_Backs.TabIndex = 0;
             this.pictureBox_Backs.TabStop = false;
@@ -1370,11 +1402,11 @@
             this.tabPage2.Controls.Add(this.panel4);
             this.tabPage2.Controls.Add(this.splitter2);
             this.tabPage2.Controls.Add(this.panel3);
-            this.tabPage2.Location = new System.Drawing.Point(4, 22);
+            this.tabPage2.Location = new System.Drawing.Point(4, 26);
             this.tabPage2.Margin = new System.Windows.Forms.Padding(4);
             this.tabPage2.Name = "tabPage2";
             this.tabPage2.Padding = new System.Windows.Forms.Padding(4);
-            this.tabPage2.Size = new System.Drawing.Size(1102, 439);
+            this.tabPage2.Size = new System.Drawing.Size(1102, 435);
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "Фоны";
             this.tabPage2.UseVisualStyleBackColor = true;
@@ -1386,7 +1418,7 @@
             this.panel4.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel4.Location = new System.Drawing.Point(184, 4);
             this.panel4.Name = "panel4";
-            this.panel4.Size = new System.Drawing.Size(914, 431);
+            this.panel4.Size = new System.Drawing.Size(914, 427);
             this.panel4.TabIndex = 4;
             // 
             // listView1
@@ -1397,7 +1429,7 @@
             this.listView1.LargeImageList = this.imageList_BackBig;
             this.listView1.Location = new System.Drawing.Point(0, 0);
             this.listView1.Name = "listView1";
-            this.listView1.Size = new System.Drawing.Size(910, 427);
+            this.listView1.Size = new System.Drawing.Size(910, 423);
             this.listView1.SmallImageList = this.imageList_BackSmall;
             this.listView1.TabIndex = 0;
             this.listView1.UseCompatibleStateImageBehavior = false;
@@ -1420,7 +1452,7 @@
             // 
             this.splitter2.Location = new System.Drawing.Point(180, 4);
             this.splitter2.Name = "splitter2";
-            this.splitter2.Size = new System.Drawing.Size(4, 431);
+            this.splitter2.Size = new System.Drawing.Size(4, 427);
             this.splitter2.TabIndex = 3;
             this.splitter2.TabStop = false;
             // 
@@ -1431,7 +1463,7 @@
             this.panel3.Dock = System.Windows.Forms.DockStyle.Left;
             this.panel3.Location = new System.Drawing.Point(4, 4);
             this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(176, 431);
+            this.panel3.Size = new System.Drawing.Size(176, 427);
             this.panel3.TabIndex = 2;
             this.panel3.SizeChanged += new System.EventHandler(this.panel3_SizeChanged);
             // 
@@ -1441,7 +1473,7 @@
             this.pictureBox1.Location = new System.Drawing.Point(0, 0);
             this.pictureBox1.Margin = new System.Windows.Forms.Padding(4);
             this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(172, 427);
+            this.pictureBox1.Size = new System.Drawing.Size(172, 423);
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pictureBox1.TabIndex = 1;
             this.pictureBox1.TabStop = false;
@@ -1451,11 +1483,11 @@
             this.tabPage3.Controls.Add(this.panel2);
             this.tabPage3.Controls.Add(this.splitter1);
             this.tabPage3.Controls.Add(this.panel1);
-            this.tabPage3.Location = new System.Drawing.Point(4, 22);
+            this.tabPage3.Location = new System.Drawing.Point(4, 26);
             this.tabPage3.Margin = new System.Windows.Forms.Padding(4);
             this.tabPage3.Name = "tabPage3";
             this.tabPage3.Padding = new System.Windows.Forms.Padding(4);
-            this.tabPage3.Size = new System.Drawing.Size(1102, 439);
+            this.tabPage3.Size = new System.Drawing.Size(1102, 435);
             this.tabPage3.TabIndex = 2;
             this.tabPage3.Text = "Персонажи";
             this.tabPage3.UseVisualStyleBackColor = true;
@@ -1467,7 +1499,7 @@
             this.panel2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel2.Location = new System.Drawing.Point(197, 4);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(901, 431);
+            this.panel2.Size = new System.Drawing.Size(901, 427);
             this.panel2.TabIndex = 4;
             // 
             // listView2
@@ -1478,7 +1510,7 @@
             this.listView2.LargeImageList = this.imageList_LayerBig;
             this.listView2.Location = new System.Drawing.Point(0, 0);
             this.listView2.Name = "listView2";
-            this.listView2.Size = new System.Drawing.Size(897, 427);
+            this.listView2.Size = new System.Drawing.Size(897, 423);
             this.listView2.SmallImageList = this.imageList_LayerSmall;
             this.listView2.TabIndex = 1;
             this.listView2.UseCompatibleStateImageBehavior = false;
@@ -1500,7 +1532,7 @@
             // 
             this.splitter1.Location = new System.Drawing.Point(193, 4);
             this.splitter1.Name = "splitter1";
-            this.splitter1.Size = new System.Drawing.Size(4, 431);
+            this.splitter1.Size = new System.Drawing.Size(4, 427);
             this.splitter1.TabIndex = 3;
             this.splitter1.TabStop = false;
             // 
@@ -1511,7 +1543,7 @@
             this.panel1.Dock = System.Windows.Forms.DockStyle.Left;
             this.panel1.Location = new System.Drawing.Point(4, 4);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(189, 431);
+            this.panel1.Size = new System.Drawing.Size(189, 427);
             this.panel1.TabIndex = 2;
             this.panel1.SizeChanged += new System.EventHandler(this.panel3_SizeChanged);
             // 
@@ -1521,18 +1553,18 @@
             this.pictureBox2.Location = new System.Drawing.Point(0, 0);
             this.pictureBox2.Margin = new System.Windows.Forms.Padding(4);
             this.pictureBox2.Name = "pictureBox2";
-            this.pictureBox2.Size = new System.Drawing.Size(185, 427);
+            this.pictureBox2.Size = new System.Drawing.Size(185, 423);
             this.pictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pictureBox2.TabIndex = 1;
             this.pictureBox2.TabStop = false;
             // 
             // tabPage4
             // 
-            this.tabPage4.Location = new System.Drawing.Point(4, 22);
+            this.tabPage4.Location = new System.Drawing.Point(4, 26);
             this.tabPage4.Margin = new System.Windows.Forms.Padding(4);
             this.tabPage4.Name = "tabPage4";
             this.tabPage4.Padding = new System.Windows.Forms.Padding(4);
-            this.tabPage4.Size = new System.Drawing.Size(1102, 439);
+            this.tabPage4.Size = new System.Drawing.Size(1102, 435);
             this.tabPage4.TabIndex = 3;
             this.tabPage4.Text = "Звук";
             this.tabPage4.UseVisualStyleBackColor = true;
@@ -1545,21 +1577,21 @@
             this.изменитьToolStripMenuItem,
             this.удалитьToolStripMenuItem});
             this.contextMenuStrip1.Name = "contextMenuStrip1";
-            this.contextMenuStrip1.Size = new System.Drawing.Size(134, 88);
+            this.contextMenuStrip1.Size = new System.Drawing.Size(157, 88);
             // 
             // toolStripMenuItem_Add
             // 
             this.toolStripMenuItem_Add.Image = global::SceneCreator.Properties.Resources.image_add;
             this.toolStripMenuItem_Add.Name = "toolStripMenuItem_Add";
-            this.toolStripMenuItem_Add.Size = new System.Drawing.Size(133, 28);
+            this.toolStripMenuItem_Add.Size = new System.Drawing.Size(156, 28);
             this.toolStripMenuItem_Add.Text = "Добавить";
-            this.toolStripMenuItem_Add.Click += new System.EventHandler(this.добавитьToolStripMenuItem_Click);
+            this.toolStripMenuItem_Add.Click += new System.EventHandler(this.ContextMenuAddMaterial_Click);
             // 
             // изменитьToolStripMenuItem
             // 
             this.изменитьToolStripMenuItem.Enabled = false;
             this.изменитьToolStripMenuItem.Name = "изменитьToolStripMenuItem";
-            this.изменитьToolStripMenuItem.Size = new System.Drawing.Size(133, 28);
+            this.изменитьToolStripMenuItem.Size = new System.Drawing.Size(156, 28);
             this.изменитьToolStripMenuItem.Text = "Изменить";
             // 
             // удалитьToolStripMenuItem
@@ -1567,7 +1599,7 @@
             this.удалитьToolStripMenuItem.Enabled = false;
             this.удалитьToolStripMenuItem.Image = global::SceneCreator.Properties.Resources.image_delete;
             this.удалитьToolStripMenuItem.Name = "удалитьToolStripMenuItem";
-            this.удалитьToolStripMenuItem.Size = new System.Drawing.Size(133, 28);
+            this.удалитьToolStripMenuItem.Size = new System.Drawing.Size(156, 28);
             this.удалитьToolStripMenuItem.Text = "Удалить";
             // 
             // contextMenuStrip2
@@ -1583,64 +1615,99 @@
             this.toolStripSeparator8,
             this.context_ChapterDelete});
             this.contextMenuStrip2.Name = "contextMenuStrip2";
-            this.contextMenuStrip2.Size = new System.Drawing.Size(152, 148);
+            this.contextMenuStrip2.Size = new System.Drawing.Size(181, 172);
             // 
             // context_ChapterNew
             // 
             this.context_ChapterNew.Name = "context_ChapterNew";
-            this.context_ChapterNew.Size = new System.Drawing.Size(151, 22);
+            this.context_ChapterNew.Size = new System.Drawing.Size(180, 26);
             this.context_ChapterNew.Text = "Новая глава";
             this.context_ChapterNew.Click += new System.EventHandler(this.context_ChapterNew_Click);
             // 
             // toolStripSeparator7
             // 
             this.toolStripSeparator7.Name = "toolStripSeparator7";
-            this.toolStripSeparator7.Size = new System.Drawing.Size(148, 6);
+            this.toolStripSeparator7.Size = new System.Drawing.Size(177, 6);
             // 
             // context_ChapterUp
             // 
             this.context_ChapterUp.Name = "context_ChapterUp";
-            this.context_ChapterUp.Size = new System.Drawing.Size(151, 22);
+            this.context_ChapterUp.Size = new System.Drawing.Size(180, 26);
             this.context_ChapterUp.Text = "Вверх";
             // 
             // context_ChapterDown
             // 
             this.context_ChapterDown.Name = "context_ChapterDown";
-            this.context_ChapterDown.Size = new System.Drawing.Size(151, 22);
+            this.context_ChapterDown.Size = new System.Drawing.Size(180, 26);
             this.context_ChapterDown.Text = "Вниз";
             // 
             // context_ChapterStart
             // 
             this.context_ChapterStart.Name = "context_ChapterStart";
-            this.context_ChapterStart.Size = new System.Drawing.Size(151, 22);
+            this.context_ChapterStart.Size = new System.Drawing.Size(180, 26);
             this.context_ChapterStart.Text = "В начало";
             // 
             // context_ChapterEnd
             // 
             this.context_ChapterEnd.Name = "context_ChapterEnd";
-            this.context_ChapterEnd.Size = new System.Drawing.Size(151, 22);
+            this.context_ChapterEnd.Size = new System.Drawing.Size(180, 26);
             this.context_ChapterEnd.Text = "В конец";
             // 
             // toolStripSeparator8
             // 
             this.toolStripSeparator8.Name = "toolStripSeparator8";
-            this.toolStripSeparator8.Size = new System.Drawing.Size(148, 6);
+            this.toolStripSeparator8.Size = new System.Drawing.Size(177, 6);
             // 
             // context_ChapterDelete
             // 
             this.context_ChapterDelete.Name = "context_ChapterDelete";
-            this.context_ChapterDelete.Size = new System.Drawing.Size(151, 22);
+            this.context_ChapterDelete.Size = new System.Drawing.Size(180, 26);
             this.context_ChapterDelete.Text = "Удалить главу";
             // 
-            // экспортДляUnityToolStripMenuItem
+            // ColumnText
             // 
-            this.экспортДляUnityToolStripMenuItem.Name = "экспортДляUnityToolStripMenuItem";
-            this.экспортДляUnityToolStripMenuItem.Size = new System.Drawing.Size(207, 28);
-            this.экспортДляUnityToolStripMenuItem.Text = "Экспорт для Unity";
+            this.ColumnText.DataPropertyName = "ButtonText";
+            dataGridViewCellStyle14.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            this.ColumnText.DefaultCellStyle = dataGridViewCellStyle14;
+            this.ColumnText.HeaderText = "Текст";
+            this.ColumnText.MinimumWidth = 100;
+            this.ColumnText.Name = "ColumnText";
+            this.ColumnText.ReadOnly = true;
+            // 
+            // ColumnPrice
+            // 
+            this.ColumnPrice.DataPropertyName = "Price";
+            dataGridViewCellStyle15.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle15.Format = "N0";
+            dataGridViewCellStyle15.NullValue = "0";
+            this.ColumnPrice.DefaultCellStyle = dataGridViewCellStyle15;
+            this.ColumnPrice.HeaderText = "Цена";
+            this.ColumnPrice.MinimumWidth = 80;
+            this.ColumnPrice.Name = "ColumnPrice";
+            this.ColumnPrice.ReadOnly = true;
+            // 
+            // ColumnTrans
+            // 
+            this.ColumnTrans.DataPropertyName = "NextScene";
+            dataGridViewCellStyle16.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle16.Format = "N0";
+            dataGridViewCellStyle16.NullValue = "0";
+            this.ColumnTrans.DefaultCellStyle = dataGridViewCellStyle16;
+            this.ColumnTrans.HeaderText = "№ Cцены";
+            this.ColumnTrans.Name = "ColumnTrans";
+            this.ColumnTrans.ReadOnly = true;
+            this.ColumnTrans.Width = 80;
+            // 
+            // Column1
+            // 
+            this.Column1.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.Column1.HeaderText = "";
+            this.Column1.Name = "Column1";
+            this.Column1.ReadOnly = true;
             // 
             // FormMain
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 17F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1110, 545);
             this.Controls.Add(this.tabControl1);
@@ -1648,6 +1715,7 @@
             this.Controls.Add(this.statusStrip1);
             this.Controls.Add(this.menuStrip1);
             this.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.KeyPreview = true;
             this.MainMenuStrip = this.menuStrip1;
             this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "FormMain";
@@ -1785,10 +1853,6 @@
         private System.Windows.Forms.GroupBox groupBox4;
         private System.Windows.Forms.DataGridView dataGridView1;
         private System.Windows.Forms.ToolStripMenuItem изменитьToolStripMenuItem;
-        private System.Windows.Forms.DataGridViewTextBoxColumn ColumnText;
-        private System.Windows.Forms.DataGridViewTextBoxColumn ColumnPrice;
-        private System.Windows.Forms.DataGridViewTextBoxColumn ColumnTrans;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column1;
         public System.Windows.Forms.ImageList imageList_BackBig;
         public System.Windows.Forms.ImageList imageList_BackSmall;
         public System.Windows.Forms.ImageList imageList_LayerBig;
@@ -1805,7 +1869,6 @@
         private System.Windows.Forms.ToolStripMenuItem томToolStripMenuItem;
         private System.Windows.Forms.ToolStripComboBox toolStripComboBox_Chapters;
         private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem_NewChapter;
-        private System.Windows.Forms.ToolStripMenuItem toolStripMenuItemSaveChapter;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
         private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem_SaveBacks;
         private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem_SaveLayers;
@@ -1861,7 +1924,19 @@
         private System.Windows.Forms.GroupBox groupBox11;
         private System.Windows.Forms.Button button5;
         private System.Windows.Forms.ToolStripLabel toolStripLabel1;
-        private System.Windows.Forms.ToolStripMenuItem экспортДляUnityToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem_ExportBook;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator9;
+        private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem_Recent;
+        private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem_Recent0;
+        private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem_Recent1;
+        private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem_Recent2;
+        private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem_Recent3;
+        private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem_Recent4;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator10;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ColumnText;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ColumnPrice;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ColumnTrans;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column1;
     }
 }
 
