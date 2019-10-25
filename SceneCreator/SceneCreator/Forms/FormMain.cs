@@ -478,7 +478,7 @@ namespace SceneCreator.Forms
             if (listBox_Chapters.SelectedItem != null)
             {
                 Proto.ProtoChapter.protoRow row = new Proto.ProtoChapter.protoRow();
-                if (CPChapters.TryGetValue((string)textBox_ChapterName.Tag, out row))
+                if (CPChapters.TryGetValue((string)listBox_Chapters.SelectedItem, out row))
                 {
                     textBox_ChapterName.Text = row.Name;
                     textBox_ChapterName.Tag = row.Name;
@@ -944,6 +944,7 @@ namespace SceneCreator.Forms
                         ImageKey = resultname,
                         Text = resultname,
                         Tag = i
+
                     };
                     listView_Backgrounds.Items.Add(item);
                 }
@@ -1004,6 +1005,13 @@ namespace SceneCreator.Forms
                     Name = string.Empty,
                     ButtonChoice = new List<Proto.ProtoScene.protoСhoice>()
                 };
+                Proto.ProtoScene.protoСhoice itempc = new Proto.ProtoScene.protoСhoice()
+                {
+                    Price = 0,
+                    ButtonText = string.Empty,
+                    NextScene = i + 1
+                };
+                tmp.ButtonChoice.Add(itempc);
                 CPChapters[toolStripComboBox_Chapters.Text].Scenes.Add(i, tmp);
                 Utils.ChaptersDataTable.result result = Utils.ChaptersDataTable.AddNewRow(new KeyValuePair<int, Proto.ProtoScene.protoRow>(i, tmp));
                 if (result.ex != null) { ShowExeption(result.ex); }
@@ -1080,6 +1088,19 @@ namespace SceneCreator.Forms
                     CPChapters[toolStripComboBox_Chapters.Text].Scenes.Remove(i);
                     Utils.ChaptersDataTable.DeleteRow(i);
                 }
+                return;
+            }
+            #endregion
+            #region ScenesButtonImage
+            if (contextMenuStrip_AddEditRemove.Tag.ToString().Equals(pictureBox_Chapter.Name))
+            {
+                Proto.ProtoChapter.protoRow row = new Proto.ProtoChapter.protoRow();
+                if (CPChapters.TryGetValue((string)textBox_ChapterName.Tag, out row))
+                {
+                    row.Preview = null;
+                    listBox_Chapters_SelectedIndexChanged(null, null);
+                }
+                return;
             }
             #endregion
         }
@@ -1160,6 +1181,23 @@ namespace SceneCreator.Forms
                         CPChapters[toolStripComboBox_Chapters.Text].Scenes[i].ButtonChoice[dataGridView_ScenesCheckpoints.SelectedRows[0].Index] = frm.Result;
                         showButtonChoice(i);
                         Utils.ChaptersDataTable.UpdateRow(new KeyValuePair<int, Proto.ProtoScene.protoRow>(i, CPChapters[toolStripComboBox_Chapters.Text].Scenes[i]));
+                    }
+                }
+                return;
+            }
+            #endregion
+            #region ScenesButtonImage
+            if (contextMenuStrip_AddEditRemove.Tag.ToString().Equals(pictureBox_Chapter.Name))
+            {
+                Utils.ImageUI result = Utils.ImagesWorks.GetFilesByteArray("Изображения PNG24| *.png", i);
+                if (result != null && result.Image != null)
+                {
+                    Proto.ProtoChapter.protoRow row = new Proto.ProtoChapter.protoRow();
+                    if (CPChapters.TryGetValue((string)textBox_ChapterName.Tag, out row))
+                    {
+                        row.Preview = null;
+                        row.Preview = result.Image;
+                        listBox_Chapters_SelectedIndexChanged(null, null);
                     }
                 }
                 return;
