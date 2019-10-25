@@ -52,8 +52,8 @@ namespace SceneCreator.Forms
             tabControl1.TabPages.Remove(tab);
             Utils.ChaptersDataTable.Initialization();
             SetStartVariables();
-            dataGridView1.AutoGenerateColumns = false;
-            dataGridView3.AutoGenerateColumns = false;
+            dataGridView_ScenesCheckpoints.AutoGenerateColumns = false;
+            dataGridView_Scenes.AutoGenerateColumns = false;
             dataGridViewScenes_BindingSource();
         }
         #endregion
@@ -66,152 +66,67 @@ namespace SceneCreator.Forms
         }
         #endregion
 
-        #region Всё дерьмо, незабыть позже передалать и дописать
+        #region Selected Background/Characters/Musics
         private void listView1_MouseDown(object sender, MouseEventArgs e)
         {
-            ListView lst = (ListView)sender;
-            switch (e.Button)
+            //ListViewHitTestInfo info = lst.HitTest(e.X, e.Y);
+            if (e.Button == MouseButtons.Right)
             {
-                case MouseButtons.Right:
-                    contextMenuStrip1.Tag = lst.Name;
-                    contextMenuStrip1.Show(lst.PointToScreen(e.Location));
-                    contextMenuStrip1.Show();
-                    break;
-                case MouseButtons.Left:
-                    ListViewHitTestInfo info = lst.HitTest(e.X, e.Y);
-                    if (info.Item != null)
-                    {
-                        if (lst.Name.Equals(listView1.Name))
-                        {
-                            pictureBox1.Image = null;
-                            pictureBox1.Image = Utils.ImagesWorks.ByteToImage(CPBacks[(int)info.Item.Tag]);
-                            return;
-                        }
-                        if (lst.Name.Equals(listView2.Name))
-                        {
-                            pictureBox2.Image = null;
-                            pictureBox2.Image = Utils.ImagesWorks.ByteToImage(CPLayers[(int)info.Item.Tag]);
-                            return;
-                        }
-                    }
-                    break;
+                ListView lst = (ListView)sender;
+                toolStripMenuItem_Edit.Visible = true;
+                contextMenuStrip_AddEditRemove.Tag = lst.Name;
+                contextMenuStrip_AddEditRemove.Show(lst.PointToScreen(e.Location));
             }
         }
 
-        private void listView1_SelectedIndexChanged(object sender, EventArgs e)
+        private void listView_SelectedIndexChanged(object sender, EventArgs e)
         {
+            ListView lst = (ListView)sender;
+            int i = 0;
+            if (lst.SelectedItems.Count > 0) { i = (int)lst.SelectedItems[0].Tag; }
+            if (lst.Name.Equals(listView_Backgrounds.Name))
+            {
+                Image tmp = pictureBox2.Image;
+                if (i > 0) { pictureBox1.Image = Utils.ImagesWorks.ByteToImage(CPBacks[i]); toolStripMenuItem_Add.Enabled = toolStripMenuItem_Edit.Enabled = toolStripMenuItem_Delete.Enabled = true; }
+                else { pictureBox1.Image = Properties.Resources.Backgraund0; toolStripMenuItem_Add.Enabled = true; toolStripMenuItem_Edit.Enabled = toolStripMenuItem_Delete.Enabled = false; }
+                if (tmp != null) { tmp.Dispose(); }
 
+            }
+            if (lst.Name.Equals(listView_Characters.Name))
+            {
+                Image tmp = pictureBox2.Image;
+                if (i > 0) { pictureBox2.Image = Utils.ImagesWorks.ByteToImage(CPLayers[i]); toolStripMenuItem_Add.Enabled = toolStripMenuItem_Edit.Enabled = toolStripMenuItem_Delete.Enabled = true; }
+                else { pictureBox2.Image = pictureBox1.Image = Properties.Resources.Character0; toolStripMenuItem_Add.Enabled = true; toolStripMenuItem_Edit.Enabled = toolStripMenuItem_Delete.Enabled = false; }
+                if (tmp != null) { tmp.Dispose(); }
+            }
         }
 
 
-        private void toolStripComboBox1_SelectedIndexChanged(object sender, EventArgs e)
+        private void toolStripComboBox_ListView_SelectedIndexChanged(object sender, EventArgs e)
         {
             switch (toolStripComboBox_ListView.SelectedIndex)
             {
                 case 0:
-                    listView1.View = View.LargeIcon;
-                    listView2.View = View.LargeIcon;
+                    listView_Backgrounds.View = View.LargeIcon;
+                    listView_Characters.View = View.LargeIcon;
                     break;
                 case 1:
-                    listView1.View = View.SmallIcon;
-                    listView2.View = View.SmallIcon;
+                    listView_Backgrounds.View = View.SmallIcon;
+                    listView_Characters.View = View.SmallIcon;
                     break;
                 case 2:
-                    listView1.View = View.List;
-                    listView2.View = View.List;
+                    listView_Backgrounds.View = View.List;
+                    listView_Characters.View = View.List;
                     break;
                 case 3:
-                    listView1.View = View.Tile;
-                    listView2.View = View.Tile;
+                    listView_Backgrounds.View = View.Tile;
+                    listView_Characters.View = View.Tile;
                     break;
             }
         }
         #endregion
 
-        #region Add BinaryFile (Image/Sound)
-        /// <summary>
-        /// опять быстрый костыль, handler of toolStripMenuItem_Add 
-        /// </summary>
-        private void ContextMenuAddMaterial_Click(object sender, EventArgs e)
-        {
 
-            int i = 0;
-            if (contextMenuStrip1.Tag.ToString().Equals(listView1.Name))
-            {
-                if (CPBacks.Count > 0) { i = CPBacks.Keys.Max() + 1; } else { i = 1; }
-                Utils.ImageUI result = Utils.ImagesWorks.GetFilesByteArray("Изображения PNG24| *.png", i);
-                if (result != null && result.Image != null && result.PreviewSmall != null)
-                {
-                    CPBacks.Add(i, result.Image);
-                    string resultname = i.ToString();
-                    imageList_BackBig.Images.Add(resultname, Utils.ImagesWorks.ByteToImage(result.PreviewBig));
-                    imageList_BackSmall.Images.Add(resultname, Utils.ImagesWorks.ByteToImage(result.PreviewSmall));
-                    ListViewItem item = new ListViewItem
-                    {
-                        ImageKey = resultname,
-                        Text = resultname,
-                        Tag = i
-                    };
-                    listView1.Items.Add(item);
-                }
-                return;
-            }
-            if (contextMenuStrip1.Tag.ToString().Equals(listView2.Name))
-            {
-                if (CPLayers.Count > 0) { i = CPLayers.Keys.Max() + 1; } else { i = 1; }
-                Utils.ImageUI result = Utils.ImagesWorks.GetFilesByteArray("Изображения PNG24| *.png", i);
-                if (result != null && result.Image != null && result.PreviewSmall != null)
-                {
-                    CPLayers.Add(i, result.Image);
-                    string resultname = i.ToString();
-                    imageList_LayerBig.Images.Add(resultname, Utils.ImagesWorks.ByteToImage(result.PreviewBig));
-                    imageList_LayerSmall.Images.Add(resultname, Utils.ImagesWorks.ByteToImage(result.PreviewSmall));
-                    ListViewItem item = new ListViewItem
-                    {
-                        ImageKey = resultname,
-                        Text = resultname,
-                        Tag = i
-                    };
-                    listView2.Items.Add(item);
-                }
-                return;
-            }
-
-            if (contextMenuStrip1.Tag.ToString().Equals(dataGridView1.Name))
-            {
-                int uid = (int)groupBox_SceneMain.Tag;
-                if (CPChapters[toolStripComboBox_Chapters.Text].Scenes[uid].ButtonChoice == null) { CPChapters[toolStripComboBox_Chapters.Text].Scenes[uid].ButtonChoice = new List<Proto.ProtoScene.protoСhoice>(); }
-                using (FormButtonChoice frm = new FormButtonChoice(null))
-                {
-                    frm.ShowInTaskbar = false;
-                    frm.StartPosition = FormStartPosition.Manual;
-                    frm.Location = contextMenuStrip1.PointToScreen(Point.Empty);
-                    frm.ShowDialog();
-                    if (frm.result != null)
-                    {
-                        CPChapters[toolStripComboBox_Chapters.Text].Scenes[uid].ButtonChoice.Add(frm.result);
-                        showButtonChoice(uid);
-                        Utils.ChaptersDataTable.UpdateRow(new KeyValuePair<int, Proto.ProtoScene.protoRow>(uid, CPChapters[toolStripComboBox_Chapters.Text].Scenes[uid]));
-                    }
-                }
-                return;
-            }
-            if (contextMenuStrip1.Tag.ToString().Equals(dataGridView3.Name))
-            {
-                if (CPChapters[toolStripComboBox_Chapters.Text].Scenes == null) { CPChapters[toolStripComboBox_Chapters.Text].Scenes = new Dictionary<int, Proto.ProtoScene.protoRow>(); }
-                if (CPChapters[toolStripComboBox_Chapters.Text].Scenes.Count > 0) { i = CPChapters[toolStripComboBox_Chapters.Text].Scenes.Keys.Max() + 1; } else { i = 1; }
-                Proto.ProtoScene.protoRow tmp = new Proto.ProtoScene.protoRow
-                {
-                    Message = string.Empty,
-                    Name = string.Empty,
-                    ButtonChoice = new List<Proto.ProtoScene.protoСhoice>()
-                };
-                CPChapters[toolStripComboBox_Chapters.Text].Scenes.Add(i, tmp);
-                Utils.ChaptersDataTable.result result = Utils.ChaptersDataTable.AddNewRow(new KeyValuePair<int, Proto.ProtoScene.protoRow>(i, tmp));
-                if (result.ex != null) { ShowExeption(result.ex); }
-            }
-        }
-        #endregion
 
         #region Тут море всякого пиздеца - разобрать и привести в порядок по мере реализации
         private void dataGridViewScenes_BindingSource()
@@ -221,7 +136,7 @@ namespace SceneCreator.Forms
             if (res.dt != null)
             {
                 dt = res.dt;
-                dataGridView3.DataSource = dt;
+                dataGridView_Scenes.DataSource = dt;
             }
             else
             {
@@ -231,9 +146,9 @@ namespace SceneCreator.Forms
 
         private void dataGridView3_SelectionChanged(object sender, EventArgs e)
         {
-            if (dataGridView3.SelectedRows != null && dataGridView3.SelectedRows.Count > 0)
+            if (dataGridView_Scenes.SelectedRows != null && dataGridView_Scenes.SelectedRows.Count > 0)
             {
-                fillTemplateByScene((int)dataGridView3.SelectedRows[0].Cells["SceneUid"].Value);
+                fillTemplateByScene((int)dataGridView_Scenes.SelectedRows[0].Cells["SceneUid"].Value);
             }
         }
 
@@ -282,9 +197,9 @@ namespace SceneCreator.Forms
         {
             if (CPChapters[toolStripComboBox_Chapters.Text].Scenes[uid].ButtonChoice == null)
             { CPChapters[toolStripComboBox_Chapters.Text].Scenes[uid].ButtonChoice = new List<Proto.ProtoScene.protoСhoice>(); }
-            dataGridView1.DataSource = null;
-            dataGridView1.DataSource = CPChapters[toolStripComboBox_Chapters.Text].Scenes[uid].ButtonChoice.ToList();
-            dataGridView1.Refresh();
+            dataGridView_ScenesCheckpoints.DataSource = null;
+            dataGridView_ScenesCheckpoints.DataSource = CPChapters[toolStripComboBox_Chapters.Text].Scenes[uid].ButtonChoice.ToList();
+            dataGridView_ScenesCheckpoints.Refresh();
         }
 
 
@@ -294,22 +209,13 @@ namespace SceneCreator.Forms
             if (e.Button == MouseButtons.Right)
             {
                 DataGridView dataGridView = (DataGridView)sender;
-                contextMenuStrip1.Tag = dataGridView.Name;
+                contextMenuStrip_AddEditRemove.Tag = dataGridView.Name;
                 dataGridView.ClearSelection();
                 int i = dataGridView.HitTest(e.X, e.Y).RowIndex;
-                if (i > -1)
-                {
-                    dataGridView.Rows[i].Selected = true;
-                    toolStripMenuItem_Edit.Enabled = true;
-                    toolStripMenuItem_Delete.Enabled = true;
-                }
-                else
-                {
-                    toolStripMenuItem_Edit.Enabled = false;
-                    toolStripMenuItem_Delete.Enabled = false;
-                }
-                contextMenuStrip1.Show(dataGridView.PointToScreen(e.Location));
-                contextMenuStrip1.Show();
+                if (i > -1) { dataGridView.Rows[i].Selected = true; toolStripMenuItem_Add.Enabled = toolStripMenuItem_Edit.Enabled = toolStripMenuItem_Delete.Enabled = true; } else { dataGridView.ClearSelection(); toolStripMenuItem_Add.Enabled = true; toolStripMenuItem_Edit.Enabled = toolStripMenuItem_Delete.Enabled = false; }
+                if (dataGridView.Name.Equals(dataGridView_Scenes.Name)) { toolStripMenuItem_Edit.Visible = false; } else { toolStripMenuItem_Edit.Visible = true; }
+                contextMenuStrip_AddEditRemove.Show(dataGridView.PointToScreen(e.Location));
+                contextMenuStrip_AddEditRemove.Show();
             }
         }
 
@@ -317,9 +223,9 @@ namespace SceneCreator.Forms
         {
             if (((Control)sender).Name.Equals(buttonSelectSceneBackground.Name))
             {
-                if (listView1.Items.Count > 0)
+                if (listView_Backgrounds.Items.Count > 0)
                 {
-                    using (FormSelectImages frm = new FormSelectImages((from ListViewItem item in listView1.Items select (ListViewItem)item.Clone()).ToArray(), imageList_BackBig, imageList_BackSmall, listView1.View)) //listView1.Items.OfType<ListViewItem>().ToArray()
+                    using (FormSelectImages frm = new FormSelectImages((from ListViewItem item in listView_Backgrounds.Items select (ListViewItem)item.Clone()).ToArray(), imageList_BackBig, imageList_BackSmall, listView_Backgrounds.View)) //listView1.Items.OfType<ListViewItem>().ToArray()
                     {
                         frm.ShowDialog();
                         numericUpDown_Background.Value = frm.result;
@@ -337,9 +243,9 @@ namespace SceneCreator.Forms
             }
             else
             {
-                if (listView2.Items.Count > 0)
+                if (listView_Characters.Items.Count > 0)
                 {
-                    using (FormSelectImages frm = new FormSelectImages((from ListViewItem item in listView2.Items select (ListViewItem)item.Clone()).ToArray(), imageList_LayerBig, imageList_LayerSmall, listView2.View)) //listView1.Items.OfType<ListViewItem>().ToArray()
+                    using (FormSelectImages frm = new FormSelectImages((from ListViewItem item in listView_Characters.Items select (ListViewItem)item.Clone()).ToArray(), imageList_LayerBig, imageList_LayerSmall, listView_Characters.View)) //listView1.Items.OfType<ListViewItem>().ToArray()
                     {
                         frm.ShowDialog();
                         numericUpDown_Layer.Value = frm.result;
@@ -523,21 +429,21 @@ namespace SceneCreator.Forms
             switch (e.Button)
             {
                 case MouseButtons.Right:
-                    context_ChapterUp.Enabled = false;
-                    context_ChapterDown.Enabled = false;
-                    context_ChapterStart.Enabled = false;
-                    context_ChapterEnd.Enabled = false;
-                    context_ChapterDelete.Enabled = false;
-                    contextMenuStrip2.Tag = null;
+                    contextMenuStrip_ChapterUp.Enabled = false;
+                    contextMenuStrip_ChapterDown.Enabled = false;
+                    contextMenuStrip_ChapterStart.Enabled = false;
+                    contextMenuStrip_ChapterEnd.Enabled = false;
+                    contextMenuStrip_ChapterDelete.Enabled = false;
+                    contextMenuStrip_Chapters.Tag = null;
                     if (listBox_Chapters.SelectedItem != null)
                     {
-                        contextMenuStrip2.Tag = listBox_Chapters.SelectedItem;
-                        if (listBox_Chapters.SelectedIndex > 0) { context_ChapterUp.Enabled = true; context_ChapterStart.Enabled = true; }
-                        if (listBox_Chapters.SelectedIndex < listBox_Chapters.Items.Count - 1) { context_ChapterDown.Enabled = true; context_ChapterEnd.Enabled = true; }
-                        context_ChapterDelete.Enabled = true;
+                        contextMenuStrip_Chapters.Tag = listBox_Chapters.SelectedItem;
+                        if (listBox_Chapters.SelectedIndex > 0) { contextMenuStrip_ChapterUp.Enabled = true; contextMenuStrip_ChapterStart.Enabled = true; }
+                        if (listBox_Chapters.SelectedIndex < listBox_Chapters.Items.Count - 1) { contextMenuStrip_ChapterDown.Enabled = true; contextMenuStrip_ChapterEnd.Enabled = true; }
+                        contextMenuStrip_ChapterDelete.Enabled = true;
                     }
-                    contextMenuStrip2.Show(listBox_Chapters.PointToScreen(e.Location));
-                    contextMenuStrip2.Show();
+                    contextMenuStrip_Chapters.Show(listBox_Chapters.PointToScreen(e.Location));
+                    contextMenuStrip_Chapters.Show();
                     break;
                 case MouseButtons.Left:
                     if (listBox_Chapters.SelectedItem == null) { return; }
@@ -571,8 +477,16 @@ namespace SceneCreator.Forms
         {
             if (listBox_Chapters.SelectedItem != null)
             {
-                textBox_ChapterName.Text = (string)listBox_Chapters.SelectedItem;
-                textBox_ChapterName.Tag = (string)listBox_Chapters.SelectedItem;
+                Proto.ProtoChapter.protoRow row = new Proto.ProtoChapter.protoRow();
+                if (CPChapters.TryGetValue((string)textBox_ChapterName.Tag, out row))
+                {
+                    textBox_ChapterName.Text = row.Name;
+                    textBox_ChapterName.Tag = row.Name;
+                    Image tmp = pictureBox_Chapter.Image;
+                    pictureBox_Chapter.Image = Utils.ImagesWorks.ByteToImage(row.Preview);
+                    if (tmp != null) { tmp.Dispose(); }
+                }
+
             }
         }
 
@@ -582,7 +496,7 @@ namespace SceneCreator.Forms
             {
                 frm.ShowInTaskbar = false;
                 frm.StartPosition = FormStartPosition.Manual;
-                frm.Location = contextMenuStrip2.PointToScreen(Point.Empty);
+                frm.Location = contextMenuStrip_Chapters.PointToScreen(Point.Empty);
                 frm.ShowDialog();
                 if (frm.Result != null)
                 {
@@ -742,7 +656,7 @@ namespace SceneCreator.Forms
             {
 
                 if (CPBacks != null) { CPBacks.Clear(); } else { CPBacks = new Dictionary<int, byte[]>(); }
-                listView1.Items.Clear(); pictureBox1.Image = null;
+                listView_Backgrounds.Items.Clear(); pictureBox1.Image = null;
                 Utils.FilesWorks.result result = Utils.FilesWorks.Load(path + @"\background.dat", Utils.FilesWorks.Type.Binary);
                 if (result != null && result.Ex != null) { ShowExeption(result.Ex); }
                 else
@@ -759,7 +673,7 @@ namespace SceneCreator.Forms
                             Text = resultname,
                             Tag = i.Key
                         };
-                        listView1.Items.Add(item);
+                        listView_Backgrounds.Items.Add(item);
                     }
                 }
             }
@@ -768,7 +682,7 @@ namespace SceneCreator.Forms
         private void LoadLayers(string path)
         {
             if (CPLayers != null) { CPLayers.Clear(); } else { CPLayers = new Dictionary<int, byte[]>(); }
-            listView2.Items.Clear(); pictureBox2.Image = null;
+            listView_Characters.Items.Clear(); pictureBox2.Image = null;
             Utils.FilesWorks.result result = Utils.FilesWorks.Load(path + @"\characters.dat", Utils.FilesWorks.Type.Binary);
             if (result != null && result.Ex != null) { ShowExeption(result.Ex); }
             else
@@ -785,7 +699,7 @@ namespace SceneCreator.Forms
                         Text = resultname,
                         Tag = i.Key
                     };
-                    listView2.Items.Add(item);
+                    listView_Characters.Items.Add(item);
                 }
             }
 
@@ -816,6 +730,7 @@ namespace SceneCreator.Forms
                 path = SelectFolder(browserDialog);
                 if (path == null) { return; }
             }
+
             SaveChapters(path);
             SaveMaterials(MaterialsType.Backgrounds, path + @"\data");
             SaveMaterials(MaterialsType.Characters, path + @"\data");
@@ -972,7 +887,7 @@ namespace SceneCreator.Forms
         }
 
         #endregion
-
+        #region экспорт в юнити
         private void toolStripMenuItem_ScenesExport_Click(object sender, EventArgs e)
         {
             FolderBrowserDialog browserDialog = new FolderBrowserDialog
@@ -1000,151 +915,284 @@ namespace SceneCreator.Forms
             //Utils.FilesWorks.result result = Utils.FilesWorks.Save(dicsave, path + @"\book.dat");
             //if (result != null && result.Ex != null) { ShowExeption(result.Ex); }
         }
+        #endregion
 
+
+        /// <summary>
+        /// опять быстрый костыль, handler of toolStripMenuItem##
+        /// </summary>
+        #region Context Menu handlers: Add/Remove/Edit(images/music/checkpoints scenes)
+
+        #region ContextMenu: Add (images/music/checkpoints scenes)
+        private void ContextMenu_Add_Click(object sender, EventArgs e)
+        {
+
+            int i = 0; //temp int
+            #region Backgrounds
+            if (contextMenuStrip_AddEditRemove.Tag.ToString().Equals(listView_Backgrounds.Name))
+            {
+                if (CPBacks.Count > 0) { i = CPBacks.Keys.Max() + 1; } else { i = 1; }
+                Utils.ImageUI result = Utils.ImagesWorks.GetFilesByteArray("Изображения PNG24| *.png", i);
+                if (result != null && result.Image != null && result.PreviewSmall != null)
+                {
+                    CPBacks.Add(i, result.Image);
+                    string resultname = i.ToString();
+                    imageList_BackBig.Images.Add(resultname, Utils.ImagesWorks.ByteToImage(result.PreviewBig));
+                    imageList_BackSmall.Images.Add(resultname, Utils.ImagesWorks.ByteToImage(result.PreviewSmall));
+                    ListViewItem item = new ListViewItem
+                    {
+                        ImageKey = resultname,
+                        Text = resultname,
+                        Tag = i
+                    };
+                    listView_Backgrounds.Items.Add(item);
+                }
+                return;
+            }
+            #endregion
+            #region Characters
+            if (contextMenuStrip_AddEditRemove.Tag.ToString().Equals(listView_Characters.Name))
+            {
+                if (CPLayers.Count > 0) { i = CPLayers.Keys.Max() + 1; } else { i = 1; }
+                Utils.ImageUI result = Utils.ImagesWorks.GetFilesByteArray("Изображения PNG24| *.png", i);
+                if (result != null && result.Image != null && result.PreviewSmall != null)
+                {
+                    CPLayers.Add(i, result.Image);
+                    string resultname = i.ToString();
+                    imageList_LayerBig.Images.Add(resultname, Utils.ImagesWorks.ByteToImage(result.PreviewBig));
+                    imageList_LayerSmall.Images.Add(resultname, Utils.ImagesWorks.ByteToImage(result.PreviewSmall));
+                    ListViewItem item = new ListViewItem
+                    {
+                        ImageKey = resultname,
+                        Text = resultname,
+                        Tag = i
+                    };
+                    listView_Characters.Items.Add(item);
+                }
+                return;
+            }
+            #endregion
+            #region Scene transitions (edit scene list for jump to ****)
+            if (contextMenuStrip_AddEditRemove.Tag.ToString().Equals(dataGridView_ScenesCheckpoints.Name))
+            {
+                i = (int)groupBox_SceneMain.Tag;
+                if (CPChapters[toolStripComboBox_Chapters.Text].Scenes[i].ButtonChoice == null) { CPChapters[toolStripComboBox_Chapters.Text].Scenes[i].ButtonChoice = new List<Proto.ProtoScene.protoСhoice>(); }
+                using (FormButtonChoice frm = new FormButtonChoice(null))
+                {
+                    frm.ShowInTaskbar = false;
+                    frm.StartPosition = FormStartPosition.Manual;
+                    frm.Location = dataGridView_ScenesCheckpoints.PointToScreen(Point.Empty); //Cursor.Position
+                    frm.ShowDialog();
+                    if (frm.Result != null)
+                    {
+                        CPChapters[toolStripComboBox_Chapters.Text].Scenes[i].ButtonChoice.Add(frm.Result);
+                        showButtonChoice(i);
+                        Utils.ChaptersDataTable.UpdateRow(new KeyValuePair<int, Proto.ProtoScene.protoRow>(i, CPChapters[toolStripComboBox_Chapters.Text].Scenes[i]));
+                    }
+                }
+                return;
+            }
+            #endregion
+            #region Scenes
+            if (contextMenuStrip_AddEditRemove.Tag.ToString().Equals(dataGridView_Scenes.Name))
+            {
+                if (CPChapters[toolStripComboBox_Chapters.Text].Scenes == null) { CPChapters[toolStripComboBox_Chapters.Text].Scenes = new Dictionary<int, Proto.ProtoScene.protoRow>(); }
+                if (CPChapters[toolStripComboBox_Chapters.Text].Scenes.Count > 0) { i = CPChapters[toolStripComboBox_Chapters.Text].Scenes.Keys.Max() + 1; } else { i = 1; }
+                Proto.ProtoScene.protoRow tmp = new Proto.ProtoScene.protoRow
+                {
+                    Message = string.Empty,
+                    Name = string.Empty,
+                    ButtonChoice = new List<Proto.ProtoScene.protoСhoice>()
+                };
+                CPChapters[toolStripComboBox_Chapters.Text].Scenes.Add(i, tmp);
+                Utils.ChaptersDataTable.result result = Utils.ChaptersDataTable.AddNewRow(new KeyValuePair<int, Proto.ProtoScene.protoRow>(i, tmp));
+                if (result.ex != null) { ShowExeption(result.ex); }
+                return;
+            }
+            #endregion
+            #region ScenesButtonImage
+            if (contextMenuStrip_AddEditRemove.Tag.ToString().Equals(pictureBox_Chapter.Name))
+            {
+                Utils.ImageUI result = Utils.ImagesWorks.GetFilesByteArray("Изображения PNG24| *.png", i);
+                if (result != null && result.Image != null)
+                {
+                    Proto.ProtoChapter.protoRow row = new Proto.ProtoChapter.protoRow();
+                    if (CPChapters.TryGetValue((string)textBox_ChapterName.Tag, out row))
+                    {
+                        row.Preview = null;
+                        row.Preview = result.Image;
+                        listBox_Chapters_SelectedIndexChanged(null, null);
+                    }
+                }
+                return;
+            }
+            #endregion
+        }
+        #endregion
+
+        #region ContextMenu: Delete (images/music/checkpoints scenes)
         private void toolStripMenuItem_Delete_Click(object sender, EventArgs e)
         {
 
-            int i = 0;
-            if (contextMenuStrip1.Tag.ToString().Equals(listView1.Name))
+            int i = 0; //temp int
+            #region Backgrounds
+            if (contextMenuStrip_AddEditRemove.Tag.ToString().Equals(listView_Backgrounds.Name))
             {
-                //if (CPBacks.Count > 0) { i = CPBacks.Keys.Max() + 1; } else { i = 1; }
-                //Utils.ImageUI result = Utils.ImagesWorks.GetFilesByteArray("Изображения PNG24| *.png", i);
-                //if (result != null && result.Image != null && result.PreviewSmall != null)
-                //{
-                //    CPBacks.Add(i, result.Image);
-                //    string resultname = i.ToString();
-                //    imageList_BackBig.Images.Add(resultname, Utils.ImagesWorks.ByteToImage(result.PreviewBig));
-                //    imageList_BackSmall.Images.Add(resultname, Utils.ImagesWorks.ByteToImage(result.PreviewSmall));
-                //    ListViewItem item = new ListViewItem
-                //    {
-                //        ImageKey = resultname,
-                //        Text = resultname,
-                //        Tag = i
-                //    };
-                //    listView1.Items.Add(item);
-                //}
+                if (listView_Backgrounds.SelectedItems.Count > 0)
+                {
+                    i = (int)listView_Backgrounds.SelectedItems[0].Tag;
+                    listView_Backgrounds.Items.Remove(listView_Backgrounds.SelectedItems[0]);
+                    CPBacks.Remove(i);
+                }
                 return;
             }
-            if (contextMenuStrip1.Tag.ToString().Equals(listView2.Name))
+            #endregion
+            #region Characters
+            if (contextMenuStrip_AddEditRemove.Tag.ToString().Equals(listView_Characters.Name))
             {
-                //if (CPLayers.Count > 0) { i = CPLayers.Keys.Max() + 1; } else { i = 1; }
-                //Utils.ImageUI result = Utils.ImagesWorks.GetFilesByteArray("Изображения PNG24| *.png", i);
-                //if (result != null && result.Image != null && result.PreviewSmall != null)
-                //{
-                //    CPLayers.Add(i, result.Image);
-                //    string resultname = i.ToString();
-                //    imageList_LayerBig.Images.Add(resultname, Utils.ImagesWorks.ByteToImage(result.PreviewBig));
-                //    imageList_LayerSmall.Images.Add(resultname, Utils.ImagesWorks.ByteToImage(result.PreviewSmall));
-                //    ListViewItem item = new ListViewItem
-                //    {
-                //        ImageKey = resultname,
-                //        Text = resultname,
-                //        Tag = i
-                //    };
-                //    listView2.Items.Add(item);
-                //}
+                if (listView_Characters.SelectedItems.Count > 0)
+                {
+                    i = (int)listView_Characters.SelectedItems[0].Tag;
+                    listView_Characters.Items.Remove(listView_Characters.SelectedItems[0]);
+                    CPLayers.Remove(i);
+                }
                 return;
             }
-
-            if (contextMenuStrip1.Tag.ToString().Equals(dataGridView1.Name))
+            #endregion
+            #region Scene transitions (edit scene list for jump to ****)
+            if (contextMenuStrip_AddEditRemove.Tag.ToString().Equals(dataGridView_ScenesCheckpoints.Name))
             {
-                int uid = (int)groupBox_SceneMain.Tag;
-                MessageBox.Show(contextMenuStrip1.Text);
-                //if (CPChapters[toolStripComboBox_Chapters.Text].Scenes[uid].ButtonChoice == null) { CPChapters[toolStripComboBox_Chapters.Text].Scenes[uid].ButtonChoice = new List<Proto.ProtoScene.protoСhoice>(); }
-                ////using (FormButtonChoice frm = new FormButtonChoice(null))
-                ////{
-                ////    frm.ShowInTaskbar = false;
-                ////    frm.StartPosition = FormStartPosition.Manual;
-                ////    frm.Location = contextMenuStrip1.PointToScreen(Point.Empty);
-                ////    frm.ShowDialog();
-                ////    if (frm.result != null)
-                ////    {
-                ////        CPChapters[toolStripComboBox_Chapters.Text].Scenes[uid].ButtonChoice.Add(frm.result);
-                ////        showButtonChoice(uid);
-                ////        Utils.ChaptersDataTable.UpdateRow(new KeyValuePair<int, Proto.ProtoScene.protoRow>(uid, CPChapters[toolStripComboBox_Chapters.Text].Scenes[uid]));
-                ////    }
-                ////}
+                if (dataGridView_Scenes.SelectedRows != null && dataGridView_Scenes.SelectedRows.Count > 0)
+                {
+                    i = (int)groupBox_SceneMain.Tag;
+                    CPChapters[toolStripComboBox_Chapters.Text].Scenes[i].ButtonChoice.RemoveAt(dataGridView_ScenesCheckpoints.SelectedRows[0].Index);
+                    showButtonChoice(i);
+                }
                 return;
             }
-            if (contextMenuStrip1.Tag.ToString().Equals(dataGridView3.Name))
+            #endregion
+            #region Scenes
+            if (contextMenuStrip_AddEditRemove.Tag.ToString().Equals(dataGridView_Scenes.Name))
             {
-                //if (CPChapters[toolStripComboBox_Chapters.Text].Scenes == null) { CPChapters[toolStripComboBox_Chapters.Text].Scenes = new Dictionary<int, Proto.ProtoScene.protoRow>(); }
-                //if (CPChapters[toolStripComboBox_Chapters.Text].Scenes.Count > 0) { i = CPChapters[toolStripComboBox_Chapters.Text].Scenes.Keys.Max() + 1; } else { i = 1; }
-                //Proto.ProtoScene.protoRow tmp = new Proto.ProtoScene.protoRow
-                //{
-                //    Message = string.Empty,
-                //    Name = string.Empty,
-                //    ButtonChoice = new List<Proto.ProtoScene.protoСhoice>()
-                //};
-                //CPChapters[toolStripComboBox_Chapters.Text].Scenes.Add(i, tmp);
-                //Utils.ChaptersDataTable.result result = Utils.ChaptersDataTable.AddNewRow(new KeyValuePair<int, Proto.ProtoScene.protoRow>(i, tmp));
-                //if (result.ex != null) { ShowExeption(result.ex); }
+                if (dataGridView_Scenes.SelectedRows != null && dataGridView_Scenes.SelectedRows.Count > 0)
+                {
+                    i = (int)dataGridView_Scenes.SelectedRows[0].Cells["SceneUid"].Value;
+                    CPChapters[toolStripComboBox_Chapters.Text].Scenes.Remove(i);
+                    Utils.ChaptersDataTable.DeleteRow(i);
+                }
             }
+            #endregion
         }
+        #endregion
 
+        #region ContextMenu: Edit (images/music/checkpoints scenes)
         private void toolStripMenuItem_Edit_Click(object sender, EventArgs e)
         {
-            int i = 0;
-            if (contextMenuStrip1.Tag.ToString().Equals(listView1.Name))
+            int i = 0; // temp int
+            #region Backgrounds
+            if (contextMenuStrip_AddEditRemove.Tag.ToString().Equals(listView_Backgrounds.Name))
             {
-                //if (CPBacks.Count > 0) { i = CPBacks.Keys.Max() + 1; } else { i = 1; }
-                //Utils.ImageUI result = Utils.ImagesWorks.GetFilesByteArray("Изображения PNG24| *.png", i);
-                //if (result != null && result.Image != null && result.PreviewSmall != null)
-                //{
-                //    CPBacks.Add(i, result.Image);
-                //    string resultname = i.ToString();
-                //    imageList_BackBig.Images.Add(resultname, Utils.ImagesWorks.ByteToImage(result.PreviewBig));
-                //    imageList_BackSmall.Images.Add(resultname, Utils.ImagesWorks.ByteToImage(result.PreviewSmall));
-                //    ListViewItem item = new ListViewItem
-                //    {
-                //        ImageKey = resultname,
-                //        Text = resultname,
-                //        Tag = i
-                //    };
-                //    listView1.Items.Add(item);
-                //}
-                return;
-            }
-            if (contextMenuStrip1.Tag.ToString().Equals(listView2.Name))
-            {
-                //if (CPLayers.Count > 0) { i = CPLayers.Keys.Max() + 1; } else { i = 1; }
-                //Utils.ImageUI result = Utils.ImagesWorks.GetFilesByteArray("Изображения PNG24| *.png", i);
-                //if (result != null && result.Image != null && result.PreviewSmall != null)
-                //{
-                //    CPLayers.Add(i, result.Image);
-                //    string resultname = i.ToString();
-                //    imageList_LayerBig.Images.Add(resultname, Utils.ImagesWorks.ByteToImage(result.PreviewBig));
-                //    imageList_LayerSmall.Images.Add(resultname, Utils.ImagesWorks.ByteToImage(result.PreviewSmall));
-                //    ListViewItem item = new ListViewItem
-                //    {
-                //        ImageKey = resultname,
-                //        Text = resultname,
-                //        Tag = i
-                //    };
-                //    listView2.Items.Add(item);
-                //}
-                return;
-            }
+                if (listView_Backgrounds.SelectedItems.Count > 0)
+                {
+                    i = (int)listView_Backgrounds.SelectedItems[0].Tag;
+                    Utils.ImageUI result = Utils.ImagesWorks.GetFilesByteArray("Изображения PNG24| *.png", i);
+                    if (result != null && result.Image != null && result.PreviewSmall != null)
+                    {
+                        CPBacks[i] = null;
+                        CPBacks[i] = result.Image;
+                        string resultname = i.ToString();
 
-            if (contextMenuStrip1.Tag.ToString().Equals(dataGridView1.Name))
-            {
-                int uid = (int)groupBox_SceneMain.Tag;
-                //CPChapters[toolStripComboBox_Chapters.Text].Scenes[uid]
+                        Image imageBig = imageList_BackBig.Images[resultname];
+                        Image imageSmall = imageList_BackSmall.Images[resultname];
+                        imageList_BackBig.Images.RemoveByKey(resultname);
+                        imageList_BackSmall.Images.RemoveByKey(resultname);
+                        imageList_BackBig.Images.Add(resultname, Utils.ImagesWorks.ByteToImage(result.PreviewBig));
+                        imageList_BackSmall.Images.Add(resultname, Utils.ImagesWorks.ByteToImage(result.PreviewSmall));
+                        listView_Backgrounds.SelectedItems[0].ImageIndex = imageList_BackBig.Images.IndexOfKey(resultname);
+                        listView_Backgrounds.Refresh();
+                        if (imageBig != null) { imageBig.Dispose(); }
+                        if (imageSmall != null) { imageSmall.Dispose(); }
+                    }
+                }
                 return;
             }
-            if (contextMenuStrip1.Tag.ToString().Equals(dataGridView3.Name))
+            #endregion
+            #region Characters
+            if (contextMenuStrip_AddEditRemove.Tag.ToString().Equals(listView_Characters.Name))
             {
-                //if (CPChapters[toolStripComboBox_Chapters.Text].Scenes == null) { CPChapters[toolStripComboBox_Chapters.Text].Scenes = new Dictionary<int, Proto.ProtoScene.protoRow>(); }
-                //if (CPChapters[toolStripComboBox_Chapters.Text].Scenes.Count > 0) { i = CPChapters[toolStripComboBox_Chapters.Text].Scenes.Keys.Max() + 1; } else { i = 1; }
-                //Proto.ProtoScene.protoRow tmp = new Proto.ProtoScene.protoRow
-                //{
-                //    Message = string.Empty,
-                //    Name = string.Empty,
-                //    ButtonChoice = new List<Proto.ProtoScene.protoСhoice>()
-                //};
-                //CPChapters[toolStripComboBox_Chapters.Text].Scenes.Add(i, tmp);
-                //Utils.ChaptersDataTable.result result = Utils.ChaptersDataTable.AddNewRow(new KeyValuePair<int, Proto.ProtoScene.protoRow>(i, tmp));
-                //if (result.ex != null) { ShowExeption(result.ex); }
+                if (listView_Characters.SelectedItems.Count > 0)
+                {
+                    i = (int)listView_Characters.SelectedItems[0].Tag;
+                    Utils.ImageUI result = Utils.ImagesWorks.GetFilesByteArray("Изображения PNG24| *.png", i);
+                    if (result != null && result.Image != null && result.PreviewSmall != null)
+                    {
+                        CPLayers[i] = null;
+                        CPLayers[i] = result.Image;
+                        string resultname = i.ToString();
+
+                        Image imageBig = imageList_LayerBig.Images[resultname];
+                        Image imageSmall = imageList_LayerSmall.Images[resultname];
+                        imageList_LayerBig.Images.RemoveByKey(resultname);
+                        imageList_LayerSmall.Images.RemoveByKey(resultname);
+                        imageList_LayerBig.Images.Add(resultname, Utils.ImagesWorks.ByteToImage(result.PreviewBig));
+                        imageList_LayerSmall.Images.Add(resultname, Utils.ImagesWorks.ByteToImage(result.PreviewSmall));
+                        listView_Characters.SelectedItems[0].ImageIndex = imageList_LayerBig.Images.IndexOfKey(resultname);
+                        listView_Characters.Refresh();
+                        if (imageBig != null) { imageBig.Dispose(); }
+                        if (imageSmall != null) { imageSmall.Dispose(); }
+                    }
+                }
+                return;
+            }
+            #endregion
+            #region Scene transitions (edit scene list for jump to ****)
+            if (contextMenuStrip_AddEditRemove.Tag.ToString().Equals(dataGridView_ScenesCheckpoints.Name))
+            {
+                i = (int)groupBox_SceneMain.Tag;
+                using (FormButtonChoice frm = new FormButtonChoice(CPChapters[toolStripComboBox_Chapters.Text].Scenes[i].ButtonChoice[dataGridView_ScenesCheckpoints.SelectedRows[0].Index]))
+                {
+                    frm.ShowInTaskbar = false;
+                    frm.StartPosition = FormStartPosition.Manual;
+                    frm.Location = dataGridView_ScenesCheckpoints.PointToScreen(Point.Empty);
+                    frm.ShowDialog();
+                    if (frm.Result != null)
+                    {
+                        CPChapters[toolStripComboBox_Chapters.Text].Scenes[i].ButtonChoice[dataGridView_ScenesCheckpoints.SelectedRows[0].Index] = frm.Result;
+                        showButtonChoice(i);
+                        Utils.ChaptersDataTable.UpdateRow(new KeyValuePair<int, Proto.ProtoScene.protoRow>(i, CPChapters[toolStripComboBox_Chapters.Text].Scenes[i]));
+                    }
+                }
+                return;
+            }
+            #endregion
+        }
+        private void dataGridView_MouseDoubleClick(object sender, MouseEventArgs e) { contextMenuStrip_AddEditRemove.Tag = ((DataGridView)sender).Name; toolStripMenuItem_Edit_Click(null, null); }
+        private void dataGridView_KeyDown(object sender, KeyEventArgs e) { if (e.KeyCode == Keys.Enter) { contextMenuStrip_AddEditRemove.Tag = ((DataGridView)sender).Name; toolStripMenuItem_Edit_Click(null, null); } }
+
+        #endregion
+
+        #endregion
+
+        private void ChapterPicture_MouseDown(object sender, MouseEventArgs e)
+        {
+            if (e.Button == MouseButtons.Right)
+            {
+                PictureBox control = (PictureBox)sender;
+                contextMenuStrip_AddEditRemove.Tag = control.Name;
+                if (control.Image == null)
+                {
+                    toolStripMenuItem_Add.Enabled = true;
+                    toolStripMenuItem_Edit.Visible = true;
+                    toolStripMenuItem_Edit.Enabled = toolStripMenuItem_Delete.Enabled = false;
+                }
+                else
+                {
+                    toolStripMenuItem_Add.Enabled = false;
+                    toolStripMenuItem_Edit.Visible = true;
+                    toolStripMenuItem_Edit.Enabled = toolStripMenuItem_Delete.Enabled = true;
+                }
+                if (!control.Name.Equals(pictureBox_Chapter.Name) || listBox_Chapters.SelectedItem != null) { contextMenuStrip_AddEditRemove.Show(control.PointToScreen(e.Location)); }
+                else { MessageBox.Show("Для установки изображения главы, вы сначала должны выбрать эту главу..", "Внимание!", MessageBoxButtons.OK, MessageBoxIcon.Exclamation); }
             }
         }
     }

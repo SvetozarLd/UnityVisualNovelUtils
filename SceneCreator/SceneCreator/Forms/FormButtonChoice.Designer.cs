@@ -120,7 +120,7 @@
             this.numericUpDown2.Size = new System.Drawing.Size(245, 22);
             this.numericUpDown2.TabIndex = 0;
             this.numericUpDown2.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.numericUpDown2.KeyDown += new System.Windows.Forms.KeyEventHandler(this.numericUpDown2_KeyDown);
+            this.numericUpDown2.KeyDown += new System.Windows.Forms.KeyEventHandler(this.ChangeCheckpoint_KeyDown);
             // 
             // button1
             // 
@@ -131,7 +131,7 @@
             this.button1.TabIndex = 1;
             this.button1.Text = "Ок";
             this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
+            this.button1.Click += new System.EventHandler(this.Save_Click);
             // 
             // button2
             // 
@@ -142,7 +142,7 @@
             this.button2.TabIndex = 4;
             this.button2.Text = "Отмена";
             this.button2.UseVisualStyleBackColor = true;
-            this.button2.Click += new System.EventHandler(this.button2_Click);
+            this.button2.Click += new System.EventHandler(this.Cancel_Click);
             // 
             // FormButtonChoice
             // 

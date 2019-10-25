@@ -48,7 +48,7 @@ namespace SceneCreator.Utils
                 foreach (KeyValuePair<int, Proto.ProtoScene.protoRow> item in protoChapters)
                 {
                     Exception ex = AddNewRow(item).ex;
-                    if (ex != null){return new result(null, ex);}
+                    if (ex != null) { return new result(null, ex); }
                 }
                 return new result(dt, null);
             }
@@ -101,7 +101,7 @@ namespace SceneCreator.Utils
             try
             {
                 string tmp = string.Empty;
-                DataRow row = dt.Select("uid ="+item.Key).SingleOrDefault();
+                DataRow row = dt.Select("uid =" + item.Key).Single();
                 row["uid"] = item.Key;
                 if (item.Value.Message.Length > 20)
                 {
@@ -131,6 +131,21 @@ namespace SceneCreator.Utils
                 return new result(null, ex);
             }
         }
+        public static result DeleteRow(int uid)
+        {
+            if (dt == null) { Exception ex = Initialization(); if (ex != null) { return new result(null, ex); } }
+            try
+            {
 
+                DataRow row = dt.Select("uid =" + uid).Single();
+                row.Delete();
+                return new result(null, null);
+            }
+            catch (Exception ex)
+            {
+                return new result(null, ex);
+            }
+
+        }
     }
 }

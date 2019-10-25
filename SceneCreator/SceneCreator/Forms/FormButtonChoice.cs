@@ -5,29 +5,29 @@ namespace SceneCreator.Forms
 {
     public partial class FormButtonChoice : Form
     {
-        public Proto.ProtoScene.protoСhoice result { get; set; }
+        public Proto.ProtoScene.protoСhoice Result { get; set; }
 
         public FormButtonChoice(Proto.ProtoScene.protoСhoice item)
         {
             InitializeComponent();
-            result = item;
+            Result = item;
             if (item!= null)
             {
-                textBox1.Text = result.ButtonText;
-                numericUpDown1.Value = result.Price;
-                numericUpDown2.Value = result.NextScene;
+                textBox1.Text = Result.ButtonText;
+                numericUpDown1.Value = Result.Price;
+                numericUpDown2.Value = Result.NextScene;
             }
         }
 
-        private void button2_Click(object sender, EventArgs e)
+        private void Cancel_Click(object sender, EventArgs e)
         {
-            result = null;
+            Result = null;
             Close();
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        private void Save_Click(object sender, EventArgs e)
         {
-            result = new Proto.ProtoScene.protoСhoice
+            Result = new Proto.ProtoScene.protoСhoice
             {
                 NextScene = (int)numericUpDown2.Value,
                 Price = (int)numericUpDown1.Value,
@@ -36,10 +36,10 @@ namespace SceneCreator.Forms
             Close();
         }
 
-        private void numericUpDown2_KeyDown(object sender, KeyEventArgs e)
+        private void ChangeCheckpoint_KeyDown(object sender, KeyEventArgs e)
         {
-            if (e.KeyCode == Keys.Enter) { button1_Click(null, null); }
-            if (e.KeyCode == Keys.Escape) { button2_Click(null, null); }
+            if (e.KeyCode == Keys.Enter) { Save_Click(null, null); }
+            if (e.KeyCode == Keys.Escape) { Cancel_Click(null, null); }
         }
     }
 }

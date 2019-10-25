@@ -42,6 +42,31 @@ namespace SceneCreator.Utils
             }
             return null;
         }
+        public static Utils.ImageUI GetFilesByteArray(string FileExtension)
+        {
+            using (OpenFileDialog ofd = new OpenFileDialog())
+            {
+                ofd.Filter = FileExtension; //"Изображения | *.jpg; *.jpeg; *.jpe; *.jfif; *.png; *.gif; *.bmp; *.tif; *.tiff; |Все файлы (*.*)|*.*";
+                ofd.FilterIndex = 0;
+                ofd.Multiselect = true;
+                ofd.InitialDirectory = initialDirectory;
+                if (ofd.ShowDialog() == DialogResult.OK)
+                {
+                    if (System.IO.File.Exists(ofd.FileName))
+                    {
+                        initialDirectory = ofd.InitialDirectory;
+                        using (Image img = Image.FromFile(ofd.FileName))
+                        {
+                            Utils.ImageUI imageUI = new ImageUI();
+                            imageUI.Name = 0;
+                            imageUI.Image = ImageToByte(img);
+                            return imageUI;
+                        }
+                    }
+                }
+            }
+            return null;
+        }
 
 
         public static Image Resize(Image image, int newWidth, int maxHeight, bool onlyResizeIfWider)
