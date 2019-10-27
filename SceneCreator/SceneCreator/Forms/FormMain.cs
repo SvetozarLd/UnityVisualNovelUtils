@@ -420,7 +420,7 @@ namespace SceneCreator.Forms
                 int backuid = (int)numericUpDown_Sound.Value;
                 if (backuid > 0)
                 {
-                    if (CPLayers.ContainsKey(backuid))
+                    if (CPMusics.ContainsKey(backuid))
                     {
                         CPChapters[toolStripComboBox_Chapters.Text].Scenes[uid].Sound = backuid;
                     }
