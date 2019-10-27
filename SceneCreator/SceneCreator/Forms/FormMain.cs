@@ -838,7 +838,7 @@ namespace SceneCreator.Forms
             if (contextMenuStrip_AddEditRemove.Tag.ToString().Equals(listView_Backgrounds.Name))
             {
                 if (CPBacks.Count > 0) { i = CPBacks.Keys.Max() + 1; } else { i = 1; }
-                Utils.ImageUI result = Utils.ImagesWorks.GetFilesByteArray("Изображения PNG24| *.png", i);
+                Utils.ImageUI result = Utils.ImagesWorks.GetFilesByteArray("Все файлы| *.*", i);
                 if (result != null && result.Image != null && result.PreviewSmall != null)
                 {
                     CPBacks.Add(i, result.Image);
@@ -861,7 +861,7 @@ namespace SceneCreator.Forms
             if (contextMenuStrip_AddEditRemove.Tag.ToString().Equals(listView_Characters.Name))
             {
                 if (CPLayers.Count > 0) { i = CPLayers.Keys.Max() + 1; } else { i = 1; }
-                Utils.ImageUI result = Utils.ImagesWorks.GetFilesByteArray("Изображения PNG24| *.png", i);
+                Utils.ImageUI result = Utils.ImagesWorks.GetFilesByteArray("Все файлы| *.*", i);
                 if (result != null && result.Image != null && result.PreviewSmall != null)
                 {
                     CPLayers.Add(i, result.Image);
@@ -927,7 +927,7 @@ namespace SceneCreator.Forms
             #region ScenesButtonImage
             if (contextMenuStrip_AddEditRemove.Tag.ToString().Equals(pictureBox_Chapter.Name))
             {
-                Utils.ImageUI result = Utils.ImagesWorks.GetFilesByteArray("Изображения PNG24| *.png", i);
+                Utils.ImageUI result = Utils.ImagesWorks.GetFilesByteArray("Все файлы| *.*", i);
                 if (result != null && result.Image != null)
                 {
                     Proto.ProtoChapter.protoRow row = new Proto.ProtoChapter.protoRow();
@@ -1061,7 +1061,7 @@ namespace SceneCreator.Forms
                 if (listView_Backgrounds.SelectedItems.Count > 0)
                 {
                     i = (int)listView_Backgrounds.SelectedItems[0].Tag;
-                    Utils.ImageUI result = Utils.ImagesWorks.GetFilesByteArray("Изображения PNG24| *.png", i);
+                    Utils.ImageUI result = Utils.ImagesWorks.GetFilesByteArray("Все файлы| *.*", i);
                     if (result != null && result.Image != null && result.PreviewSmall != null)
                     {
                         CPBacks[i] = null;
@@ -1089,7 +1089,7 @@ namespace SceneCreator.Forms
                 if (listView_Characters.SelectedItems.Count > 0)
                 {
                     i = (int)listView_Characters.SelectedItems[0].Tag;
-                    Utils.ImageUI result = Utils.ImagesWorks.GetFilesByteArray("Изображения PNG24| *.png", i);
+                    Utils.ImageUI result = Utils.ImagesWorks.GetFilesByteArray("Все файлы| *.*", i);
                     if (result != null && result.Image != null && result.PreviewSmall != null)
                     {
                         CPLayers[i] = null;
@@ -1134,7 +1134,7 @@ namespace SceneCreator.Forms
             #region ScenesButtonImage
             if (contextMenuStrip_AddEditRemove.Tag.ToString().Equals(pictureBox_Chapter.Name))
             {
-                Utils.ImageUI result = Utils.ImagesWorks.GetFilesByteArray("Изображения PNG24| *.png", i);
+                Utils.ImageUI result = Utils.ImagesWorks.GetFilesByteArray("Все файлы| *.*", i);
                 if (result != null && result.Image != null)
                 {
                     Proto.ProtoChapter.protoRow row = new Proto.ProtoChapter.protoRow();
