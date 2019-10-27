@@ -4,7 +4,10 @@ using System.Data;
 using System.Drawing;
 using System.IO;
 using System.Linq;
+using System.Threading.Tasks;
 using System.Windows.Forms;
+using NAudio.Wave;
+using NAudio.Wave.SampleProviders;
 
 namespace SceneCreator.Forms
 {
@@ -17,16 +20,26 @@ namespace SceneCreator.Forms
             Music
         }
 
-
+        #region variables data
         public Dictionary<int, byte[]> CPBacks = new Dictionary<int, byte[]>(); // backgrounds
         public Dictionary<int, byte[]> CPLayers = new Dictionary<int, byte[]>(); // persons
         public Dictionary<int, byte[]> CPMusics = new Dictionary<int, byte[]>(); // musics
         public Dictionary<string, Proto.ProtoChapter.protoRow> CPChapters = new Dictionary<string, Proto.ProtoChapter.protoRow>(); // book
 
         private DataTable dt; // link of ChaptersDataTable datatable - for scenes datagridview
+        private DataTable MusicTable;// DataTable for dataGridView_Musics;
         private bool UpdateChapterFieldLocker = false; // flag for denied update scenes info
         private TabPage tab; // hidding tab with scenes 
         private string CurrentPath = string.Empty; //corrent book path
+        private int CurrentSongKey = 0;
+        #region for sound
+        //private WaveOutEvent outputDevice = new WaveOutEvent();
+        //private AudioFileReader audioFile;
+        private IWavePlayer mWaveOutDevice;
+        private WaveStream mMainOutputStream;
+        private WaveChannel32 mVolumeStream;
+        #endregion
+        #endregion
 
         #region Constructor + Necessaries for start
         public FormMain()
@@ -36,12 +49,21 @@ namespace SceneCreator.Forms
 
         private void SetStartVariables()
         {
-            toolStripComboBox_ListView.Items.Add("LargeIcon");
-            toolStripComboBox_ListView.Items.Add("SmallIcon");
-            toolStripComboBox_ListView.Items.Add("List");
-            toolStripComboBox_ListView.Items.Add("Tile");
-            toolStripComboBox_ListView.SelectedIndex = 2;
+            ComboBox_ListView.Items.Add("LargeIcon");
+            ComboBox_ListView.Items.Add("SmallIcon");
+            ComboBox_ListView.Items.Add("List");
+            ComboBox_ListView.Items.Add("Tile");
+            ComboBox_ListView.SelectedIndex = 2;
             panel3.Width = 200;
+
+            MusicTable = new DataTable();
+            MusicTable.Columns.Add("uid", typeof(int));
+            MusicTable.Columns.Add("text", typeof(string));
+            dataGridView_Musics.AutoGenerateColumns = false;
+            dataGridView_Musics.DataSource = MusicTable;
+            dataGridView_ScenesCheckpoints.AutoGenerateColumns = false;
+            dataGridView_Scenes.AutoGenerateColumns = false;
+            dataGridViewScenes_BindingSource();
         }
 
         private void FormMain_Load(object sender, EventArgs e)
@@ -52,9 +74,6 @@ namespace SceneCreator.Forms
             tabControl1.TabPages.Remove(tab);
             Utils.ChaptersDataTable.Initialization();
             SetStartVariables();
-            dataGridView_ScenesCheckpoints.AutoGenerateColumns = false;
-            dataGridView_Scenes.AutoGenerateColumns = false;
-            dataGridViewScenes_BindingSource();
         }
         #endregion
 
@@ -102,9 +121,9 @@ namespace SceneCreator.Forms
         }
 
 
-        private void toolStripComboBox_ListView_SelectedIndexChanged(object sender, EventArgs e)
+        private void ComboBox_ListView_SelectedIndexChanged(object sender, EventArgs e)
         {
-            switch (toolStripComboBox_ListView.SelectedIndex)
+            switch (ComboBox_ListView.SelectedIndex)
             {
                 case 0:
                     listView_Backgrounds.View = View.LargeIcon;
@@ -135,6 +154,7 @@ namespace SceneCreator.Forms
             Utils.ChaptersDataTable.result res = Utils.ChaptersDataTable.ConvertFromProto(new Dictionary<int, Proto.ProtoScene.protoRow>());
             if (res.dt != null)
             {
+                dt?.Dispose();
                 dt = res.dt;
                 dataGridView_Scenes.DataSource = dt;
             }
@@ -392,16 +412,37 @@ namespace SceneCreator.Forms
             }
         }
 
+        private void numericUpDown_Sound_ValueChanged(object sender, EventArgs e)
+        {
+            int uid = checkScenesDic();
+            if (uid > 0)
+            {
+                int backuid = (int)numericUpDown_Sound.Value;
+                if (backuid > 0)
+                {
+                    if (CPLayers.ContainsKey(backuid))
+                    {
+                        CPChapters[toolStripComboBox_Chapters.Text].Scenes[uid].Sound = backuid;
+                    }
+                    else
+                    {
+                        DialogResult result = MessageBox.Show("Мзыкальной дорожки с таким номером не существует!" + Environment.NewLine + "Отменить изменение?",
+                        "Внимание!",
+                        MessageBoxButtons.YesNo,
+                        MessageBoxIcon.Question,
+                        MessageBoxDefaultButton.Button1);
+                        if (result == DialogResult.Yes) { numericUpDown_Sound.Value = CPChapters[toolStripComboBox_Chapters.Text].Scenes[uid].Sound; }
+                    }
+                }
+            }
+        }
 
+        #endregion
 
         private void tabControl1_SelectedIndexChanged(object sender, EventArgs e)
         {
-            switch (tabControl1.SelectedIndex)
-            {
-                case 0:
-
-                    break;
-            }
+            if (tabControl1.SelectedIndex == 2 || tabControl1.SelectedIndex == 3) { ComboBox_ListView.Visible = true; }
+            else { ComboBox_ListView.Visible = false; }
         }
 
 
@@ -415,154 +456,18 @@ namespace SceneCreator.Forms
                 if (control.Name.Equals(toolStripMenuItem_SaveSounds.Name)) { SaveMaterials(MaterialsType.Music, Properties.Settings.Default.path + @"\data"); }
             }
         }
-        #endregion
 
 
-
-
-
-
-        #region Reordering, get chapters info  in/from chapters Listbox
-        private void listBox_Chapters_MouseDown(object sender, MouseEventArgs e)
-        {
-            listBox_Chapters.SelectedIndex = listBox_Chapters.IndexFromPoint(e.X, e.Y);
-            switch (e.Button)
-            {
-                case MouseButtons.Right:
-                    contextMenuStrip_ChapterUp.Enabled = false;
-                    contextMenuStrip_ChapterDown.Enabled = false;
-                    contextMenuStrip_ChapterStart.Enabled = false;
-                    contextMenuStrip_ChapterEnd.Enabled = false;
-                    contextMenuStrip_ChapterDelete.Enabled = false;
-                    contextMenuStrip_Chapters.Tag = null;
-                    if (listBox_Chapters.SelectedItem != null)
-                    {
-                        contextMenuStrip_Chapters.Tag = listBox_Chapters.SelectedItem;
-                        if (listBox_Chapters.SelectedIndex > 0) { contextMenuStrip_ChapterUp.Enabled = true; contextMenuStrip_ChapterStart.Enabled = true; }
-                        if (listBox_Chapters.SelectedIndex < listBox_Chapters.Items.Count - 1) { contextMenuStrip_ChapterDown.Enabled = true; contextMenuStrip_ChapterEnd.Enabled = true; }
-                        contextMenuStrip_ChapterDelete.Enabled = true;
-                    }
-                    contextMenuStrip_Chapters.Show(listBox_Chapters.PointToScreen(e.Location));
-                    contextMenuStrip_Chapters.Show();
-                    break;
-                case MouseButtons.Left:
-                    if (listBox_Chapters.SelectedItem == null) { return; }
-                    listBox_Chapters_SelectedIndexChanged(sender, e);
-                    listBox_Chapters.DoDragDrop(listBox_Chapters.SelectedItem, DragDropEffects.Move);
-                    break;
-            }
-        }
-
-        private void listBox_Chapters_DragOver(object sender, DragEventArgs e)
-        {
-            if (e.Data.GetDataPresent(typeof(string))) { e.Effect = DragDropEffects.Move; } else { e.Effect = DragDropEffects.None; }
-        }
-
-        private void listBox_Chapters_DragDrop(object sender, DragEventArgs e)
-        {
-            Point point = listBox_Chapters.PointToClient(new Point(e.X, e.Y));
-            int index = listBox_Chapters.IndexFromPoint(point);
-            if (index < 0)
-            {
-                index = listBox_Chapters.Items.Count - 1;
-            }
-
-            object data = e.Data.GetData(typeof(string));
-            listBox_Chapters.Items.Remove(data);
-            listBox_Chapters.Items.Insert(index, data);
-            listBox_Chapters.SelectedIndex = index;
-        }
-
-        private void listBox_Chapters_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            if (listBox_Chapters.SelectedItem != null)
-            {
-                Proto.ProtoChapter.protoRow row = new Proto.ProtoChapter.protoRow();
-                if (CPChapters.TryGetValue((string)listBox_Chapters.SelectedItem, out row))
-                {
-                    textBox_ChapterName.Text = row.Name;
-                    textBox_ChapterName.Tag = row.Name;
-                    Image tmp = pictureBox_Chapter.Image;
-                    pictureBox_Chapter.Image = Utils.ImagesWorks.ByteToImage(row.Preview);
-                    if (tmp != null) { tmp.Dispose(); }
-                }
-
-            }
-        }
-
-        private void context_ChapterNew_Click(object sender, EventArgs e)
-        {
-            using (FormChapter frm = new FormChapter(CPChapters))
-            {
-                frm.ShowInTaskbar = false;
-                frm.StartPosition = FormStartPosition.Manual;
-                frm.Location = contextMenuStrip_Chapters.PointToScreen(Point.Empty);
-                frm.ShowDialog();
-                if (frm.Result != null)
-                {
-                    Proto.ProtoChapter.protoRow row = new Proto.ProtoChapter.protoRow
-                    {
-                        Name = frm.Result,
-                        Scenes = new Dictionary<int, Proto.ProtoScene.protoRow>()
-                    };
-                    CPChapters.Add(frm.Result, row);
-                    if (listBox_Chapters.SelectedItem != null && listBox_Chapters.SelectedIndex < listBox_Chapters.Items.Count - 1)
-                    {
-                        listBox_Chapters.Items.Insert(listBox_Chapters.SelectedIndex + 1, frm.Result);
-                    }
-                    else
-                    {
-                        listBox_Chapters.Items.Add(frm.Result);
-                    }
-                    fillingComboBox_Chapters();
-                }
-            }
-        }
-        private void ChapterRename_Click(object sender, EventArgs e)
-        {
-            if (string.IsNullOrEmpty(textBox_ChapterName.Text) || string.IsNullOrWhiteSpace(textBox_ChapterName.Text))
-            {
-                MessageBox.Show("Имя главы не может быть пустым!", "Внимание!", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                return;
-            }
-            if (CPChapters.ContainsKey(textBox_ChapterName.Text))
-            {
-                MessageBox.Show("Уже есть глава с таким именем!" + Environment.NewLine + "Имена глав должны быть уникальны, назовите главу по другому.", "Внимание!", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                return;
-            }
-
-            Proto.ProtoChapter.protoRow row = new Proto.ProtoChapter.protoRow();
-            if (CPChapters.TryGetValue((string)textBox_ChapterName.Tag, out row))
-            {
-                row.Name = textBox_ChapterName.Text;
-                CPChapters.Add(textBox_ChapterName.Text, row);
-                CPChapters.Remove((string)textBox_ChapterName.Tag);
-                toolStripComboBox_Chapters.Items[toolStripComboBox_Chapters.Items.IndexOf((string)textBox_ChapterName.Tag)] = textBox_ChapterName.Text;
-                listBox_Chapters.Items[listBox_Chapters.Items.IndexOf((string)textBox_ChapterName.Tag)] = textBox_ChapterName.Text;
-            }
-
-
-
-        }
-
-        private void fillingComboBox_Chapters()
-        {
-            toolStripComboBox_Chapters.Items.Clear();
-            toolStripComboBox_Chapters.Items.AddRange(listBox_Chapters.Items.OfType<string>().ToArray());
-            if (toolStripComboBox_Chapters.SelectedIndex == -1 && toolStripComboBox_Chapters.Items.Count > 0) { toolStripComboBox_Chapters.SelectedIndex = 0; }
-        }
-
-        #endregion
 
         private void toolStripComboBox_Chapters_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (string.IsNullOrEmpty(toolStripComboBox_Chapters.Text) || string.IsNullOrWhiteSpace(toolStripComboBox_Chapters.Text))
+            if (toolStripComboBox_Chapters.SelectedIndex < 0)
             {
-                if (tabControl1.TabPages.Count == 5) { tabControl1.TabPages.Remove(tab); }
+                if (tabControl1.TabPages.Count == 4) { tabControl1.TabPages.Remove(tab); }
             }
             else
             {
-                if (tabControl1.TabPages.Count == 4) { tabControl1.TabPages.Insert(1, tab); }
+                if (tabControl1.TabPages.Count == 3) { tabControl1.TabPages.Insert(1, tab); }
                 Utils.ChaptersDataTable.result ddd = Utils.ChaptersDataTable.ConvertFromProto(CPChapters[toolStripComboBox_Chapters.Text].Scenes);
             }
         }
@@ -887,6 +792,7 @@ namespace SceneCreator.Forms
         }
 
         #endregion
+
         #region экспорт в юнити
         private void toolStripMenuItem_ScenesExport_Click(object sender, EventArgs e)
         {
@@ -1035,6 +941,31 @@ namespace SceneCreator.Forms
                 return;
             }
             #endregion
+            #region Musics
+            if (contextMenuStrip_AddEditRemove.Tag.ToString().Equals(dataGridView_Musics.Name))
+            {
+                if (CPMusics.Count > 0) { i = CPMusics.Keys.Max() + 1; } else { i = 1; }
+                OpenFileDialog openFileDialog1 = new OpenFileDialog();
+                openFileDialog1.InitialDirectory = "c:\\";
+                openFileDialog1.Filter = "All files (*.*)|*.*";
+                openFileDialog1.FilterIndex = 2;
+                openFileDialog1.RestoreDirectory = true;
+                if (openFileDialog1.ShowDialog() == DialogResult.OK)
+                {
+                    var result = Utils.FilesWorks.Load(openFileDialog1.FileName, Utils.FilesWorks.Type.File);
+                    if (result.Ex != null) { return; }
+                    if (LoadAudioFromData(i, (byte[])result.Value))
+                    {
+                        CPMusics.Add(i, (byte[])result.Value);
+                        DataRow dr = MusicTable.NewRow();
+                        dr["uid"] = i;
+                        dr["text"] = Utils.FilesWorks.GetStringOfFileSize(CPMusics[i].Length);
+                        MusicTable.Rows.Add(dr);
+                    }
+                }
+                return;
+            }
+            #endregion
         }
         #endregion
 
@@ -1099,6 +1030,20 @@ namespace SceneCreator.Forms
                 {
                     row.Preview = null;
                     listBox_Chapters_SelectedIndexChanged(null, null);
+                }
+                return;
+            }
+            #endregion
+            #region music
+            if (contextMenuStrip_AddEditRemove.Tag.ToString().Equals(dataGridView_Musics.Name))
+            {
+                if (dataGridView_Musics.SelectedRows != null && dataGridView_Musics.SelectedRows.Count > 0)
+                {
+                    i = (int)dataGridView_Musics.SelectedRows[0].Cells[0].Value;
+                    if (CurrentSongKey == i) { AudioUnload(); }
+                    CPMusics.Remove(i);
+                    DataRow row = MusicTable.Select("uid =" + i).Single();
+                    row.Delete();
                 }
                 return;
             }
@@ -1203,6 +1148,35 @@ namespace SceneCreator.Forms
                 return;
             }
             #endregion
+            #region Music
+            if (contextMenuStrip_AddEditRemove.Tag.ToString().Equals(dataGridView_Musics.Name))
+            {
+                if (dataGridView_Musics.SelectedRows != null && dataGridView_Musics.SelectedRows.Count > 0)
+                {
+                    i = (int)dataGridView_Musics.SelectedRows[0].Cells[0].Value;
+                    if (CurrentSongKey == i) { AudioUnload(); }
+                    OpenFileDialog openFileDialog1 = new OpenFileDialog();
+                    openFileDialog1.InitialDirectory = "c:\\";
+                    openFileDialog1.Filter = "All files (*.*)|*.*";
+                    openFileDialog1.FilterIndex = 2;
+                    openFileDialog1.RestoreDirectory = true;
+                    if (openFileDialog1.ShowDialog() == DialogResult.OK)
+                    {
+                        var result = Utils.FilesWorks.Load(openFileDialog1.FileName, Utils.FilesWorks.Type.File);
+                        if (result.Ex != null) { return; }
+                        if (LoadAudioFromData(i, (byte[])result.Value))
+                        {
+                            CPMusics[i] = null;
+                            CPMusics[i] = (byte[])result.Value;
+                            DataRow row = MusicTable.Select("uid =" + i).Single();
+                            row["uid"] = i;
+                            row["text"] = Utils.FilesWorks.GetStringOfFileSize(CPMusics[i].Length);
+                        }
+                    }
+                }
+                return;
+            }
+            #endregion
         }
         private void dataGridView_MouseDoubleClick(object sender, MouseEventArgs e) { contextMenuStrip_AddEditRemove.Tag = ((DataGridView)sender).Name; toolStripMenuItem_Edit_Click(null, null); }
         private void dataGridView_KeyDown(object sender, KeyEventArgs e) { if (e.KeyCode == Keys.Enter) { contextMenuStrip_AddEditRemove.Tag = ((DataGridView)sender).Name; toolStripMenuItem_Edit_Click(null, null); } }
@@ -1210,6 +1184,250 @@ namespace SceneCreator.Forms
         #endregion
 
         #endregion
+
+        #region Musics
+
+        private bool LoadAudioFromData(int SongKey, byte[] data)
+        {
+            try
+            {
+                AudioUnload();
+                MemoryStream tmpStr = new MemoryStream(data);
+                mMainOutputStream = new Mp3FileReader(tmpStr);
+                mVolumeStream = new WaveChannel32(mMainOutputStream);
+                mWaveOutDevice = new WaveOut();
+                mWaveOutDevice.Init(mVolumeStream);
+                mWaveOutDevice.Volume = trackBar1.Value / 100f;
+                mWaveOutDevice.Play();
+                CurrentSongKey = SongKey;
+                return true;
+            }
+            catch (Exception ex) { ShowExeption(ex); return false; }
+        }
+
+        private void AudioUnload()
+        {
+            if (mWaveOutDevice != null) { mWaveOutDevice.Stop(); }
+            if (mMainOutputStream != null)
+            {
+                mVolumeStream.Close();
+                mVolumeStream = null;
+                mMainOutputStream.Close();
+                mMainOutputStream = null;
+            }
+            if (mWaveOutDevice != null) { mWaveOutDevice.Dispose(); mWaveOutDevice = null; }
+        }
+
+        private void AudioVolume_Click(object sender, EventArgs e)
+        {
+            if (mWaveOutDevice != null) { mWaveOutDevice.Volume = trackBar1.Value / 100f; }
+        }
+
+        private void button4_Click(object sender, EventArgs e)
+        {
+            AudioUnload();
+        }
+
+        private void dataGridView_Musics_CellPainting(object sender, DataGridViewCellPaintingEventArgs e)
+        {
+            if (e.RowIndex < 0) { return; }
+            if (e.ColumnIndex == 2)
+            {
+                e.Paint(e.CellBounds, DataGridViewPaintParts.All);
+
+                var w = Properties.Resources.Play_16x16.Width;
+                var h = Properties.Resources.Play_16x16.Height;
+                var x = e.CellBounds.Left + (e.CellBounds.Width - w) / 2;
+                var y = e.CellBounds.Top + (e.CellBounds.Height - h) / 2;
+
+                e.Graphics.DrawImage(Properties.Resources.Play_16x16, new Rectangle(x, y, w, h));
+                e.Handled = true;
+            }
+        }
+
+        private void dataGridView_Musics_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.RowIndex < 0) { return; }
+            int i = (int)dataGridView_Musics.Rows[e.RowIndex].Cells[0].Value;
+            if (CPMusics.ContainsKey(i)) { LoadAudioFromData(i, CPMusics[i]); }
+        }
+        #endregion
+
+        #region Reordering, get chapters info  in/from chapters Listbox
+        #region Chapters operations (Add/Move/Remove)
+        private void ChaptersRearrange_Click(object sender, EventArgs e)
+        {
+            if (listBox_Chapters.SelectedIndex < 0) { return; }
+            var control = (ToolStripMenuItem)sender;
+            var item = listBox_Chapters.SelectedItem;
+            int itemindex = listBox_Chapters.SelectedIndex;
+            listBox_Chapters.Items.RemoveAt(listBox_Chapters.SelectedIndex);
+            switch (control.Name)
+            {
+                case "contextMenuStrip_ChapterStart":
+                    listBox_Chapters.Items.Insert(0, item);
+                    break;
+                case "contextMenuStrip_ChapterEnd":
+                    listBox_Chapters.Items.Add(item);
+                    break;
+                case "contextMenuStrip_ChapterUp":
+                    itemindex--;
+                    if (itemindex < 0) { itemindex = 0; }
+                    listBox_Chapters.Items.Insert(itemindex, item);
+                    break;
+                case "contextMenuStrip_ChapterDown":
+                    itemindex++;
+                    if (itemindex > listBox_Chapters.Items.Count) { listBox_Chapters.Items.Add(item); }
+                    else { listBox_Chapters.Items.Insert(itemindex, item); }
+                    break;
+            }
+
+        }
+
+        private void contextMenuStrip_ChapterDelete_Click(object sender, EventArgs e)
+        {
+            if (listBox_Chapters.SelectedIndex < 0) { return; }
+            if (CPChapters.ContainsKey((string)listBox_Chapters.SelectedItem)) { CPChapters.Remove((string)listBox_Chapters.SelectedItem); }
+            toolStripComboBox_Chapters.Items.Remove(listBox_Chapters.SelectedItem);
+            if (toolStripComboBox_Chapters.Items.Count > 0) { toolStripComboBox_Chapters.SelectedIndex = 0; }
+            toolStripComboBox_Chapters_SelectedIndexChanged(null, null);
+            listBox_Chapters.Items.RemoveAt(listBox_Chapters.SelectedIndex);
+        }
+
+        private void context_ChapterNew_Click(object sender, EventArgs e)
+        {
+            using (FormChapter frm = new FormChapter(CPChapters))
+            {
+                frm.ShowInTaskbar = false;
+                frm.StartPosition = FormStartPosition.Manual;
+                frm.Location = contextMenuStrip_Chapters.PointToScreen(Point.Empty);
+                frm.ShowDialog();
+                if (frm.Result != null)
+                {
+                    Proto.ProtoChapter.protoRow row = new Proto.ProtoChapter.protoRow
+                    {
+                        Name = frm.Result,
+                        Scenes = new Dictionary<int, Proto.ProtoScene.protoRow>()
+                    };
+                    CPChapters.Add(frm.Result, row);
+                    if (listBox_Chapters.SelectedItem != null && listBox_Chapters.SelectedIndex < listBox_Chapters.Items.Count - 1)
+                    {
+                        listBox_Chapters.Items.Insert(listBox_Chapters.SelectedIndex + 1, frm.Result);
+                    }
+                    else
+                    {
+                        listBox_Chapters.Items.Add(frm.Result);
+                    }
+                    fillingComboBox_Chapters();
+                }
+            }
+        }
+
+        private void listBox_Chapters_DragOver(object sender, DragEventArgs e)
+        {
+            if (e.Data.GetDataPresent(typeof(string))) { e.Effect = DragDropEffects.Move; } else { e.Effect = DragDropEffects.None; }
+        }
+
+        private void listBox_Chapters_DragDrop(object sender, DragEventArgs e)
+        {
+            Point point = listBox_Chapters.PointToClient(new Point(e.X, e.Y));
+            int index = listBox_Chapters.IndexFromPoint(point);
+            if (index < 0)
+            {
+                index = listBox_Chapters.Items.Count - 1;
+            }
+
+            object data = e.Data.GetData(typeof(string));
+            listBox_Chapters.Items.Remove(data);
+            listBox_Chapters.Items.Insert(index, data);
+            listBox_Chapters.SelectedIndex = index;
+        }
+        #endregion
+        #region Chapter Info (Show\Rename\Image)
+        private void ChapterRename_Click(object sender, EventArgs e)
+        {
+            if (string.IsNullOrEmpty(textBox_ChapterName.Text) || string.IsNullOrWhiteSpace(textBox_ChapterName.Text))
+            {
+                MessageBox.Show("Имя главы не может быть пустым!", "Внимание!", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+            if (CPChapters.ContainsKey(textBox_ChapterName.Text))
+            {
+                MessageBox.Show("Уже есть глава с таким именем!" + Environment.NewLine + "Имена глав должны быть уникальны, назовите главу по другому.", "Внимание!", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            Proto.ProtoChapter.protoRow row = new Proto.ProtoChapter.protoRow();
+            if (CPChapters.TryGetValue((string)textBox_ChapterName.Tag, out row))
+            {
+                row.Name = textBox_ChapterName.Text;
+                CPChapters.Add(textBox_ChapterName.Text, row);
+                CPChapters.Remove((string)textBox_ChapterName.Tag);
+                toolStripComboBox_Chapters.Items[toolStripComboBox_Chapters.Items.IndexOf((string)textBox_ChapterName.Tag)] = textBox_ChapterName.Text;
+                listBox_Chapters.Items[listBox_Chapters.Items.IndexOf((string)textBox_ChapterName.Tag)] = textBox_ChapterName.Text;
+            }
+        }
+
+        private void listBox_Chapters_MouseDown(object sender, MouseEventArgs e)
+        {
+            listBox_Chapters.SelectedIndex = listBox_Chapters.IndexFromPoint(e.X, e.Y);
+            switch (e.Button)
+            {
+                case MouseButtons.Right:
+                    contextMenuStrip_ChapterUp.Enabled = false;
+                    contextMenuStrip_ChapterDown.Enabled = false;
+                    contextMenuStrip_ChapterStart.Enabled = false;
+                    contextMenuStrip_ChapterEnd.Enabled = false;
+                    contextMenuStrip_ChapterDelete.Enabled = false;
+                    contextMenuStrip_Chapters.Tag = null;
+                    if (listBox_Chapters.SelectedItem != null)
+                    {
+                        contextMenuStrip_Chapters.Tag = listBox_Chapters.SelectedItem;
+                        if (listBox_Chapters.SelectedIndex > 0) { contextMenuStrip_ChapterUp.Enabled = true; contextMenuStrip_ChapterStart.Enabled = true; }
+                        if (listBox_Chapters.SelectedIndex < listBox_Chapters.Items.Count - 1) { contextMenuStrip_ChapterDown.Enabled = true; contextMenuStrip_ChapterEnd.Enabled = true; }
+                        contextMenuStrip_ChapterDelete.Enabled = true;
+                    }
+                    contextMenuStrip_Chapters.Show(listBox_Chapters.PointToScreen(e.Location));
+                    contextMenuStrip_Chapters.Show();
+                    break;
+                case MouseButtons.Left:
+                    if (listBox_Chapters.SelectedItem == null) { return; }
+                    listBox_Chapters_SelectedIndexChanged(sender, e);
+                    listBox_Chapters.DoDragDrop(listBox_Chapters.SelectedItem, DragDropEffects.Move);
+                    break;
+            }
+        }
+
+        private void listBox_Chapters_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (listBox_Chapters.SelectedIndex < 0)
+            {
+                textBox_ChapterName.Tag = string.Empty;
+                Image tmp = pictureBox_Chapter.Image;
+                pictureBox_Chapter.Image = Properties.Resources.chapter0;
+                if (tmp != null) { tmp.Dispose(); }
+                return;
+            }
+
+
+            Proto.ProtoChapter.protoRow row = new Proto.ProtoChapter.protoRow();
+
+            if (CPChapters.TryGetValue((string)listBox_Chapters.SelectedItem, out row))
+            {
+                textBox_ChapterName.Text = row.Name;
+                textBox_ChapterName.Tag = row.Name;
+                Image tmp = pictureBox_Chapter.Image;
+                pictureBox_Chapter.Image = Utils.ImagesWorks.ByteToImage(row.Preview);
+                if (tmp != null) { tmp.Dispose(); }
+            }
+        }
+
+        private void fillingComboBox_Chapters()
+        {
+            toolStripComboBox_Chapters.Items.Clear();
+            toolStripComboBox_Chapters.Items.AddRange(listBox_Chapters.Items.OfType<string>().ToArray());
+            if (toolStripComboBox_Chapters.SelectedIndex == -1 && toolStripComboBox_Chapters.Items.Count > 0) { toolStripComboBox_Chapters.SelectedIndex = 0; }
+        }
 
         private void ChapterPicture_MouseDown(object sender, MouseEventArgs e)
         {
@@ -1233,5 +1451,10 @@ namespace SceneCreator.Forms
                 else { MessageBox.Show("Для установки изображения главы, вы сначала должны выбрать эту главу..", "Внимание!", MessageBoxButtons.OK, MessageBoxIcon.Exclamation); }
             }
         }
+        #endregion
+
+        #endregion
+
+
     }
 }

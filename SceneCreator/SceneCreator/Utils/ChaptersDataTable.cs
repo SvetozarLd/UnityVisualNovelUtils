@@ -57,7 +57,6 @@ namespace SceneCreator.Utils
                 return new result(null, ex);
             }
         }
-
         public static result AddNewRow(KeyValuePair<int, Proto.ProtoScene.protoRow> item)
         {
             if (dt == null) { Exception ex = Initialization(); if (ex != null) { return new result(null, ex); } }
@@ -94,7 +93,6 @@ namespace SceneCreator.Utils
                 return new result(null, ex);
             }
         }
-
         public static result UpdateRow(KeyValuePair<int, Proto.ProtoScene.protoRow> item)
         {
             if (dt == null) { Exception ex = Initialization(); if (ex != null) { return new result(null, ex); } }
@@ -123,7 +121,6 @@ namespace SceneCreator.Utils
                     }
                 }
                 row["trans"] = tmp;
-                //dt.Rows.Add(row);
                 return new result(null, null);
             }
             catch (Exception ex)

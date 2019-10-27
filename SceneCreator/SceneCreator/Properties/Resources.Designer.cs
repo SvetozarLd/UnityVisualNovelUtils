@@ -63,6 +63,16 @@ namespace SceneCreator.Properties {
         /// <summary>
         ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap Add_24x24 {
+            get {
+                object obj = ResourceManager.GetObject("Add_24x24", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap Backgraund0 {
             get {
                 object obj = ResourceManager.GetObject("Backgraund0", resourceCulture);
@@ -103,9 +113,29 @@ namespace SceneCreator.Properties {
         /// <summary>
         ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap chapter0 {
+            get {
+                object obj = ResourceManager.GetObject("chapter0", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap Character0 {
             get {
                 object obj = ResourceManager.GetObject("Character0", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Delete_24x24 {
+            get {
+                object obj = ResourceManager.GetObject("Delete_24x24", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -143,6 +173,16 @@ namespace SceneCreator.Properties {
         /// <summary>
         ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap Edit_24x24 {
+            get {
+                object obj = ResourceManager.GetObject("Edit_24x24", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap icons_unity {
             get {
                 object obj = ResourceManager.GetObject("icons_unity", resourceCulture);
@@ -166,6 +206,16 @@ namespace SceneCreator.Properties {
         internal static System.Drawing.Bitmap image_delete {
             get {
                 object obj = ResourceManager.GetObject("image_delete", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Play_16x16 {
+            get {
+                object obj = ResourceManager.GetObject("Play_16x16", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

@@ -12,7 +12,8 @@ namespace SceneCreator.Utils
         {
             Binary,
             Scenes,
-            Chapters
+            Chapters,
+            File
         }
 
         //answer 
@@ -82,9 +83,30 @@ namespace SceneCreator.Utils
                 case Type.Binary: return LoadBinaryData(path);
                 case Type.Scenes: return LoadScenes(path);
                 case Type.Chapters: return LoadChapters(path);
+                case Type.File: return LoadFileData(path);
             }
             return new result(null, new Exception("Неопознанный тип для десериализации"));
         }
+
+
+        private static result LoadFileData(string path)
+        {
+            try
+            {
+                if (File.Exists(path))
+                {
+                    Proto.ProtoBinaryData binaryData = new Proto.ProtoBinaryData();
+                    byte[] fileBytes = File.ReadAllBytes(path);
+                    if (fileBytes == null) { return new result(null, new Exception("Ошибка открытия файла")); }
+                    return new result(fileBytes, null);
+                }
+                else { return new result(null, new Exception($"Файл {path} не найден!")); }
+            }
+            catch (Exception ex) { return new result(null, ex); }
+        }
+
+
+
 
         private static result LoadBinaryData(string path)
         {
@@ -138,5 +160,17 @@ namespace SceneCreator.Utils
             catch (Exception ex) { return new result(null, ex); }
         }
         #endregion
+
+        public static string GetStringOfFileSize(double len)
+        {
+            string[] sizes = { "B", "KB", "MB", "GB", "TB" };
+            int order = 0;
+            while (len >= 1024 && order < sizes.Length - 1)
+            {
+                order++;
+                len = len / 1024;
+            }
+            return String.Format("{0:0.##} {1}", len, sizes[order]);
+        }
     }
 }
