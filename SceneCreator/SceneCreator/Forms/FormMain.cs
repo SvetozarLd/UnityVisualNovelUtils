@@ -35,9 +35,9 @@ namespace SceneCreator.Forms
         #region for sound
         //private WaveOutEvent outputDevice = new WaveOutEvent();
         //private AudioFileReader audioFile;
-        private IWavePlayer mWaveOutDevice;
-        private WaveStream mMainOutputStream;
-        private WaveChannel32 mVolumeStream;
+        public IWavePlayer mWaveOutDevice;
+        public WaveStream mMainOutputStream;
+        public WaveChannel32 mVolumeStream;
         #endregion
         #endregion
 
@@ -183,6 +183,7 @@ namespace SceneCreator.Forms
                 groupBox_SceneMain.Text = "Сцена № " + uid.ToString();
                 groupBox_SceneMain.Tag = uid;
                 checkBox_Autotrans.Checked = CPChapters[toolStripComboBox_Chapters.Text].Scenes[uid].AutoJump;
+                numericUpDown_Sound.Value = CPChapters[toolStripComboBox_Chapters.Text].Scenes[uid].Sound;
                 numericUpDown_AutoTransTiming.Value = Convert.ToDecimal(CPChapters[toolStripComboBox_Chapters.Text].Scenes[uid].AutoJumpTimer);
                 if (CPChapters[toolStripComboBox_Chapters.Text].Scenes[uid].Background == 0 && CPChapters[toolStripComboBox_Chapters.Text].Scenes.ContainsKey(uid - 1)) { CPChapters[toolStripComboBox_Chapters.Text].Scenes[uid].Background = CPChapters[toolStripComboBox_Chapters.Text].Scenes[uid - 1].Background; }
                 if (CPChapters[toolStripComboBox_Chapters.Text].Scenes[uid].Layer == 0 && CPChapters[toolStripComboBox_Chapters.Text].Scenes.ContainsKey(uid - 1)) { CPChapters[toolStripComboBox_Chapters.Text].Scenes[uid].Layer = CPChapters[toolStripComboBox_Chapters.Text].Scenes[uid - 1].Layer; }
@@ -618,6 +619,14 @@ namespace SceneCreator.Forms
             else
             {
                 CPMusics = (Dictionary<int, byte[]>)result.Value;
+                foreach (var i in CPMusics)
+                {
+                    DataRow dr = MusicTable.NewRow();
+                    dr["uid"] = i.Key;
+                    dr["text"] = Utils.FilesWorks.GetStringOfFileSize(i.Value.Length);
+                    MusicTable.Rows.Add(dr);
+                }
+                dataGridView_Musics.Sort(dataGridView_Musics.Columns[0], System.ComponentModel.ListSortDirection.Ascending);
             }
         }
         #endregion
@@ -1187,7 +1196,7 @@ namespace SceneCreator.Forms
 
         #region Musics
 
-        private bool LoadAudioFromData(int SongKey, byte[] data)
+        public bool LoadAudioFromData(int SongKey, byte[] data)
         {
             try
             {
@@ -1205,7 +1214,7 @@ namespace SceneCreator.Forms
             catch (Exception ex) { ShowExeption(ex); return false; }
         }
 
-        private void AudioUnload()
+        public void AudioUnload()
         {
             if (mWaveOutDevice != null) { mWaveOutDevice.Stop(); }
             if (mMainOutputStream != null)
@@ -1248,8 +1257,11 @@ namespace SceneCreator.Forms
         private void dataGridView_Musics_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
             if (e.RowIndex < 0) { return; }
-            int i = (int)dataGridView_Musics.Rows[e.RowIndex].Cells[0].Value;
-            if (CPMusics.ContainsKey(i)) { LoadAudioFromData(i, CPMusics[i]); }
+            if (e.ColumnIndex == 2)
+            {
+                int i = (int)dataGridView_Musics.Rows[e.RowIndex].Cells[0].Value;
+                if (CPMusics.ContainsKey(i)) { LoadAudioFromData(i, CPMusics[i]); }
+            }
         }
         #endregion
 
@@ -1451,10 +1463,18 @@ namespace SceneCreator.Forms
                 else { MessageBox.Show("Для установки изображения главы, вы сначала должны выбрать эту главу..", "Внимание!", MessageBoxButtons.OK, MessageBoxIcon.Exclamation); }
             }
         }
-        #endregion
 
         #endregion
 
+        #endregion
 
+        private void buttonSelectSceneSound_Click(object sender, EventArgs e)
+        {
+            using (var musicselectform = new FormSelectMusic(CPMusics, this))
+            {
+                musicselectform.ShowDialog();
+                if (musicselectform.result > 0) { numericUpDown_Sound.Value = musicselectform.result; }
+            }
+        }
     }
 }
