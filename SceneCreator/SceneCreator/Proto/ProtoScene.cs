@@ -22,7 +22,7 @@ namespace SceneCreator.Proto
             [ProtoMember(6)]
             public bool AutoJump { get; set; } // флаг автоперехода (не ждём тапа по экрану, переходим сами через AutoJumpTimer секунд) - действует только если в списке ButtonChoice только 1 итем 
             [ProtoMember(7)]
-            public float AutoJumpTimer { get; set; } // таймер автоперехода (не ждём тапа по экрану, переходим через AutoJumpTimer секунд) - действует только если в списке ButtonChoice только 1 итем 
+            public double AutoJumpTimer { get; set; } // таймер автоперехода (не ждём тапа по экрану, переходим через AutoJumpTimer секунд) - действует только если в списке ButtonChoice только 1 итем 
             [ProtoMember(8)]
             public List<protoСhoice> ButtonChoice { get; set; } // список выборов перехода
         }
