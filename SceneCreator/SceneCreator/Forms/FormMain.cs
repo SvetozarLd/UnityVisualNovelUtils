@@ -335,17 +335,19 @@ namespace SceneCreator.Forms
         private void numericUpDown1_ValueChanged(object sender, EventArgs e)
         {
             int uid = checkScenesDic();
+            Image tmp = null;
             if (uid > 0)
             {
                 int backuid = (int)numericUpDown_Background.Value;
-                if (backuid > 0)
+                if (CPBacks.ContainsKey(backuid))
                 {
-                    if (CPBacks.ContainsKey(backuid))
-                    {
-                        pictureBox_Backs.BackgroundImage = Utils.ImagesWorks.ByteToImage(CPBacks[backuid]);
-                        CPChapters[toolStripComboBox_Chapters.Text].Scenes[uid].Background = backuid;
-                    }
-                    else
+                    tmp = pictureBox_Backs.BackgroundImage;
+                    pictureBox_Backs.BackgroundImage = Utils.ImagesWorks.ByteToImage(CPBacks[backuid]);
+                    CPChapters[toolStripComboBox_Chapters.Text].Scenes[uid].Background = backuid;
+                }
+                else
+                {
+                    if (backuid > 0)
                     {
                         DialogResult result = MessageBox.Show("Фонового изображения с таким номером не существует!" + Environment.NewLine + "Отменить изменение?",
                                             "Внимание!",
@@ -353,14 +355,18 @@ namespace SceneCreator.Forms
                                             MessageBoxIcon.Question,
                                             MessageBoxDefaultButton.Button1);
                         if (result == DialogResult.Yes) { numericUpDown_Background.Value = CPChapters[toolStripComboBox_Chapters.Text].Scenes[uid].Background; }
-                        else
-                        {
-                            pictureBox_Backs.BackgroundImage = Properties.Resources.Backgraund0;
-                        }
+                        else{tmp = pictureBox_Backs.BackgroundImage; pictureBox_Backs.BackgroundImage = Properties.Resources.Backgraund0;}
+                    }
+                    else
+                    {
+                        tmp = pictureBox_Backs.BackgroundImage;
+                        pictureBox_Backs.BackgroundImage = Properties.Resources.Backgraund0;
+                        CPChapters[toolStripComboBox_Chapters.Text].Scenes[uid].Background = 0;
                     }
                 }
-                else { pictureBox_Backs.BackgroundImage = Properties.Resources.Backgraund0; }
             }
+            else { tmp = pictureBox_Backs.BackgroundImage; pictureBox_Backs.BackgroundImage = Properties.Resources.Backgraund0; }
+            if (tmp != null) { tmp.Dispose(); tmp = null; }
         }
 
         private int checkScenesDic()
@@ -378,18 +384,19 @@ namespace SceneCreator.Forms
         private void numericUpDown2_ValueChanged(object sender, EventArgs e)
         {
             int uid = checkScenesDic();
+            Image tmp = null;
             if (uid > 0)
             {
                 int backuid = (int)numericUpDown_Layer.Value;
-                if (backuid > 0)
+                if (CPLayers.ContainsKey(backuid))
                 {
-                    if (CPLayers.ContainsKey(backuid))
-                    {
-                        pictureBox_Backs.Image = null;
-                        pictureBox_Backs.Image = Utils.ImagesWorks.ByteToImage(CPLayers[backuid]);
-                        CPChapters[toolStripComboBox_Chapters.Text].Scenes[uid].Layer = backuid;
-                    }
-                    else
+                    tmp = pictureBox_Backs.Image;
+                    pictureBox_Backs.Image = Utils.ImagesWorks.ByteToImage(CPLayers[backuid]);
+                    CPChapters[toolStripComboBox_Chapters.Text].Scenes[uid].Layer = backuid;
+                }
+                else
+                {
+                    if (backuid > 0)
                     {
                         DialogResult result = MessageBox.Show("Изображения порсонажа с таким номером не существует!" + Environment.NewLine + "Отменить изменение?",
                         "Внимание!",
@@ -398,19 +405,17 @@ namespace SceneCreator.Forms
                         MessageBoxDefaultButton.Button1);
                         if (result == DialogResult.Yes)
                         { numericUpDown_Layer.Value = CPChapters[toolStripComboBox_Chapters.Text].Scenes[uid].Layer; }
-                        else
-                        {
-                            pictureBox_Backs.Image = null;
-                            pictureBox_Backs.Image = Properties.Resources.Character0;
-                        }
+                        else { tmp = pictureBox_Backs.Image; pictureBox_Backs.Image = Properties.Resources.Character0; }
+                    }
+                    else
+                    {
+                        CPChapters[toolStripComboBox_Chapters.Text].Scenes[uid].Layer = 0;
+                        tmp = pictureBox_Backs.Image; pictureBox_Backs.Image = Properties.Resources.Character0;
                     }
                 }
-                else
-                {
-                    pictureBox_Backs.Image = null;
-                    pictureBox_Backs.Image = Properties.Resources.Character0;
-                }
+
             }
+            if (tmp != null) { tmp.Dispose(); tmp = null; }
         }
 
         private void numericUpDown_Sound_ValueChanged(object sender, EventArgs e)
@@ -678,7 +683,6 @@ namespace SceneCreator.Forms
                 case MaterialsType.Backgrounds:
                     if (CPBacks != null)
                     {
-
                         result = Utils.FilesWorks.Save(CPBacks, path + @"\background.dat");
                         if (result != null && result.Ex != null) { ShowExeption(result.Ex); } else { return; }
                     }
