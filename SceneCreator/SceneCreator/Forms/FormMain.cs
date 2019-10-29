@@ -1,13 +1,11 @@
-﻿using System;
+﻿using NAudio.Wave;
+using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Drawing;
 using System.IO;
 using System.Linq;
-using System.Threading.Tasks;
 using System.Windows.Forms;
-using NAudio.Wave;
-using NAudio.Wave.SampleProviders;
 
 namespace SceneCreator.Forms
 {
@@ -176,6 +174,8 @@ namespace SceneCreator.Forms
         private void fillTemplateByScene(int uid)
         {
             UpdateChapterFieldLocker = false;
+            Image tmpimgback = pictureBox_Backs.BackgroundImage;
+            Image tmpimglayer = pictureBox_Backs.Image;
             if (CPChapters[toolStripComboBox_Chapters.Text].Scenes.ContainsKey(uid))
             {
                 textBox1.Text = CPChapters[toolStripComboBox_Chapters.Text].Scenes[uid].Name;
@@ -185,15 +185,11 @@ namespace SceneCreator.Forms
                 checkBox_Autotrans.Checked = CPChapters[toolStripComboBox_Chapters.Text].Scenes[uid].AutoJump;
                 numericUpDown_Sound.Value = CPChapters[toolStripComboBox_Chapters.Text].Scenes[uid].Sound;
                 numericUpDown_AutoTransTiming.Value = Convert.ToDecimal(CPChapters[toolStripComboBox_Chapters.Text].Scenes[uid].AutoJumpTimer);
-                if (CPChapters[toolStripComboBox_Chapters.Text].Scenes[uid].Background == 0 && CPChapters[toolStripComboBox_Chapters.Text].Scenes.ContainsKey(uid - 1)) { CPChapters[toolStripComboBox_Chapters.Text].Scenes[uid].Background = CPChapters[toolStripComboBox_Chapters.Text].Scenes[uid - 1].Background; }
-                if (CPChapters[toolStripComboBox_Chapters.Text].Scenes[uid].Layer == 0 && CPChapters[toolStripComboBox_Chapters.Text].Scenes.ContainsKey(uid - 1)) { CPChapters[toolStripComboBox_Chapters.Text].Scenes[uid].Layer = CPChapters[toolStripComboBox_Chapters.Text].Scenes[uid - 1].Layer; }
                 numericUpDown_Background.Value = CPChapters[toolStripComboBox_Chapters.Text].Scenes[uid].Background;
                 numericUpDown_Layer.Value = CPChapters[toolStripComboBox_Chapters.Text].Scenes[uid].Layer;
                 if (CPBacks.ContainsKey(CPChapters[toolStripComboBox_Chapters.Text].Scenes[uid].Background)) { pictureBox_Backs.BackgroundImage = Utils.ImagesWorks.ByteToImage(CPBacks[CPChapters[toolStripComboBox_Chapters.Text].Scenes[uid].Background]); } else { pictureBox_Backs.BackgroundImage = Properties.Resources.Backgraund0; }
                 pictureBox_Backs.Image = null;
-
                 if (CPLayers.ContainsKey(CPChapters[toolStripComboBox_Chapters.Text].Scenes[uid].Layer)) { pictureBox_Backs.Image = Utils.ImagesWorks.ByteToImage(CPLayers[CPChapters[toolStripComboBox_Chapters.Text].Scenes[uid].Layer]); } else { pictureBox_Backs.Image = Properties.Resources.Character0; }
-
                 showButtonChoice(uid);
             }
             else
@@ -210,6 +206,8 @@ namespace SceneCreator.Forms
                 numericUpDown_Background.Value = 0;
                 numericUpDown_Layer.Value = 0;
             }
+            if (tmpimgback != null) { tmpimgback.Dispose(); tmpimgback = null; }
+            if (tmpimglayer != null) { tmpimglayer.Dispose(); tmpimglayer = null; }
             UpdateChapterFieldLocker = true;
         }
 
@@ -355,7 +353,7 @@ namespace SceneCreator.Forms
                                             MessageBoxIcon.Question,
                                             MessageBoxDefaultButton.Button1);
                         if (result == DialogResult.Yes) { numericUpDown_Background.Value = CPChapters[toolStripComboBox_Chapters.Text].Scenes[uid].Background; }
-                        else{tmp = pictureBox_Backs.BackgroundImage; pictureBox_Backs.BackgroundImage = Properties.Resources.Backgraund0;}
+                        else { tmp = pictureBox_Backs.BackgroundImage; pictureBox_Backs.BackgroundImage = Properties.Resources.Backgraund0; CPChapters[toolStripComboBox_Chapters.Text].Scenes[uid].Background = backuid; }
                     }
                     else
                     {
@@ -405,7 +403,7 @@ namespace SceneCreator.Forms
                         MessageBoxDefaultButton.Button1);
                         if (result == DialogResult.Yes)
                         { numericUpDown_Layer.Value = CPChapters[toolStripComboBox_Chapters.Text].Scenes[uid].Layer; }
-                        else { tmp = pictureBox_Backs.Image; pictureBox_Backs.Image = Properties.Resources.Character0; }
+                        else { tmp = pictureBox_Backs.Image; pictureBox_Backs.Image = Properties.Resources.Character0; CPChapters[toolStripComboBox_Chapters.Text].Scenes[uid].Layer = backuid; }
                     }
                     else
                     {
@@ -424,20 +422,24 @@ namespace SceneCreator.Forms
             if (uid > 0)
             {
                 int backuid = (int)numericUpDown_Sound.Value;
-                if (backuid > 0)
+                if (CPMusics.ContainsKey(backuid))
                 {
-                    if (CPMusics.ContainsKey(backuid))
-                    {
-                        CPChapters[toolStripComboBox_Chapters.Text].Scenes[uid].Sound = backuid;
-                    }
-                    else
+                    CPChapters[toolStripComboBox_Chapters.Text].Scenes[uid].Sound = backuid;
+                }
+                else
+                {
+                    if (backuid > 0)
                     {
                         DialogResult result = MessageBox.Show("Мзыкальной дорожки с таким номером не существует!" + Environment.NewLine + "Отменить изменение?",
                         "Внимание!",
                         MessageBoxButtons.YesNo,
                         MessageBoxIcon.Question,
                         MessageBoxDefaultButton.Button1);
-                        if (result == DialogResult.Yes) { numericUpDown_Sound.Value = CPChapters[toolStripComboBox_Chapters.Text].Scenes[uid].Sound; }
+                        if (result == DialogResult.Yes) { numericUpDown_Sound.Value = CPChapters[toolStripComboBox_Chapters.Text].Scenes[uid].Sound; } else { CPChapters[toolStripComboBox_Chapters.Text].Scenes[uid].Sound = backuid; }
+                    }
+                    else
+                    {
+                        CPChapters[toolStripComboBox_Chapters.Text].Scenes[uid].Sound = 0;
                     }
                 }
             }
@@ -624,7 +626,7 @@ namespace SceneCreator.Forms
             else
             {
                 CPMusics = (Dictionary<int, byte[]>)result.Value;
-                foreach (var i in CPMusics)
+                foreach (KeyValuePair<int, byte[]> i in CPMusics)
                 {
                     DataRow dr = MusicTable.NewRow();
                     dr["uid"] = i.Key;
@@ -930,6 +932,12 @@ namespace SceneCreator.Forms
                     ButtonText = string.Empty,
                     NextScene = i + 1
                 };
+                if (CPChapters[toolStripComboBox_Chapters.Text].Scenes.ContainsKey(i - 1))
+                {
+                    tmp.Background = CPChapters[toolStripComboBox_Chapters.Text].Scenes[i - 1].Background;
+                    tmp.Layer = CPChapters[toolStripComboBox_Chapters.Text].Scenes[i - 1].Layer;
+                    tmp.Sound = CPChapters[toolStripComboBox_Chapters.Text].Scenes[i - 1].Sound;
+                }
                 tmp.ButtonChoice.Add(itempc);
                 CPChapters[toolStripComboBox_Chapters.Text].Scenes.Add(i, tmp);
                 Utils.ChaptersDataTable.result result = Utils.ChaptersDataTable.AddNewRow(new KeyValuePair<int, Proto.ProtoScene.protoRow>(i, tmp));
@@ -958,14 +966,16 @@ namespace SceneCreator.Forms
             if (contextMenuStrip_AddEditRemove.Tag.ToString().Equals(dataGridView_Musics.Name))
             {
                 if (CPMusics.Count > 0) { i = CPMusics.Keys.Max() + 1; } else { i = 1; }
-                OpenFileDialog openFileDialog1 = new OpenFileDialog();
-                openFileDialog1.InitialDirectory = "c:\\";
-                openFileDialog1.Filter = "All files (*.*)|*.*";
-                openFileDialog1.FilterIndex = 2;
-                openFileDialog1.RestoreDirectory = true;
+                OpenFileDialog openFileDialog1 = new OpenFileDialog
+                {
+                    InitialDirectory = "c:\\",
+                    Filter = "All files (*.*)|*.*",
+                    FilterIndex = 2,
+                    RestoreDirectory = true
+                };
                 if (openFileDialog1.ShowDialog() == DialogResult.OK)
                 {
-                    var result = Utils.FilesWorks.Load(openFileDialog1.FileName, Utils.FilesWorks.Type.File);
+                    Utils.FilesWorks.result result = Utils.FilesWorks.Load(openFileDialog1.FileName, Utils.FilesWorks.Type.File);
                     if (result.Ex != null) { return; }
                     if (LoadAudioFromData(i, (byte[])result.Value))
                     {
@@ -1168,14 +1178,16 @@ namespace SceneCreator.Forms
                 {
                     i = (int)dataGridView_Musics.SelectedRows[0].Cells[0].Value;
                     if (CurrentSongKey == i) { AudioUnload(); }
-                    OpenFileDialog openFileDialog1 = new OpenFileDialog();
-                    openFileDialog1.InitialDirectory = "c:\\";
-                    openFileDialog1.Filter = "All files (*.*)|*.*";
-                    openFileDialog1.FilterIndex = 2;
-                    openFileDialog1.RestoreDirectory = true;
+                    OpenFileDialog openFileDialog1 = new OpenFileDialog
+                    {
+                        InitialDirectory = "c:\\",
+                        Filter = "All files (*.*)|*.*",
+                        FilterIndex = 2,
+                        RestoreDirectory = true
+                    };
                     if (openFileDialog1.ShowDialog() == DialogResult.OK)
                     {
-                        var result = Utils.FilesWorks.Load(openFileDialog1.FileName, Utils.FilesWorks.Type.File);
+                        Utils.FilesWorks.result result = Utils.FilesWorks.Load(openFileDialog1.FileName, Utils.FilesWorks.Type.File);
                         if (result.Ex != null) { return; }
                         if (LoadAudioFromData(i, (byte[])result.Value))
                         {
@@ -1248,10 +1260,10 @@ namespace SceneCreator.Forms
             {
                 e.Paint(e.CellBounds, DataGridViewPaintParts.All);
 
-                var w = Properties.Resources.Play_16x16.Width;
-                var h = Properties.Resources.Play_16x16.Height;
-                var x = e.CellBounds.Left + (e.CellBounds.Width - w) / 2;
-                var y = e.CellBounds.Top + (e.CellBounds.Height - h) / 2;
+                int w = Properties.Resources.Play_16x16.Width;
+                int h = Properties.Resources.Play_16x16.Height;
+                int x = e.CellBounds.Left + (e.CellBounds.Width - w) / 2;
+                int y = e.CellBounds.Top + (e.CellBounds.Height - h) / 2;
 
                 e.Graphics.DrawImage(Properties.Resources.Play_16x16, new Rectangle(x, y, w, h));
                 e.Handled = true;
@@ -1274,8 +1286,8 @@ namespace SceneCreator.Forms
         private void ChaptersRearrange_Click(object sender, EventArgs e)
         {
             if (listBox_Chapters.SelectedIndex < 0) { return; }
-            var control = (ToolStripMenuItem)sender;
-            var item = listBox_Chapters.SelectedItem;
+            ToolStripMenuItem control = (ToolStripMenuItem)sender;
+            object item = listBox_Chapters.SelectedItem;
             int itemindex = listBox_Chapters.SelectedIndex;
             listBox_Chapters.Items.RemoveAt(listBox_Chapters.SelectedIndex);
             switch (control.Name)
@@ -1474,7 +1486,7 @@ namespace SceneCreator.Forms
 
         private void buttonSelectSceneSound_Click(object sender, EventArgs e)
         {
-            using (var musicselectform = new FormSelectMusic(CPMusics, this))
+            using (FormSelectMusic musicselectform = new FormSelectMusic(CPMusics, this))
             {
                 musicselectform.ShowDialog();
                 if (musicselectform.result > 0) { numericUpDown_Sound.Value = musicselectform.result; }

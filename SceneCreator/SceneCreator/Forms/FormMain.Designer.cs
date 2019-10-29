@@ -246,7 +246,7 @@
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.Padding = new System.Windows.Forms.Padding(7, 2, 0, 2);
-            this.menuStrip1.Size = new System.Drawing.Size(1110, 24);
+            this.menuStrip1.Size = new System.Drawing.Size(1110, 29);
             this.menuStrip1.TabIndex = 0;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -266,14 +266,14 @@
             this.toolStripSeparator9,
             this.toolStripMenuItem_Exit});
             this.менюToolStripMenuItem.Name = "менюToolStripMenuItem";
-            this.менюToolStripMenuItem.Size = new System.Drawing.Size(53, 20);
+            this.менюToolStripMenuItem.Size = new System.Drawing.Size(66, 25);
             this.менюToolStripMenuItem.Text = "Меню";
             // 
             // toolStripMenuItem_NewBook
             // 
             this.toolStripMenuItem_NewBook.Image = global::SceneCreator.Properties.Resources.book_add;
             this.toolStripMenuItem_NewBook.Name = "toolStripMenuItem_NewBook";
-            this.toolStripMenuItem_NewBook.Size = new System.Drawing.Size(250, 28);
+            this.toolStripMenuItem_NewBook.Size = new System.Drawing.Size(312, 28);
             this.toolStripMenuItem_NewBook.Text = "Новый том";
             this.toolStripMenuItem_NewBook.Click += new System.EventHandler(this.NewBook_Click);
             // 
@@ -281,20 +281,20 @@
             // 
             this.toolStripMenuItem_OpenBook.Image = global::SceneCreator.Properties.Resources.book_open;
             this.toolStripMenuItem_OpenBook.Name = "toolStripMenuItem_OpenBook";
-            this.toolStripMenuItem_OpenBook.Size = new System.Drawing.Size(250, 28);
+            this.toolStripMenuItem_OpenBook.Size = new System.Drawing.Size(312, 28);
             this.toolStripMenuItem_OpenBook.Text = "Открыть том";
             this.toolStripMenuItem_OpenBook.Click += new System.EventHandler(this.OpenBook_Click);
             // 
             // toolStripSeparator4
             // 
             this.toolStripSeparator4.Name = "toolStripSeparator4";
-            this.toolStripSeparator4.Size = new System.Drawing.Size(247, 6);
+            this.toolStripSeparator4.Size = new System.Drawing.Size(309, 6);
             // 
             // toolStripMenuItem_SaveBook
             // 
             this.toolStripMenuItem_SaveBook.Image = global::SceneCreator.Properties.Resources.report_disk;
             this.toolStripMenuItem_SaveBook.Name = "toolStripMenuItem_SaveBook";
-            this.toolStripMenuItem_SaveBook.Size = new System.Drawing.Size(250, 28);
+            this.toolStripMenuItem_SaveBook.Size = new System.Drawing.Size(312, 28);
             this.toolStripMenuItem_SaveBook.Text = "Сохранить том";
             this.toolStripMenuItem_SaveBook.Click += new System.EventHandler(this.SaveBook_Click);
             // 
@@ -302,7 +302,7 @@
             // 
             this.toolStripMenuItem_SaveBookCopy.Image = global::SceneCreator.Properties.Resources.disk_multiple;
             this.toolStripMenuItem_SaveBookCopy.Name = "toolStripMenuItem_SaveBookCopy";
-            this.toolStripMenuItem_SaveBookCopy.Size = new System.Drawing.Size(250, 28);
+            this.toolStripMenuItem_SaveBookCopy.Size = new System.Drawing.Size(312, 28);
             this.toolStripMenuItem_SaveBookCopy.Text = "Сохранить как (создать копию)";
             this.toolStripMenuItem_SaveBookCopy.Click += new System.EventHandler(this.SaveBookCopy_Click);
             // 
@@ -312,33 +312,33 @@
             this.toolStripMenuItem_ScenesExport});
             this.toolStripMenuItem_ExportBook.Image = global::SceneCreator.Properties.Resources.icons_unity;
             this.toolStripMenuItem_ExportBook.Name = "toolStripMenuItem_ExportBook";
-            this.toolStripMenuItem_ExportBook.Size = new System.Drawing.Size(250, 28);
+            this.toolStripMenuItem_ExportBook.Size = new System.Drawing.Size(312, 28);
             this.toolStripMenuItem_ExportBook.Text = "Экспорт для Unity";
             // 
             // toolStripMenuItem_ScenesExport
             // 
             this.toolStripMenuItem_ScenesExport.Name = "toolStripMenuItem_ScenesExport";
-            this.toolStripMenuItem_ScenesExport.Size = new System.Drawing.Size(148, 22);
+            this.toolStripMenuItem_ScenesExport.Size = new System.Drawing.Size(184, 28);
             this.toolStripMenuItem_ScenesExport.Text = "Экспорт сцен";
             this.toolStripMenuItem_ScenesExport.Click += new System.EventHandler(this.toolStripMenuItem_ScenesExport_Click);
             // 
             // toolStripSeparator3
             // 
             this.toolStripSeparator3.Name = "toolStripSeparator3";
-            this.toolStripSeparator3.Size = new System.Drawing.Size(247, 6);
+            this.toolStripSeparator3.Size = new System.Drawing.Size(309, 6);
             // 
             // информацияОКнигеToolStripMenuItem
             // 
             this.информацияОКнигеToolStripMenuItem.Image = global::SceneCreator.Properties.Resources.book;
             this.информацияОКнигеToolStripMenuItem.Name = "информацияОКнигеToolStripMenuItem";
-            this.информацияОКнигеToolStripMenuItem.Size = new System.Drawing.Size(250, 28);
+            this.информацияОКнигеToolStripMenuItem.Size = new System.Drawing.Size(312, 28);
             this.информацияОКнигеToolStripMenuItem.Text = "Информация о томе";
             this.информацияОКнигеToolStripMenuItem.Click += new System.EventHandler(this.aboutBookToolStripMenuItem_Click);
             // 
             // toolStripSeparator5
             // 
             this.toolStripSeparator5.Name = "toolStripSeparator5";
-            this.toolStripSeparator5.Size = new System.Drawing.Size(247, 6);
+            this.toolStripSeparator5.Size = new System.Drawing.Size(309, 6);
             // 
             // toolStripMenuItem_Recent
             // 
@@ -349,54 +349,54 @@
             this.toolStripMenuItem_Recent3,
             this.toolStripMenuItem_Recent4});
             this.toolStripMenuItem_Recent.Name = "toolStripMenuItem_Recent";
-            this.toolStripMenuItem_Recent.Size = new System.Drawing.Size(250, 28);
+            this.toolStripMenuItem_Recent.Size = new System.Drawing.Size(312, 28);
             this.toolStripMenuItem_Recent.Text = "Последние открытые";
             // 
             // toolStripMenuItem_Recent0
             // 
             this.toolStripMenuItem_Recent0.Name = "toolStripMenuItem_Recent0";
-            this.toolStripMenuItem_Recent0.Size = new System.Drawing.Size(80, 22);
+            this.toolStripMenuItem_Recent0.Size = new System.Drawing.Size(96, 28);
             this.toolStripMenuItem_Recent0.Text = "0";
             this.toolStripMenuItem_Recent0.Click += new System.EventHandler(this.RecentN_Click);
             // 
             // toolStripMenuItem_Recent1
             // 
             this.toolStripMenuItem_Recent1.Name = "toolStripMenuItem_Recent1";
-            this.toolStripMenuItem_Recent1.Size = new System.Drawing.Size(80, 22);
+            this.toolStripMenuItem_Recent1.Size = new System.Drawing.Size(96, 28);
             this.toolStripMenuItem_Recent1.Text = "1";
             this.toolStripMenuItem_Recent1.Click += new System.EventHandler(this.RecentN_Click);
             // 
             // toolStripMenuItem_Recent2
             // 
             this.toolStripMenuItem_Recent2.Name = "toolStripMenuItem_Recent2";
-            this.toolStripMenuItem_Recent2.Size = new System.Drawing.Size(80, 22);
+            this.toolStripMenuItem_Recent2.Size = new System.Drawing.Size(96, 28);
             this.toolStripMenuItem_Recent2.Text = "2";
             this.toolStripMenuItem_Recent2.Click += new System.EventHandler(this.RecentN_Click);
             // 
             // toolStripMenuItem_Recent3
             // 
             this.toolStripMenuItem_Recent3.Name = "toolStripMenuItem_Recent3";
-            this.toolStripMenuItem_Recent3.Size = new System.Drawing.Size(80, 22);
+            this.toolStripMenuItem_Recent3.Size = new System.Drawing.Size(96, 28);
             this.toolStripMenuItem_Recent3.Text = "3";
             this.toolStripMenuItem_Recent3.Click += new System.EventHandler(this.RecentN_Click);
             // 
             // toolStripMenuItem_Recent4
             // 
             this.toolStripMenuItem_Recent4.Name = "toolStripMenuItem_Recent4";
-            this.toolStripMenuItem_Recent4.Size = new System.Drawing.Size(80, 22);
+            this.toolStripMenuItem_Recent4.Size = new System.Drawing.Size(96, 28);
             this.toolStripMenuItem_Recent4.Text = "4";
             this.toolStripMenuItem_Recent4.Click += new System.EventHandler(this.RecentN_Click);
             // 
             // toolStripSeparator9
             // 
             this.toolStripSeparator9.Name = "toolStripSeparator9";
-            this.toolStripSeparator9.Size = new System.Drawing.Size(247, 6);
+            this.toolStripSeparator9.Size = new System.Drawing.Size(309, 6);
             // 
             // toolStripMenuItem_Exit
             // 
             this.toolStripMenuItem_Exit.Image = global::SceneCreator.Properties.Resources.door_in;
             this.toolStripMenuItem_Exit.Name = "toolStripMenuItem_Exit";
-            this.toolStripMenuItem_Exit.Size = new System.Drawing.Size(250, 28);
+            this.toolStripMenuItem_Exit.Size = new System.Drawing.Size(312, 28);
             this.toolStripMenuItem_Exit.Text = "Выход";
             this.toolStripMenuItem_Exit.Click += new System.EventHandler(this.Exit_Click);
             // 
@@ -409,38 +409,38 @@
             this.toolStripMenuItem_SaveLayers,
             this.toolStripMenuItem_SaveSounds});
             this.томToolStripMenuItem.Name = "томToolStripMenuItem";
-            this.томToolStripMenuItem.Size = new System.Drawing.Size(42, 20);
+            this.томToolStripMenuItem.Size = new System.Drawing.Size(50, 25);
             this.томToolStripMenuItem.Text = "Том";
             // 
             // toolStripMenuItem_NewChapter
             // 
             this.toolStripMenuItem_NewChapter.Name = "toolStripMenuItem_NewChapter";
-            this.toolStripMenuItem_NewChapter.Size = new System.Drawing.Size(219, 22);
+            this.toolStripMenuItem_NewChapter.Size = new System.Drawing.Size(274, 28);
             this.toolStripMenuItem_NewChapter.Text = "Новая глава";
             // 
             // toolStripSeparator1
             // 
             this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(216, 6);
+            this.toolStripSeparator1.Size = new System.Drawing.Size(271, 6);
             // 
             // toolStripMenuItem_SaveBacks
             // 
             this.toolStripMenuItem_SaveBacks.Name = "toolStripMenuItem_SaveBacks";
-            this.toolStripMenuItem_SaveBacks.Size = new System.Drawing.Size(219, 22);
+            this.toolStripMenuItem_SaveBacks.Size = new System.Drawing.Size(274, 28);
             this.toolStripMenuItem_SaveBacks.Text = "Сохранить фоны";
             this.toolStripMenuItem_SaveBacks.Click += new System.EventHandler(this.SaveMaterial_Click);
             // 
             // toolStripMenuItem_SaveLayers
             // 
             this.toolStripMenuItem_SaveLayers.Name = "toolStripMenuItem_SaveLayers";
-            this.toolStripMenuItem_SaveLayers.Size = new System.Drawing.Size(219, 22);
+            this.toolStripMenuItem_SaveLayers.Size = new System.Drawing.Size(274, 28);
             this.toolStripMenuItem_SaveLayers.Text = "Сохранить персонажей";
             this.toolStripMenuItem_SaveLayers.Click += new System.EventHandler(this.SaveMaterial_Click);
             // 
             // toolStripMenuItem_SaveSounds
             // 
             this.toolStripMenuItem_SaveSounds.Name = "toolStripMenuItem_SaveSounds";
-            this.toolStripMenuItem_SaveSounds.Size = new System.Drawing.Size(219, 22);
+            this.toolStripMenuItem_SaveSounds.Size = new System.Drawing.Size(274, 28);
             this.toolStripMenuItem_SaveSounds.Text = "Сохранить список музыки";
             this.toolStripMenuItem_SaveSounds.CheckStateChanged += new System.EventHandler(this.SaveMaterial_Click);
             // 
@@ -456,48 +456,48 @@
             this.удалитьВсюМузыкуToolStripMenuItem});
             this.инструментыToolStripMenuItem.Enabled = false;
             this.инструментыToolStripMenuItem.Name = "инструментыToolStripMenuItem";
-            this.инструментыToolStripMenuItem.Size = new System.Drawing.Size(129, 20);
+            this.инструментыToolStripMenuItem.Size = new System.Drawing.Size(166, 25);
             this.инструментыToolStripMenuItem.Text = "Очистка и удаление";
             // 
             // очиститьВсеСценыToolStripMenuItem
             // 
             this.очиститьВсеСценыToolStripMenuItem.Name = "очиститьВсеСценыToolStripMenuItem";
-            this.очиститьВсеСценыToolStripMenuItem.Size = new System.Drawing.Size(271, 22);
+            this.очиститьВсеСценыToolStripMenuItem.Size = new System.Drawing.Size(341, 28);
             this.очиститьВсеСценыToolStripMenuItem.Text = "Очистить все сцены текущей главы";
             // 
             // удалитьТекущуюГлавуToolStripMenuItem
             // 
             this.удалитьТекущуюГлавуToolStripMenuItem.Name = "удалитьТекущуюГлавуToolStripMenuItem";
-            this.удалитьТекущуюГлавуToolStripMenuItem.Size = new System.Drawing.Size(271, 22);
+            this.удалитьТекущуюГлавуToolStripMenuItem.Size = new System.Drawing.Size(341, 28);
             this.удалитьТекущуюГлавуToolStripMenuItem.Text = "Удалить текущую главу";
             // 
             // toolStripSeparator6
             // 
             this.toolStripSeparator6.Name = "toolStripSeparator6";
-            this.toolStripSeparator6.Size = new System.Drawing.Size(268, 6);
+            this.toolStripSeparator6.Size = new System.Drawing.Size(338, 6);
             // 
             // удалитьВсеГлавыToolStripMenuItem
             // 
             this.удалитьВсеГлавыToolStripMenuItem.Name = "удалитьВсеГлавыToolStripMenuItem";
-            this.удалитьВсеГлавыToolStripMenuItem.Size = new System.Drawing.Size(271, 22);
+            this.удалитьВсеГлавыToolStripMenuItem.Size = new System.Drawing.Size(341, 28);
             this.удалитьВсеГлавыToolStripMenuItem.Text = "Удалить все главы";
             // 
             // удалитьВсеФоныToolStripMenuItem
             // 
             this.удалитьВсеФоныToolStripMenuItem.Name = "удалитьВсеФоныToolStripMenuItem";
-            this.удалитьВсеФоныToolStripMenuItem.Size = new System.Drawing.Size(271, 22);
+            this.удалитьВсеФоныToolStripMenuItem.Size = new System.Drawing.Size(341, 28);
             this.удалитьВсеФоныToolStripMenuItem.Text = "Удалить все фоны тома";
             // 
             // удалитьВсехПерсонажейToolStripMenuItem
             // 
             this.удалитьВсехПерсонажейToolStripMenuItem.Name = "удалитьВсехПерсонажейToolStripMenuItem";
-            this.удалитьВсехПерсонажейToolStripMenuItem.Size = new System.Drawing.Size(271, 22);
+            this.удалитьВсехПерсонажейToolStripMenuItem.Size = new System.Drawing.Size(341, 28);
             this.удалитьВсехПерсонажейToolStripMenuItem.Text = "Удалить всех персонажей тома";
             // 
             // удалитьВсюМузыкуToolStripMenuItem
             // 
             this.удалитьВсюМузыкуToolStripMenuItem.Name = "удалитьВсюМузыкуToolStripMenuItem";
-            this.удалитьВсюМузыкуToolStripMenuItem.Size = new System.Drawing.Size(271, 22);
+            this.удалитьВсюМузыкуToolStripMenuItem.Size = new System.Drawing.Size(341, 28);
             this.удалитьВсюМузыкуToolStripMenuItem.Text = "Удалить всю музыку";
             // 
             // statusStrip1
@@ -518,9 +518,9 @@
             this.toolStripSeparator2,
             this.toolStripLabel1,
             this.toolStripComboBox_Chapters});
-            this.toolStrip1.Location = new System.Drawing.Point(0, 24);
+            this.toolStrip1.Location = new System.Drawing.Point(0, 29);
             this.toolStrip1.Name = "toolStrip1";
-            this.toolStrip1.Size = new System.Drawing.Size(1110, 28);
+            this.toolStrip1.Size = new System.Drawing.Size(1110, 29);
             this.toolStrip1.TabIndex = 2;
             this.toolStrip1.Text = "toolStrip1";
             // 
@@ -530,19 +530,19 @@
             this.toolStripButton3.Image = global::SceneCreator.Properties.Resources.disk;
             this.toolStripButton3.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolStripButton3.Name = "toolStripButton3";
-            this.toolStripButton3.Size = new System.Drawing.Size(25, 25);
+            this.toolStripButton3.Size = new System.Drawing.Size(25, 26);
             this.toolStripButton3.Text = "Сохранить";
             this.toolStripButton3.Click += new System.EventHandler(this.SaveBook_Click);
             // 
             // toolStripSeparator2
             // 
             this.toolStripSeparator2.Name = "toolStripSeparator2";
-            this.toolStripSeparator2.Size = new System.Drawing.Size(6, 28);
+            this.toolStripSeparator2.Size = new System.Drawing.Size(6, 29);
             // 
             // toolStripLabel1
             // 
             this.toolStripLabel1.Name = "toolStripLabel1";
-            this.toolStripLabel1.Size = new System.Drawing.Size(89, 25);
+            this.toolStripLabel1.Size = new System.Drawing.Size(117, 26);
             this.toolStripLabel1.Text = "Выбрать сцену";
             // 
             // toolStripComboBox_Chapters
@@ -551,7 +551,7 @@
             this.toolStripComboBox_Chapters.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this.toolStripComboBox_Chapters.MaxDropDownItems = 10;
             this.toolStripComboBox_Chapters.Name = "toolStripComboBox_Chapters";
-            this.toolStripComboBox_Chapters.Size = new System.Drawing.Size(300, 28);
+            this.toolStripComboBox_Chapters.Size = new System.Drawing.Size(300, 29);
             this.toolStripComboBox_Chapters.SelectedIndexChanged += new System.EventHandler(this.toolStripComboBox_Chapters_SelectedIndexChanged);
             // 
             // tabControl1
@@ -561,11 +561,11 @@
             this.tabControl1.Controls.Add(this.tabPage2);
             this.tabControl1.Controls.Add(this.tabPage3);
             this.tabControl1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tabControl1.Location = new System.Drawing.Point(0, 52);
+            this.tabControl1.Location = new System.Drawing.Point(0, 58);
             this.tabControl1.Margin = new System.Windows.Forms.Padding(4);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(1110, 471);
+            this.tabControl1.Size = new System.Drawing.Size(1110, 465);
             this.tabControl1.TabIndex = 3;
             this.tabControl1.SelectedIndexChanged += new System.EventHandler(this.tabControl1_SelectedIndexChanged);
             // 
@@ -576,10 +576,10 @@
             this.tabPage5.Controls.Add(this.panel_bookCenter);
             this.tabPage5.Controls.Add(this.splitter7);
             this.tabPage5.Controls.Add(this.panel_BookLeft);
-            this.tabPage5.Location = new System.Drawing.Point(4, 22);
+            this.tabPage5.Location = new System.Drawing.Point(4, 26);
             this.tabPage5.Name = "tabPage5";
             this.tabPage5.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage5.Size = new System.Drawing.Size(1102, 445);
+            this.tabPage5.Size = new System.Drawing.Size(1102, 435);
             this.tabPage5.TabIndex = 4;
             this.tabPage5.Text = "Том";
             this.tabPage5.UseVisualStyleBackColor = true;
@@ -591,7 +591,7 @@
             this.panel12.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel12.Location = new System.Drawing.Point(605, 3);
             this.panel12.Name = "panel12";
-            this.panel12.Size = new System.Drawing.Size(494, 439);
+            this.panel12.Size = new System.Drawing.Size(494, 429);
             this.panel12.TabIndex = 5;
             // 
             // listBox_Chapters
@@ -600,9 +600,10 @@
             this.listBox_Chapters.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.listBox_Chapters.Dock = System.Windows.Forms.DockStyle.Fill;
             this.listBox_Chapters.FormattingEnabled = true;
+            this.listBox_Chapters.ItemHeight = 17;
             this.listBox_Chapters.Location = new System.Drawing.Point(0, 0);
             this.listBox_Chapters.Name = "listBox_Chapters";
-            this.listBox_Chapters.Size = new System.Drawing.Size(490, 435);
+            this.listBox_Chapters.Size = new System.Drawing.Size(490, 425);
             this.listBox_Chapters.TabIndex = 0;
             this.listBox_Chapters.SelectedIndexChanged += new System.EventHandler(this.listBox_Chapters_SelectedIndexChanged);
             this.listBox_Chapters.DragDrop += new System.Windows.Forms.DragEventHandler(this.listBox_Chapters_DragDrop);
@@ -613,7 +614,7 @@
             // 
             this.splitter8.Location = new System.Drawing.Point(601, 3);
             this.splitter8.Name = "splitter8";
-            this.splitter8.Size = new System.Drawing.Size(4, 439);
+            this.splitter8.Size = new System.Drawing.Size(4, 429);
             this.splitter8.TabIndex = 7;
             this.splitter8.TabStop = false;
             // 
@@ -626,7 +627,7 @@
             this.panel_bookCenter.Dock = System.Windows.Forms.DockStyle.Left;
             this.panel_bookCenter.Location = new System.Drawing.Point(246, 3);
             this.panel_bookCenter.Name = "panel_bookCenter";
-            this.panel_bookCenter.Size = new System.Drawing.Size(355, 439);
+            this.panel_bookCenter.Size = new System.Drawing.Size(355, 429);
             this.panel_bookCenter.TabIndex = 6;
             // 
             // panel_bookCenterDown
@@ -636,7 +637,7 @@
             this.panel_bookCenterDown.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel_bookCenterDown.Location = new System.Drawing.Point(0, 148);
             this.panel_bookCenterDown.Name = "panel_bookCenterDown";
-            this.panel_bookCenterDown.Size = new System.Drawing.Size(355, 291);
+            this.panel_bookCenterDown.Size = new System.Drawing.Size(355, 281);
             this.panel_bookCenterDown.TabIndex = 9;
             // 
             // groupBox10
@@ -647,7 +648,7 @@
             this.groupBox10.Dock = System.Windows.Forms.DockStyle.Fill;
             this.groupBox10.Location = new System.Drawing.Point(0, 0);
             this.groupBox10.Name = "groupBox10";
-            this.groupBox10.Size = new System.Drawing.Size(351, 287);
+            this.groupBox10.Size = new System.Drawing.Size(351, 277);
             this.groupBox10.TabIndex = 7;
             this.groupBox10.TabStop = false;
             this.groupBox10.Text = "Музыка тома";
@@ -686,7 +687,7 @@
             this.dataGridView_Musics.RowHeadersVisible = false;
             this.dataGridView_Musics.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing;
             this.dataGridView_Musics.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dataGridView_Musics.Size = new System.Drawing.Size(286, 264);
+            this.dataGridView_Musics.Size = new System.Drawing.Size(286, 254);
             this.dataGridView_Musics.TabIndex = 4;
             this.dataGridView_Musics.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView_Musics_CellContentClick);
             this.dataGridView_Musics.CellPainting += new System.Windows.Forms.DataGridViewCellPaintingEventHandler(this.dataGridView_Musics_CellPainting);
@@ -753,7 +754,7 @@
             this.trackBar1.Maximum = 100;
             this.trackBar1.Name = "trackBar1";
             this.trackBar1.Orientation = System.Windows.Forms.Orientation.Vertical;
-            this.trackBar1.Size = new System.Drawing.Size(39, 236);
+            this.trackBar1.Size = new System.Drawing.Size(39, 226);
             this.trackBar1.TabIndex = 1;
             this.trackBar1.TickFrequency = 5;
             this.trackBar1.TickStyle = System.Windows.Forms.TickStyle.Both;
@@ -795,9 +796,9 @@
             // 
             this.groupBox6.Controls.Add(this.pictureBox_Chapter);
             this.groupBox6.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.groupBox6.Location = new System.Drawing.Point(3, 59);
+            this.groupBox6.Location = new System.Drawing.Point(3, 63);
             this.groupBox6.Name = "groupBox6";
-            this.groupBox6.Size = new System.Drawing.Size(345, 78);
+            this.groupBox6.Size = new System.Drawing.Size(345, 74);
             this.groupBox6.TabIndex = 3;
             this.groupBox6.TabStop = false;
             this.groupBox6.Text = "Изображение главы (фон кнопки)";
@@ -818,7 +819,7 @@
             this.groupBox3.Controls.Add(this.button5);
             this.groupBox3.Controls.Add(this.textBox_ChapterName);
             this.groupBox3.Dock = System.Windows.Forms.DockStyle.Top;
-            this.groupBox3.Location = new System.Drawing.Point(3, 16);
+            this.groupBox3.Location = new System.Drawing.Point(3, 20);
             this.groupBox3.Name = "groupBox3";
             this.groupBox3.Size = new System.Drawing.Size(345, 43);
             this.groupBox3.TabIndex = 0;
@@ -843,14 +844,14 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.textBox_ChapterName.Location = new System.Drawing.Point(3, 16);
             this.textBox_ChapterName.Name = "textBox_ChapterName";
-            this.textBox_ChapterName.Size = new System.Drawing.Size(263, 20);
+            this.textBox_ChapterName.Size = new System.Drawing.Size(263, 24);
             this.textBox_ChapterName.TabIndex = 1;
             // 
             // splitter7
             // 
             this.splitter7.Location = new System.Drawing.Point(242, 3);
             this.splitter7.Name = "splitter7";
-            this.splitter7.Size = new System.Drawing.Size(4, 439);
+            this.splitter7.Size = new System.Drawing.Size(4, 429);
             this.splitter7.TabIndex = 4;
             this.splitter7.TabStop = false;
             // 
@@ -863,7 +864,7 @@
             this.panel_BookLeft.Dock = System.Windows.Forms.DockStyle.Left;
             this.panel_BookLeft.Location = new System.Drawing.Point(3, 3);
             this.panel_BookLeft.Name = "panel_BookLeft";
-            this.panel_BookLeft.Size = new System.Drawing.Size(239, 439);
+            this.panel_BookLeft.Size = new System.Drawing.Size(239, 429);
             this.panel_BookLeft.TabIndex = 3;
             this.panel_BookLeft.SizeChanged += new System.EventHandler(this.panel3_SizeChanged);
             // 
@@ -874,7 +875,7 @@
             this.panel11.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel11.Location = new System.Drawing.Point(0, 199);
             this.panel11.Name = "panel11";
-            this.panel11.Size = new System.Drawing.Size(239, 240);
+            this.panel11.Size = new System.Drawing.Size(239, 230);
             this.panel11.TabIndex = 2;
             // 
             // groupBox_TomeImage
@@ -883,7 +884,7 @@
             this.groupBox_TomeImage.Dock = System.Windows.Forms.DockStyle.Fill;
             this.groupBox_TomeImage.Location = new System.Drawing.Point(0, 0);
             this.groupBox_TomeImage.Name = "groupBox_TomeImage";
-            this.groupBox_TomeImage.Size = new System.Drawing.Size(235, 236);
+            this.groupBox_TomeImage.Size = new System.Drawing.Size(235, 226);
             this.groupBox_TomeImage.TabIndex = 0;
             this.groupBox_TomeImage.TabStop = false;
             this.groupBox_TomeImage.Text = "Изображение тома";
@@ -932,10 +933,10 @@
             // textBox_TomeAbout
             // 
             this.textBox_TomeAbout.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.textBox_TomeAbout.Location = new System.Drawing.Point(3, 16);
+            this.textBox_TomeAbout.Location = new System.Drawing.Point(3, 20);
             this.textBox_TomeAbout.Multiline = true;
             this.textBox_TomeAbout.Name = "textBox_TomeAbout";
-            this.textBox_TomeAbout.Size = new System.Drawing.Size(229, 116);
+            this.textBox_TomeAbout.Size = new System.Drawing.Size(229, 112);
             this.textBox_TomeAbout.TabIndex = 0;
             // 
             // groupBox_TomeName
@@ -952,9 +953,9 @@
             // textBox_TomeName
             // 
             this.textBox_TomeName.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.textBox_TomeName.Location = new System.Drawing.Point(3, 16);
+            this.textBox_TomeName.Location = new System.Drawing.Point(3, 20);
             this.textBox_TomeName.Name = "textBox_TomeName";
-            this.textBox_TomeName.Size = new System.Drawing.Size(229, 20);
+            this.textBox_TomeName.Size = new System.Drawing.Size(229, 24);
             this.textBox_TomeName.TabIndex = 0;
             // 
             // tabPage1
@@ -962,11 +963,11 @@
             this.tabPage1.Controls.Add(this.panel6);
             this.tabPage1.Controls.Add(this.splitter5);
             this.tabPage1.Controls.Add(this.panel_Scene);
-            this.tabPage1.Location = new System.Drawing.Point(4, 22);
+            this.tabPage1.Location = new System.Drawing.Point(4, 26);
             this.tabPage1.Margin = new System.Windows.Forms.Padding(4);
             this.tabPage1.Name = "tabPage1";
             this.tabPage1.Padding = new System.Windows.Forms.Padding(4);
-            this.tabPage1.Size = new System.Drawing.Size(1102, 445);
+            this.tabPage1.Size = new System.Drawing.Size(1102, 435);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "Сцены";
             this.tabPage1.UseVisualStyleBackColor = true;
@@ -978,7 +979,7 @@
             this.panel6.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel6.Location = new System.Drawing.Point(586, 4);
             this.panel6.Name = "panel6";
-            this.panel6.Size = new System.Drawing.Size(512, 437);
+            this.panel6.Size = new System.Drawing.Size(512, 427);
             this.panel6.TabIndex = 6;
             // 
             // dataGridView_Scenes
@@ -1013,7 +1014,7 @@
             this.dataGridView_Scenes.RowHeadersVisible = false;
             this.dataGridView_Scenes.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing;
             this.dataGridView_Scenes.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dataGridView_Scenes.Size = new System.Drawing.Size(508, 433);
+            this.dataGridView_Scenes.Size = new System.Drawing.Size(508, 423);
             this.dataGridView_Scenes.TabIndex = 1;
             this.dataGridView_Scenes.SelectionChanged += new System.EventHandler(this.dataGridView3_SelectionChanged);
             this.dataGridView_Scenes.MouseDown += new System.Windows.Forms.MouseEventHandler(this.dataGridView_MouseDown);
@@ -1058,7 +1059,7 @@
             // 
             this.splitter5.Location = new System.Drawing.Point(582, 4);
             this.splitter5.Name = "splitter5";
-            this.splitter5.Size = new System.Drawing.Size(4, 437);
+            this.splitter5.Size = new System.Drawing.Size(4, 427);
             this.splitter5.TabIndex = 10;
             this.splitter5.TabStop = false;
             // 
@@ -1068,7 +1069,7 @@
             this.panel_Scene.Dock = System.Windows.Forms.DockStyle.Left;
             this.panel_Scene.Location = new System.Drawing.Point(4, 4);
             this.panel_Scene.Name = "panel_Scene";
-            this.panel_Scene.Size = new System.Drawing.Size(578, 437);
+            this.panel_Scene.Size = new System.Drawing.Size(578, 427);
             this.panel_Scene.TabIndex = 9;
             // 
             // groupBox_SceneMain
@@ -1079,7 +1080,7 @@
             this.groupBox_SceneMain.Dock = System.Windows.Forms.DockStyle.Fill;
             this.groupBox_SceneMain.Location = new System.Drawing.Point(0, 0);
             this.groupBox_SceneMain.Name = "groupBox_SceneMain";
-            this.groupBox_SceneMain.Size = new System.Drawing.Size(578, 437);
+            this.groupBox_SceneMain.Size = new System.Drawing.Size(578, 427);
             this.groupBox_SceneMain.TabIndex = 5;
             this.groupBox_SceneMain.TabStop = false;
             this.groupBox_SceneMain.Tag = 0;
@@ -1092,9 +1093,9 @@
             this.panel7.Controls.Add(this.splitter4);
             this.panel7.Controls.Add(this.panel_SceneNameMessage);
             this.panel7.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel7.Location = new System.Drawing.Point(253, 16);
+            this.panel7.Location = new System.Drawing.Point(253, 20);
             this.panel7.Name = "panel7";
-            this.panel7.Size = new System.Drawing.Size(322, 418);
+            this.panel7.Size = new System.Drawing.Size(322, 404);
             this.panel7.TabIndex = 8;
             // 
             // panel8
@@ -1105,7 +1106,7 @@
             this.panel8.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel8.Location = new System.Drawing.Point(0, 177);
             this.panel8.Name = "panel8";
-            this.panel8.Size = new System.Drawing.Size(322, 241);
+            this.panel8.Size = new System.Drawing.Size(322, 227);
             this.panel8.TabIndex = 2;
             // 
             // panel_SceneTrans
@@ -1114,7 +1115,7 @@
             this.panel_SceneTrans.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel_SceneTrans.Location = new System.Drawing.Point(0, 112);
             this.panel_SceneTrans.Name = "panel_SceneTrans";
-            this.panel_SceneTrans.Size = new System.Drawing.Size(318, 125);
+            this.panel_SceneTrans.Size = new System.Drawing.Size(318, 111);
             this.panel_SceneTrans.TabIndex = 6;
             // 
             // groupBox4
@@ -1124,7 +1125,7 @@
             this.groupBox4.Font = new System.Drawing.Font("Microsoft Sans Serif", 6.912F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.groupBox4.Location = new System.Drawing.Point(0, 0);
             this.groupBox4.Name = "groupBox4";
-            this.groupBox4.Size = new System.Drawing.Size(318, 125);
+            this.groupBox4.Size = new System.Drawing.Size(318, 111);
             this.groupBox4.TabIndex = 6;
             this.groupBox4.TabStop = false;
             this.groupBox4.Text = "Переходы на следующие сцены";
@@ -1154,13 +1155,13 @@
             this.ColumnTrans,
             this.Column1});
             this.dataGridView_ScenesCheckpoints.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.dataGridView_ScenesCheckpoints.Location = new System.Drawing.Point(3, 14);
+            this.dataGridView_ScenesCheckpoints.Location = new System.Drawing.Point(3, 17);
             this.dataGridView_ScenesCheckpoints.Name = "dataGridView_ScenesCheckpoints";
             this.dataGridView_ScenesCheckpoints.ReadOnly = true;
             this.dataGridView_ScenesCheckpoints.RowHeadersVisible = false;
             this.dataGridView_ScenesCheckpoints.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing;
             this.dataGridView_ScenesCheckpoints.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dataGridView_ScenesCheckpoints.Size = new System.Drawing.Size(312, 108);
+            this.dataGridView_ScenesCheckpoints.Size = new System.Drawing.Size(312, 91);
             this.dataGridView_ScenesCheckpoints.TabIndex = 0;
             this.dataGridView_ScenesCheckpoints.KeyDown += new System.Windows.Forms.KeyEventHandler(this.dataGridView_KeyDown);
             this.dataGridView_ScenesCheckpoints.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.dataGridView_MouseDoubleClick);
@@ -1229,7 +1230,7 @@
             this.label1.AutoSize = true;
             this.label1.Location = new System.Drawing.Point(119, 89);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(81, 13);
+            this.label1.Size = new System.Drawing.Size(111, 18);
             this.label1.TabIndex = 5;
             this.label1.Text = "Задержка (мс)";
             // 
@@ -1244,7 +1245,7 @@
             0,
             0});
             this.numericUpDown_Sound.Name = "numericUpDown_Sound";
-            this.numericUpDown_Sound.Size = new System.Drawing.Size(177, 20);
+            this.numericUpDown_Sound.Size = new System.Drawing.Size(177, 24);
             this.numericUpDown_Sound.TabIndex = 5;
             this.numericUpDown_Sound.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.numericUpDown_Sound.ValueChanged += new System.EventHandler(this.numericUpDown_Sound_ValueChanged);
@@ -1262,7 +1263,7 @@
             0,
             0});
             this.numericUpDown_AutoTransTiming.Name = "numericUpDown_AutoTransTiming";
-            this.numericUpDown_AutoTransTiming.Size = new System.Drawing.Size(109, 20);
+            this.numericUpDown_AutoTransTiming.Size = new System.Drawing.Size(109, 24);
             this.numericUpDown_AutoTransTiming.TabIndex = 4;
             this.numericUpDown_AutoTransTiming.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.numericUpDown_AutoTransTiming.ValueChanged += new System.EventHandler(this.numericUpDown3_ValueChanged);
@@ -1285,7 +1286,7 @@
             this.checkBox_Autotrans.Location = new System.Drawing.Point(4, 88);
             this.checkBox_Autotrans.Name = "checkBox_Autotrans";
             this.checkBox_Autotrans.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.checkBox_Autotrans.Size = new System.Drawing.Size(91, 17);
+            this.checkBox_Autotrans.Size = new System.Drawing.Size(120, 22);
             this.checkBox_Autotrans.TabIndex = 0;
             this.checkBox_Autotrans.Text = "Автопереход";
             this.checkBox_Autotrans.UseVisualStyleBackColor = true;
@@ -1314,7 +1315,7 @@
             0,
             0});
             this.numericUpDown_Layer.Name = "numericUpDown_Layer";
-            this.numericUpDown_Layer.Size = new System.Drawing.Size(177, 20);
+            this.numericUpDown_Layer.Size = new System.Drawing.Size(177, 24);
             this.numericUpDown_Layer.TabIndex = 3;
             this.numericUpDown_Layer.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.numericUpDown_Layer.ValueChanged += new System.EventHandler(this.numericUpDown2_ValueChanged);
@@ -1342,7 +1343,7 @@
             0,
             0});
             this.numericUpDown_Background.Name = "numericUpDown_Background";
-            this.numericUpDown_Background.Size = new System.Drawing.Size(177, 20);
+            this.numericUpDown_Background.Size = new System.Drawing.Size(177, 24);
             this.numericUpDown_Background.TabIndex = 2;
             this.numericUpDown_Background.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.numericUpDown_Background.ValueChanged += new System.EventHandler(this.numericUpDown1_ValueChanged);
@@ -1381,10 +1382,10 @@
             // textBox2
             // 
             this.textBox2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.textBox2.Location = new System.Drawing.Point(3, 16);
+            this.textBox2.Location = new System.Drawing.Point(3, 20);
             this.textBox2.Multiline = true;
             this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(312, 103);
+            this.textBox2.Size = new System.Drawing.Size(312, 99);
             this.textBox2.TabIndex = 0;
             this.textBox2.TextChanged += new System.EventHandler(this.textBox2_TextChanged);
             // 
@@ -1402,17 +1403,17 @@
             // textBox1
             // 
             this.textBox1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.textBox1.Location = new System.Drawing.Point(3, 16);
+            this.textBox1.Location = new System.Drawing.Point(3, 20);
             this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(312, 20);
+            this.textBox1.Size = new System.Drawing.Size(312, 24);
             this.textBox1.TabIndex = 0;
             this.textBox1.TextChanged += new System.EventHandler(this.textBox1_TextChanged);
             // 
             // splitter3
             // 
-            this.splitter3.Location = new System.Drawing.Point(249, 16);
+            this.splitter3.Location = new System.Drawing.Point(249, 20);
             this.splitter3.Name = "splitter3";
-            this.splitter3.Size = new System.Drawing.Size(4, 418);
+            this.splitter3.Size = new System.Drawing.Size(4, 404);
             this.splitter3.TabIndex = 9;
             this.splitter3.TabStop = false;
             // 
@@ -1421,9 +1422,9 @@
             this.panel_ScenePreview.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.panel_ScenePreview.Controls.Add(this.pictureBox_Backs);
             this.panel_ScenePreview.Dock = System.Windows.Forms.DockStyle.Left;
-            this.panel_ScenePreview.Location = new System.Drawing.Point(3, 16);
+            this.panel_ScenePreview.Location = new System.Drawing.Point(3, 20);
             this.panel_ScenePreview.Name = "panel_ScenePreview";
-            this.panel_ScenePreview.Size = new System.Drawing.Size(246, 418);
+            this.panel_ScenePreview.Size = new System.Drawing.Size(246, 404);
             this.panel_ScenePreview.TabIndex = 4;
             // 
             // pictureBox_Backs
@@ -1434,7 +1435,7 @@
             this.pictureBox_Backs.Image = global::SceneCreator.Properties.Resources.Character0;
             this.pictureBox_Backs.Location = new System.Drawing.Point(0, 0);
             this.pictureBox_Backs.Name = "pictureBox_Backs";
-            this.pictureBox_Backs.Size = new System.Drawing.Size(242, 414);
+            this.pictureBox_Backs.Size = new System.Drawing.Size(242, 400);
             this.pictureBox_Backs.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pictureBox_Backs.TabIndex = 0;
             this.pictureBox_Backs.TabStop = false;
@@ -1444,11 +1445,11 @@
             this.tabPage2.Controls.Add(this.panel4);
             this.tabPage2.Controls.Add(this.splitter2);
             this.tabPage2.Controls.Add(this.panel3);
-            this.tabPage2.Location = new System.Drawing.Point(4, 22);
+            this.tabPage2.Location = new System.Drawing.Point(4, 26);
             this.tabPage2.Margin = new System.Windows.Forms.Padding(4);
             this.tabPage2.Name = "tabPage2";
             this.tabPage2.Padding = new System.Windows.Forms.Padding(4);
-            this.tabPage2.Size = new System.Drawing.Size(1102, 445);
+            this.tabPage2.Size = new System.Drawing.Size(1102, 441);
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "Фоны";
             this.tabPage2.UseVisualStyleBackColor = true;
@@ -1460,7 +1461,7 @@
             this.panel4.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel4.Location = new System.Drawing.Point(184, 4);
             this.panel4.Name = "panel4";
-            this.panel4.Size = new System.Drawing.Size(914, 437);
+            this.panel4.Size = new System.Drawing.Size(914, 433);
             this.panel4.TabIndex = 4;
             // 
             // listView_Backgrounds
@@ -1471,7 +1472,7 @@
             this.listView_Backgrounds.LargeImageList = this.imageList_BackBig;
             this.listView_Backgrounds.Location = new System.Drawing.Point(0, 0);
             this.listView_Backgrounds.Name = "listView_Backgrounds";
-            this.listView_Backgrounds.Size = new System.Drawing.Size(910, 433);
+            this.listView_Backgrounds.Size = new System.Drawing.Size(910, 429);
             this.listView_Backgrounds.SmallImageList = this.imageList_BackSmall;
             this.listView_Backgrounds.TabIndex = 0;
             this.listView_Backgrounds.UseCompatibleStateImageBehavior = false;
@@ -1494,7 +1495,7 @@
             // 
             this.splitter2.Location = new System.Drawing.Point(180, 4);
             this.splitter2.Name = "splitter2";
-            this.splitter2.Size = new System.Drawing.Size(4, 437);
+            this.splitter2.Size = new System.Drawing.Size(4, 433);
             this.splitter2.TabIndex = 3;
             this.splitter2.TabStop = false;
             // 
@@ -1505,7 +1506,7 @@
             this.panel3.Dock = System.Windows.Forms.DockStyle.Left;
             this.panel3.Location = new System.Drawing.Point(4, 4);
             this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(176, 437);
+            this.panel3.Size = new System.Drawing.Size(176, 433);
             this.panel3.TabIndex = 2;
             this.panel3.SizeChanged += new System.EventHandler(this.panel3_SizeChanged);
             // 
@@ -1515,7 +1516,7 @@
             this.pictureBox1.Location = new System.Drawing.Point(0, 0);
             this.pictureBox1.Margin = new System.Windows.Forms.Padding(4);
             this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(172, 433);
+            this.pictureBox1.Size = new System.Drawing.Size(172, 429);
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pictureBox1.TabIndex = 1;
             this.pictureBox1.TabStop = false;
@@ -1525,11 +1526,11 @@
             this.tabPage3.Controls.Add(this.panel2);
             this.tabPage3.Controls.Add(this.splitter1);
             this.tabPage3.Controls.Add(this.panel1);
-            this.tabPage3.Location = new System.Drawing.Point(4, 22);
+            this.tabPage3.Location = new System.Drawing.Point(4, 26);
             this.tabPage3.Margin = new System.Windows.Forms.Padding(4);
             this.tabPage3.Name = "tabPage3";
             this.tabPage3.Padding = new System.Windows.Forms.Padding(4);
-            this.tabPage3.Size = new System.Drawing.Size(1102, 445);
+            this.tabPage3.Size = new System.Drawing.Size(1102, 441);
             this.tabPage3.TabIndex = 2;
             this.tabPage3.Text = "Персонажи";
             this.tabPage3.UseVisualStyleBackColor = true;
@@ -1541,7 +1542,7 @@
             this.panel2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel2.Location = new System.Drawing.Point(197, 4);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(901, 437);
+            this.panel2.Size = new System.Drawing.Size(901, 433);
             this.panel2.TabIndex = 4;
             // 
             // listView_Characters
@@ -1554,7 +1555,7 @@
             this.listView_Characters.LargeImageList = this.imageList_LayerBig;
             this.listView_Characters.Location = new System.Drawing.Point(0, 0);
             this.listView_Characters.Name = "listView_Characters";
-            this.listView_Characters.Size = new System.Drawing.Size(897, 433);
+            this.listView_Characters.Size = new System.Drawing.Size(897, 429);
             this.listView_Characters.SmallImageList = this.imageList_LayerSmall;
             this.listView_Characters.TabIndex = 1;
             this.listView_Characters.UseCompatibleStateImageBehavior = false;
@@ -1577,7 +1578,7 @@
             // 
             this.splitter1.Location = new System.Drawing.Point(193, 4);
             this.splitter1.Name = "splitter1";
-            this.splitter1.Size = new System.Drawing.Size(4, 437);
+            this.splitter1.Size = new System.Drawing.Size(4, 433);
             this.splitter1.TabIndex = 3;
             this.splitter1.TabStop = false;
             // 
@@ -1588,7 +1589,7 @@
             this.panel1.Dock = System.Windows.Forms.DockStyle.Left;
             this.panel1.Location = new System.Drawing.Point(4, 4);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(189, 437);
+            this.panel1.Size = new System.Drawing.Size(189, 433);
             this.panel1.TabIndex = 2;
             this.panel1.SizeChanged += new System.EventHandler(this.panel3_SizeChanged);
             // 
@@ -1598,7 +1599,7 @@
             this.pictureBox2.Location = new System.Drawing.Point(0, 0);
             this.pictureBox2.Margin = new System.Windows.Forms.Padding(4);
             this.pictureBox2.Name = "pictureBox2";
-            this.pictureBox2.Size = new System.Drawing.Size(185, 433);
+            this.pictureBox2.Size = new System.Drawing.Size(185, 429);
             this.pictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pictureBox2.TabIndex = 1;
             this.pictureBox2.TabStop = false;
@@ -1611,14 +1612,14 @@
             this.toolStripMenuItem_Edit,
             this.toolStripMenuItem_Delete});
             this.contextMenuStrip_AddEditRemove.Name = "contextMenuStrip1";
-            this.contextMenuStrip_AddEditRemove.Size = new System.Drawing.Size(134, 88);
+            this.contextMenuStrip_AddEditRemove.Size = new System.Drawing.Size(157, 88);
             this.contextMenuStrip_AddEditRemove.Text = ";ll;l";
             // 
             // toolStripMenuItem_Add
             // 
             this.toolStripMenuItem_Add.Image = global::SceneCreator.Properties.Resources.Add_24x24;
             this.toolStripMenuItem_Add.Name = "toolStripMenuItem_Add";
-            this.toolStripMenuItem_Add.Size = new System.Drawing.Size(133, 28);
+            this.toolStripMenuItem_Add.Size = new System.Drawing.Size(156, 28);
             this.toolStripMenuItem_Add.Text = "Добавить";
             this.toolStripMenuItem_Add.Click += new System.EventHandler(this.ContextMenu_Add_Click);
             // 
@@ -1627,7 +1628,7 @@
             this.toolStripMenuItem_Edit.Enabled = false;
             this.toolStripMenuItem_Edit.Image = global::SceneCreator.Properties.Resources.Edit_24x24;
             this.toolStripMenuItem_Edit.Name = "toolStripMenuItem_Edit";
-            this.toolStripMenuItem_Edit.Size = new System.Drawing.Size(133, 28);
+            this.toolStripMenuItem_Edit.Size = new System.Drawing.Size(156, 28);
             this.toolStripMenuItem_Edit.Text = "Изменить";
             this.toolStripMenuItem_Edit.Click += new System.EventHandler(this.toolStripMenuItem_Edit_Click);
             // 
@@ -1636,7 +1637,7 @@
             this.toolStripMenuItem_Delete.Enabled = false;
             this.toolStripMenuItem_Delete.Image = global::SceneCreator.Properties.Resources.Delete_24x24;
             this.toolStripMenuItem_Delete.Name = "toolStripMenuItem_Delete";
-            this.toolStripMenuItem_Delete.Size = new System.Drawing.Size(133, 28);
+            this.toolStripMenuItem_Delete.Size = new System.Drawing.Size(156, 28);
             this.toolStripMenuItem_Delete.Text = "Удалить";
             this.toolStripMenuItem_Delete.Click += new System.EventHandler(this.toolStripMenuItem_Delete_Click);
             // 
@@ -1653,57 +1654,57 @@
             this.toolStripSeparator8,
             this.contextMenuStrip_ChapterDelete});
             this.contextMenuStrip_Chapters.Name = "contextMenuStrip2";
-            this.contextMenuStrip_Chapters.Size = new System.Drawing.Size(152, 148);
+            this.contextMenuStrip_Chapters.Size = new System.Drawing.Size(181, 172);
             // 
             // contextMenuStrip_ChapterNew
             // 
             this.contextMenuStrip_ChapterNew.Name = "contextMenuStrip_ChapterNew";
-            this.contextMenuStrip_ChapterNew.Size = new System.Drawing.Size(151, 22);
+            this.contextMenuStrip_ChapterNew.Size = new System.Drawing.Size(180, 26);
             this.contextMenuStrip_ChapterNew.Text = "Новая глава";
             this.contextMenuStrip_ChapterNew.Click += new System.EventHandler(this.context_ChapterNew_Click);
             // 
             // toolStripSeparator7
             // 
             this.toolStripSeparator7.Name = "toolStripSeparator7";
-            this.toolStripSeparator7.Size = new System.Drawing.Size(148, 6);
+            this.toolStripSeparator7.Size = new System.Drawing.Size(177, 6);
             // 
             // contextMenuStrip_ChapterUp
             // 
             this.contextMenuStrip_ChapterUp.Name = "contextMenuStrip_ChapterUp";
-            this.contextMenuStrip_ChapterUp.Size = new System.Drawing.Size(151, 22);
+            this.contextMenuStrip_ChapterUp.Size = new System.Drawing.Size(180, 26);
             this.contextMenuStrip_ChapterUp.Text = "Вверх";
             this.contextMenuStrip_ChapterUp.Click += new System.EventHandler(this.ChaptersRearrange_Click);
             // 
             // contextMenuStrip_ChapterDown
             // 
             this.contextMenuStrip_ChapterDown.Name = "contextMenuStrip_ChapterDown";
-            this.contextMenuStrip_ChapterDown.Size = new System.Drawing.Size(151, 22);
+            this.contextMenuStrip_ChapterDown.Size = new System.Drawing.Size(180, 26);
             this.contextMenuStrip_ChapterDown.Text = "Вниз";
             this.contextMenuStrip_ChapterDown.Click += new System.EventHandler(this.ChaptersRearrange_Click);
             // 
             // contextMenuStrip_ChapterStart
             // 
             this.contextMenuStrip_ChapterStart.Name = "contextMenuStrip_ChapterStart";
-            this.contextMenuStrip_ChapterStart.Size = new System.Drawing.Size(151, 22);
+            this.contextMenuStrip_ChapterStart.Size = new System.Drawing.Size(180, 26);
             this.contextMenuStrip_ChapterStart.Text = "В начало";
             this.contextMenuStrip_ChapterStart.Click += new System.EventHandler(this.ChaptersRearrange_Click);
             // 
             // contextMenuStrip_ChapterEnd
             // 
             this.contextMenuStrip_ChapterEnd.Name = "contextMenuStrip_ChapterEnd";
-            this.contextMenuStrip_ChapterEnd.Size = new System.Drawing.Size(151, 22);
+            this.contextMenuStrip_ChapterEnd.Size = new System.Drawing.Size(180, 26);
             this.contextMenuStrip_ChapterEnd.Text = "В конец";
             this.contextMenuStrip_ChapterEnd.Click += new System.EventHandler(this.ChaptersRearrange_Click);
             // 
             // toolStripSeparator8
             // 
             this.toolStripSeparator8.Name = "toolStripSeparator8";
-            this.toolStripSeparator8.Size = new System.Drawing.Size(148, 6);
+            this.toolStripSeparator8.Size = new System.Drawing.Size(177, 6);
             // 
             // contextMenuStrip_ChapterDelete
             // 
             this.contextMenuStrip_ChapterDelete.Name = "contextMenuStrip_ChapterDelete";
-            this.contextMenuStrip_ChapterDelete.Size = new System.Drawing.Size(151, 22);
+            this.contextMenuStrip_ChapterDelete.Size = new System.Drawing.Size(180, 26);
             this.contextMenuStrip_ChapterDelete.Text = "Удалить главу";
             this.contextMenuStrip_ChapterDelete.Click += new System.EventHandler(this.contextMenuStrip_ChapterDelete_Click);
             // 
@@ -1714,13 +1715,13 @@
             this.ComboBox_ListView.FormattingEnabled = true;
             this.ComboBox_ListView.Location = new System.Drawing.Point(964, 27);
             this.ComboBox_ListView.Name = "ComboBox_ListView";
-            this.ComboBox_ListView.Size = new System.Drawing.Size(138, 21);
+            this.ComboBox_ListView.Size = new System.Drawing.Size(138, 25);
             this.ComboBox_ListView.TabIndex = 4;
             this.ComboBox_ListView.SelectedIndexChanged += new System.EventHandler(this.ComboBox_ListView_SelectedIndexChanged);
             // 
             // FormMain
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 17F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1110, 545);
             this.Controls.Add(this.ComboBox_ListView);
