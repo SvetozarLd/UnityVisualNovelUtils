@@ -1492,5 +1492,13 @@ namespace SceneCreator.Forms
                 if (musicselectform.result > 0) { numericUpDown_Sound.Value = musicselectform.result; }
             }
         }
+
+        private void toolStripMenuItem2_Click(object sender, EventArgs e)
+        {
+            using (var Frm = new FormGoogleDrive())
+            {
+                Frm.ShowDialog();
+            }
+        }
     }
 }
